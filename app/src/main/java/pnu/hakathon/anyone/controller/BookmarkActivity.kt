@@ -1,6 +1,7 @@
 package pnu.hakathon.anyone.controller
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,13 +17,21 @@ class BookmarkActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bookmark)
 
+        shimmerFrameLayout.startShimmer()
+
         val adapter =
             BookmarkListAdapter(this)
         bookmark_recyclerView.adapter = adapter
 
         bookmarkViewModel = ViewModelProvider(this).get(BookmarkViewModel::class.java)
         bookmarkViewModel.bookmarks.observe(this, Observer { bookmarks ->
-            bookmarks?.let { adapter.setBookmarks(it) }
+            bookmarks?.let {
+                shimmerFrameLayout.stopShimmer()
+                shimmerFrameLayout.visibility = View.GONE
+                bookmark_recyclerView.visibility = View.VISIBLE
+                adapter.setBookmarks(it)
+
+            }
         })
     }
 }
