@@ -1,4 +1,4 @@
-package pnu.hakathon.anyone.adapter
+package pnu.hakathon.anyone.adapter.search
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,12 +1,12 @@
 package pnu.hakathon.anyone.controller
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_bookmark.*
 import pnu.hakathon.anyone.R
-import pnu.hakathon.anyone.adapter.BookmarkListAdapter
+import pnu.hakathon.anyone.adapter.bookmark.BookmarkListAdapter
 import pnu.hakathon.anyone.viewmodel.BookmarkViewModel
 
 class BookmarkActivity : AppCompatActivity() {
@@ -16,7 +16,8 @@ class BookmarkActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bookmark)
 
-        val adapter = BookmarkListAdapter(this)
+        val adapter =
+            BookmarkListAdapter(this)
         bookmark_recyclerView.adapter = adapter
 
         bookmarkViewModel = ViewModelProvider(this).get(BookmarkViewModel::class.java)

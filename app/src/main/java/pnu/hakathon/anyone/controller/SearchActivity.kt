@@ -1,12 +1,12 @@
 package pnu.hakathon.anyone.controller
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_search.*
 import pnu.hakathon.anyone.R
-import pnu.hakathon.anyone.adapter.SearchHistoryListAdapter
+import pnu.hakathon.anyone.adapter.search.SearchHistoryListAdapter
 import pnu.hakathon.anyone.viewmodel.SearchViewModel
 
 class SearchActivity : AppCompatActivity() {
@@ -15,7 +15,8 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-        val adapter = SearchHistoryListAdapter(this)
+        val adapter =
+            SearchHistoryListAdapter(this)
         search_recyclerView.adapter = adapter
 
         searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
