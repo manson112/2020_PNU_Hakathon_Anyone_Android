@@ -28,7 +28,6 @@
         app:layout_constraintTop_toTopOf="@id/placeholder_imageView"
         tools:text="MindOrks" />
 
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/placeholder_textView2"
         android:layout_width="0dp"
