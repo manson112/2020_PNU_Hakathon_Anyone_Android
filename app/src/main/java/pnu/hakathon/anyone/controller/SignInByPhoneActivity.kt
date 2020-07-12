@@ -3,17 +3,22 @@ package pnu.hakathon.anyone.controller
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.activity_sign_in_by_phone.*
 import pnu.hakathon.anyone.R
+import pnu.hakathon.anyone.viewmodel.LoginViewModel
 import java.util.concurrent.TimeUnit
 
 class SignInByPhoneActivity : AppCompatActivity() {
+    private lateinit var loginViewModel: LoginViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in_by_phone)
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         btn.setOnClickListener {
             val number = "+82" + edt.text.toString()
@@ -24,6 +29,8 @@ class SignInByPhoneActivity : AppCompatActivity() {
                 this,
                 callbacks
             )
+            loginViewModel.requestBookmark()
+            loginViewModel.requestSearchHistory()
         }
 
     }

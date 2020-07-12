@@ -25,7 +25,7 @@ class BookmarkListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: BookmarkViewHolder, position: Int) {
         val current = bookmarks[position]
-        holder.itemView.bookmark_textview.text = "${current.id} ${current.name}"
+        holder.itemView.bookmark_textview.text = "${current.id} ${current.storeName}"
     }
 
     internal fun setBookmarks(bookmarks: List<Bookmark>) {

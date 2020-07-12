@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [SearchHistory::class, Bookmark::class], version = 2)
+@Database(entities = [SearchHistory::class, Bookmark::class], version = 3)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun searchHistoryDao(): SearchHistoryDao
     abstract fun bookmarkDao(): BookmarkDao
@@ -44,24 +44,24 @@ abstract class AppDatabase: RoomDatabase() {
 
                 INSTANCE?.let { appDatabase ->
                     scope.launch(Dispatchers.IO) {
-                        populateDatabase(appDatabase.searchHistoryDao(), appDatabase.bookmarkDao())
+//                        populateDatabase(appDatabase.searchHistoryDao(), appDatabase.bookmarkDao())
                     }
                 }
             }
         }
 
         fun populateDatabase(searchHistoryDao: SearchHistoryDao, bookmarkDao: BookmarkDao) {
-            searchHistoryDao.deleteAll()
-
-            var searchHistory = SearchHistory(0,"KKK")
-            searchHistoryDao.insert(searchHistory)
-
-            searchHistory = SearchHistory(0,"KKK2")
-            searchHistoryDao.insert(searchHistory)
-
-            bookmarkDao.deleteAll()
-            bookmarkDao.insert(Bookmark(0, "dfdf"))
-            bookmarkDao.insert(Bookmark(0, "dfdf2"))
+//            searchHistoryDao.deleteAll()
+//
+//            var searchHistory = SearchHistory(0,"KKK")
+//            searchHistoryDao.insert(searchHistory)
+//
+//            searchHistory = SearchHistory(0,"KKK2")
+//            searchHistoryDao.insert(searchHistory)
+//
+//            bookmarkDao.deleteAll()
+//            bookmarkDao.insert(Bookmark(0, "dfdf"))
+//            bookmarkDao.insert(Bookmark(0, "dfdf2"))
 
         }
     }

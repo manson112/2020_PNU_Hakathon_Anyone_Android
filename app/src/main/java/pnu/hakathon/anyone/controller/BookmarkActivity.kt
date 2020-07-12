@@ -12,7 +12,6 @@ import pnu.hakathon.anyone.viewmodel.BookmarkViewModel
 
 class BookmarkActivity : AppCompatActivity() {
     private lateinit var bookmarkViewModel: BookmarkViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bookmark)
@@ -30,7 +29,6 @@ class BookmarkActivity : AppCompatActivity() {
                 shimmerFrameLayout.visibility = View.GONE
                 bookmark_recyclerView.visibility = View.VISIBLE
                 adapter.setBookmarks(it)
-
             }
         })
     }
