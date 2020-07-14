@@ -18,8 +18,9 @@ class StoreDetailActivity : AppCompatActivity() {
 
         storeDetailViewModel.storeID = "1"
         storeDetailViewModel.requestStoreInfo()
+
         storeDetailViewModel.store.observe(this, Observer { storeDetail ->
-            // VIEW BINDING
+            // NEED VIEW BINDING
             Log.d("StoreDetailActivity", storeDetail.toString())
         })
 

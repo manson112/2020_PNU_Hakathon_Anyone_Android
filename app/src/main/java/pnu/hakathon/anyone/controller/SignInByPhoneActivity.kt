@@ -29,10 +29,7 @@ class SignInByPhoneActivity : AppCompatActivity() {
                 this,
                 callbacks
             )
-            loginViewModel.requestBookmark()
-            loginViewModel.requestSearchHistory()
         }
-
     }
 
     val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -43,7 +40,8 @@ class SignInByPhoneActivity : AppCompatActivity() {
 
         override fun onVerificationCompleted(p0: PhoneAuthCredential?) {
             Log.i("AUTH", "VERIFICATION COMPLETED")
-
+            loginViewModel.requestBookmark()
+            loginViewModel.requestSearchHistory()
         }
 
         override fun onVerificationFailed(p0: FirebaseException?) {

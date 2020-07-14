@@ -18,8 +18,7 @@ class BookmarkActivity : AppCompatActivity() {
 
         shimmerFrameLayout.startShimmer()
 
-        val adapter =
-            BookmarkListAdapter(this)
+        val adapter = BookmarkListAdapter(this)
         bookmark_recyclerView.adapter = adapter
 
         bookmarkViewModel = ViewModelProvider(this).get(BookmarkViewModel::class.java)

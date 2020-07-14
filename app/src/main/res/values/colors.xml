@@ -5,4 +5,11 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="colorGrey">#dddddd</color>
+    <color name="colorGrey2">#7C7C7C</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorTabBg">#542d69</color>
+    <color name="colorTabClicked">#eea800</color>
+
 </resources>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="20dp"
+    tools:context=".controller.HomeActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/home_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/home_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/home_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentInsetStart="0dp"
+            android:contentInsetLeft="0dp"
+            android:contentInsetEnd="0dp"
+            android:contentInsetRight="0dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/home_toolbar_back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&lt;"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="24.7sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/home_guide3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/home_toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HOME"
+                    android:textColor="@color/colorWhite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/home_guide4"
+                    app:layout_constraintStart_toStartOf="@id/home_guide3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/home_guide3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.1" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/home_guide4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.9" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <EditText
+            android:id="@+id/home_searchbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/searchbar_background"
+            android:drawableStart="@drawable/ic_search_black_18dp"
+            android:hint="@string/search_bar_placeholder"
+            android:imeOptions="actionSearch"
+            android:padding="4dp"
+            android:singleLine="true"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/home_guide2"
+            app:layout_constraintStart_toStartOf="@id/home_guide1"
+            app:layout_constraintTop_toBottomOf="@id/home_toolbar" />
+
+        <TextView
+            android:id="@+id/home_recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_recommend"
+            android:textColor="@color/colorWhite"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/home_recommend_sub"
+            app:layout_constraintStart_toStartOf="@id/home_guide1" />
+
+        <TextView
+            android:id="@+id/home_recommend_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/home_recommend_sub"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/home_background"
+            app:layout_constraintStart_toStartOf="@id/home_guide1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_recyclerview_recommend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="@id/home_guide2"
+            app:layout_constraintStart_toStartOf="@id/home_guide1"
+            app:layout_constraintTop_toBottomOf="@id/home_recommend_sub" />
+
+        <TextView
+            android:id="@+id/home_hashtag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/home_hashtag"
+            android:textColor="@color/colorBlack"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/home_guide1"
+            app:layout_constraintTop_toBottomOf="@id/home_recyclerview_recommend" />
+
+        <TextView
+            android:id="@+id/home_hashtag_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/home_hashtag_sub"
+            android:textColor="@color/colorGrey2"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/home_guide1"
+            app:layout_constraintTop_toBottomOf="@id/home_hashtag" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/home_hashtag_tablayout"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/home_custom_tab_background"
+            app:layout_constraintEnd_toEndOf="@id/home_guide6"
+            app:layout_constraintStart_toEndOf="@id/home_guide5"
+            app:layout_constraintTop_toBottomOf="@id/home_hashtag_sub"
+            app:tabGravity="fill"
+            app:tabIndicator="@drawable/home_custom_tab_clicked"
+            app:tabIndicatorColor="@color/colorTabClicked"
+            app:tabIndicatorHeight="31dp"
+            app:tabMode="fixed"
+            app:tabRippleColor="@null"
+            app:tabSelectedTextColor="@color/colorWhite"
+            app:tabTextAppearance="@style/CustomTabText"
+            app:tabTextColor="@color/colorWhite" />
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/home_hashtag_viewpager"
+            android:layout_width="0dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@id/home_guide2"
+            app:layout_constraintStart_toStartOf="@id/home_guide1"
+            app:layout_constraintTop_toBottomOf="@id/home_hashtag_tablayout" />
+
+        <TextView
+            android:id="@+id/home_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/home_album"
+            android:textColor="@color/colorBlack"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/home_guide1"
+            app:layout_constraintTop_toBottomOf="@id/home_hashtag_viewpager" />
+
+        <TextView
+            android:id="@+id/home_album_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_album_sub"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/home_guide1"
+            app:layout_constraintTop_toBottomOf="@id/home_album" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_recyclerview_album"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="@id/home_guide2"
+            app:layout_constraintStart_toStartOf="@id/home_guide1"
+            app:layout_constraintTop_toBottomOf="@id/home_album_sub"
+            app:spanCount="2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/home_guide1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/home_guide2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/home_guide5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/home_guide6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

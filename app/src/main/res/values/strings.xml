@@ -17,12 +17,18 @@
     <string name="home_hashtag2">#활기찬</string>
     <string name="home_hashtag3">#친절한</string>
     <string name="home_hashtag4">#깨끗한</string>
+    <string name="home_recommend">오늘 이런 카페는 어때요?</string>
+    <string name="home_recommend_sub">근처 자리가 많이 있는 카페예요!</string>
+    <string name="home_hashtag">채움이의 추천 해시태그!</string>
+    <string name="home_hashtag_sub">건강하게 채움이를 채워주세요!</string>
+    <string name="home_album">카페 앨범</string>
+    <string name="home_album_sub">현민님 취향에 맞게 추천해드려요!</string>
 
     <!--  MAIN  -->
     <string name="main_viewed">#최근조회</string>
 
     <!--  SEARCH  -->
-    <string name="search_bar_placeholder">가게명·인원수 검색</string>
+    <string name="search_bar_placeholder">카페 이름을 검색해보세요</string>
     <string name="search_history">#최근검색</string>
 
     <!--  DETAIL  -->
@@ -39,5 +45,7 @@
     <string name="review_cleanliness">청결도</string>
     <string name="review_kindness">친절함</string>
     <string name="review_wifi">WIFI</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
