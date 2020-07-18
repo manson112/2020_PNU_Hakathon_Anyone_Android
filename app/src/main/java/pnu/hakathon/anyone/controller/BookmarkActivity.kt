@@ -2,6 +2,7 @@ package pnu.hakathon.anyone.controller
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,10 @@ class BookmarkActivity : AppCompatActivity() {
     private lateinit var bookmarkViewModel: BookmarkViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setContentView(R.layout.activity_bookmark)
 
         shimmerFrameLayout.startShimmer()

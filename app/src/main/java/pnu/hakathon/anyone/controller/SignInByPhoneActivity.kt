@@ -2,6 +2,7 @@ package pnu.hakathon.anyone.controller
 
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.FirebaseException
@@ -17,6 +18,10 @@ class SignInByPhoneActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setContentView(R.layout.activity_sign_in_by_phone)
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
