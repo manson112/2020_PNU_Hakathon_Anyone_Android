@@ -6,9 +6,9 @@
     <string name="login_email">구글 이메일</string>
 
     <!--  LANDING (카페, 식당, 술집, 패스트푸드 선택) -->
-    <string name="landing_cafe">카페</string>
-    <string name="landing_restaurant">식당</string>
-    <string name="landing_pub">술집</string>
+    <string name="landing_cafe">시원한 카페</string>
+    <string name="landing_restaurant">든든한 음식점</string>
+    <string name="landing_pub">즐거운 술집</string>
     <string name="landing_fastfood">패스트푸드</string>
 
     <!--  HOME  -->
