@@ -13,8 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/splash_text1"
-        app:layout_constraintEnd_toEndOf="@id/category2_guide_2"
-        app:layout_constraintStart_toStartOf="@id/category2_guide_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/category2_guide_3" />
 
     <ImageView
@@ -23,8 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:src="@drawable/splash_text2"
-        app:layout_constraintEnd_toEndOf="@id/category2_guide_2"
-        app:layout_constraintStart_toStartOf="@id/category2_guide_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/category2_text1" />
 
     <GridLayout
@@ -33,8 +33,8 @@
         android:columnCount="2"
         android:rowCount="2"
         app:layout_constraintBottom_toBottomOf="@id/category2_guide_4"
-        app:layout_constraintEnd_toEndOf="@id/category2_guide_2"
-        app:layout_constraintStart_toStartOf="@id/category2_guide_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/category2_guide_5">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,17 +43,26 @@
             android:layout_height="160dp"
             android:paddingHorizontal="10dp">
 
-            <ImageView
-                android:id="@+id/category2_1"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/category3"
-                android:scaleType="center"
-                android:src="@drawable/category4"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/category2_1_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/category2_1"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@drawable/category_image_cafe"
+                    android:scaleType="centerCrop" />
+
+            </androidx.cardview.widget.CardView>
+
 
             <TextView
                 android:layout_width="0dp"
@@ -66,8 +75,8 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="13sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/category2_1"
-                app:layout_constraintStart_toStartOf="@id/category2_1"
+                app:layout_constraintEnd_toEndOf="@id/category2_1_container"
+                app:layout_constraintStart_toStartOf="@id/category2_1_container"
                 app:layout_constraintTop_toBottomOf="@id/category2_grid_guide_1" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -84,17 +93,25 @@
             android:layout_height="160dp"
             android:paddingHorizontal="10dp">
 
-            <ImageView
-                android:id="@+id/category2_2"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/category5"
-                android:scaleType="center"
-                android:src="@drawable/category6"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/category2_2_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/category2_2"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@drawable/category_image_restaurant"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
+
 
             <TextView
                 android:layout_width="0dp"
@@ -107,8 +124,8 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="13sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/category2_2"
-                app:layout_constraintStart_toStartOf="@id/category2_2"
+                app:layout_constraintEnd_toEndOf="@id/category2_2_container"
+                app:layout_constraintStart_toStartOf="@id/category2_2_container"
                 app:layout_constraintTop_toBottomOf="@id/category2_grid_guide_2" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -126,16 +143,27 @@
             android:layout_height="160dp"
             android:paddingHorizontal="10dp">
 
-            <ImageView
-                android:id="@+id/category2_3"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/category7"
-                android:scaleType="center"
-                android:src="@drawable/category8"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/category2_3_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/category2_3"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@drawable/category_image_pub"
+                    android:scaleType="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.cardview.widget.CardView>
+
 
             <TextView
                 android:layout_width="0dp"
@@ -148,8 +176,8 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="13sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/category2_3"
-                app:layout_constraintStart_toStartOf="@id/category2_3"
+                app:layout_constraintEnd_toEndOf="@id/category2_3_container"
+                app:layout_constraintStart_toStartOf="@id/category2_3_container"
                 app:layout_constraintTop_toBottomOf="@id/category2_grid_guide_3" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -167,16 +195,24 @@
             android:layout_height="160dp"
             android:paddingHorizontal="10dp">
 
-            <ImageView
-                android:id="@+id/category2_4"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/category9"
-                android:scaleType="center"
-                android:src="@drawable/category10"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/category2_4_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/category2_4"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@drawable/category_image_fastfood"
+                    android:scaleType="center" />
+            </androidx.cardview.widget.CardView>
+
 
             <TextView
                 android:layout_width="0dp"
@@ -189,8 +225,8 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="13sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/category2_4"
-                app:layout_constraintStart_toStartOf="@id/category2_4"
+                app:layout_constraintEnd_toEndOf="@id/category2_4_container"
+                app:layout_constraintStart_toStartOf="@id/category2_4_container"
                 app:layout_constraintTop_toBottomOf="@id/category2_grid_guide_4" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -202,21 +238,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </GridLayout>
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/category2_guide_1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.08" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/category2_guide_2"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.83" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/category2_guide_3"

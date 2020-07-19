@@ -6,5 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".controller.MainActivity">
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/main_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/main_tablayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/main_tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:tabGravity="fill"
+        app:tabIndicator="@null"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

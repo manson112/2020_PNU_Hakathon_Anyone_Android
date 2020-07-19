@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/splash0"
-        app:layout_constraintEnd_toStartOf="@id/login_guide1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -29,16 +29,18 @@
         app:layout_constraintStart_toStartOf="@id/login_guide3"
         app:layout_constraintTop_toBottomOf="@id/login_image1" />
 
+
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/colorBlueTransparent"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@id/login_guide7"
-        app:layout_constraintEnd_toEndOf="@id/login_guide5"
-        app:layout_constraintStart_toStartOf="@id/login_guide4"
-        app:layout_constraintTop_toTopOf="@id/login_guide6" />
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/login_guide1"
@@ -61,32 +63,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.05" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/login_guide4"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.08" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/login_guide5"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.83" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/login_guide6"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.01" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/login_guide7"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

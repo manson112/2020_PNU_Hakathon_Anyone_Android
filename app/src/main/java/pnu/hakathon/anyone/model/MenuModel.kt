@@ -1,7 +1,7 @@
 package pnu.hakathon.anyone.model
 
-data class HashStore(
-    val Id: Int,
+data class MenuModel(
     var name: String,
+    var cost: String,
     var imageURL: String
 )

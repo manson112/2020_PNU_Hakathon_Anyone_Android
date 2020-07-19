@@ -1,8 +1,269 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".controller.StoreDetailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/detail_guide_4"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="-150dp"
+                app:cardCornerRadius="35dp">
+
+                <include layout="@layout/activity_background" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/detail_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/detail_guide_3"
+            app:layout_constraintStart_toStartOf="@id/detail_guide_1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/detail_title"
+            app:layout_constraintBottom_toBottomOf="@id/detail_guide_3"
+            app:layout_constraintEnd_toEndOf="@id/detail_guide_2"
+            app:layout_constraintStart_toStartOf="@id/detail_guide_1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ToggleButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/detail_favorite_btn_selector"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintBottom_toBottomOf="@id/detail_guide_3"
+            app:layout_constraintEnd_toEndOf="@id/detail_guide_2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/detail_image_container"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="@id/detail_guide_2"
+            app:layout_constraintStart_toStartOf="@id/detail_guide_1"
+            app:layout_constraintTop_toBottomOf="@id/detail_guide_3">
+
+            <ImageView
+                android:id="@+id/detail_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/detail_image_sample" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="부산 커피"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/detail_guide_1"
+            app:layout_constraintTop_toBottomOf="@id/detail_image_container" />
+
+        <TextView
+            android:id="@+id/detail_btn_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/detail_more_btn_background"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="2dp"
+            android:text="@string/detail_more_photo"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/detail_name"
+            app:layout_constraintEnd_toStartOf="@id/detail_guide_2"
+            app:layout_constraintTop_toTopOf="@id/detail_name" />
+
+        <ImageView
+            android:id="@+id/detail_icn_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="@id/detail_guide_1"
+            app:layout_constraintTop_toBottomOf="@id/detail_name" />
+
+        <TextView
+            android:id="@+id/detail_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="부산 금정구 장전온천천로 93"
+            app:layout_constraintStart_toEndOf="@id/detail_icn_location"
+            app:layout_constraintTop_toTopOf="@id/detail_icn_location" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/detail_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintStart_toStartOf="@id/detail_guide_1"
+            app:layout_constraintTop_toBottomOf="@id/detail_icn_location">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="#555555" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/detail_current_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="73"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/detail_text_percent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/detail_text_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="%"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/detail_current_percent"
+                    app:layout_constraintStart_toEndOf="@id/detail_current_percent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/detail_rectangle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="@id/detail_guide_2"
+            app:layout_constraintStart_toEndOf="@id/detail_circle"
+            app:layout_constraintTop_toTopOf="@id/detail_circle">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#555555" />
+
+            <TextView
+                android:id="@+id/detail_current_message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="부산 커피에는\n 총 3자리가 남아있어요!"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/detail_tab"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="70dp"
+            app:layout_constraintEnd_toEndOf="@id/detail_guide_2"
+            app:layout_constraintStart_toStartOf="@id/detail_guide_1"
+            app:layout_constraintTop_toBottomOf="@id/detail_circle"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/colorDetailTabIndicator"
+            app:tabMode="fixed"
+            app:tabRippleColor="@null"
+            app:tabTextAppearance="@style/CustomTabText" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/detail_viewpager"
+            android:layout_width="0dp"
+            android:layout_height="500dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@id/detail_btn_call"
+            app:layout_constraintEnd_toEndOf="@id/detail_guide_2"
+            app:layout_constraintStart_toStartOf="@id/detail_guide_1"
+            app:layout_constraintTop_toBottomOf="@id/detail_tab" />
+
+        <Button
+            android:id="@+id/detail_btn_call"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/detail_call_btn_background"
+            android:text="@string/detail_phonecall"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="@id/detail_guide_2"
+            app:layout_constraintStart_toStartOf="@id/detail_guide_1"
+            app:layout_constraintTop_toBottomOf="@id/detail_viewpager" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/detail_guide_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.08" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/detail_guide_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.92" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/detail_guide_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.08" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/detail_guide_4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/detail_guide_5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.98" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

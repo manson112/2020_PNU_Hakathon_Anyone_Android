@@ -1,7 +1,7 @@
 package pnu.hakathon.anyone.model
 
-data class RecommendedStore(
-    val Id: Int,
+data class HomeFragmentItemTwo(
+    val id: Int,
     var name: String,
     var current: Int,
     var total: Int,

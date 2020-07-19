@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import pnu.hakathon.anyone.R
-import pnu.hakathon.anyone.model.RecommendedStore
+import pnu.hakathon.anyone.model.HomeFragmentItemOne
 
 class RecommendedStoreListAdapter internal constructor(
     context: Context
 ) : RecyclerView.Adapter<RecommendedStoreListAdapter.RecommendedStoreViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var recommendedStores = emptyList<RecommendedStore>()
+    private var recommendedStores = emptyList<HomeFragmentItemOne>()
 
     inner class RecommendedStoreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -34,7 +34,7 @@ class RecommendedStoreListAdapter internal constructor(
 //        holder.itemView.bookmark_textview.text = "${current.id} ${current.name}"
     }
 
-    internal fun setRecommendedStores(rs: List<RecommendedStore>) {
+    internal fun setRecommendedStores(rs: List<HomeFragmentItemOne>) {
         this.recommendedStores = rs
         notifyDataSetChanged()
     }

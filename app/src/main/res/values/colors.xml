@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#2eb9da</color>
 
     <color name="colorGrey">#dddddd</color>
     <color name="colorGrey2">#7C7C7C</color>
@@ -13,6 +13,14 @@
     <color name="colorBlueTransparent">#34198DDF</color>
 
     <color name="colorTabBg">#542d69</color>
-    <color name="colorTabClicked">#eea800</color>
+    <color name="colorTabClicked">#fb5f40</color>
 
+    <color name="colorHomeYellow">#f7b108</color>
+    <color name="colorHomeOrange">#d95c3f</color>
+    <color name="colorHomeBlue">#3467d9</color>
+    <color name="colorHomeLightBlue">#29b9d9</color>
+
+    <color name="colorMainTabSelected">#2eb9da</color>
+
+    <color name="colorDetailTabIndicator">#fb5f40</color>
 </resources>

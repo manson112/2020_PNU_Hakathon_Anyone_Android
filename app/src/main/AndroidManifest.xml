@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".controller.HomeActivity2"></activity>
         <activity android:name=".controller.CategoryActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.LoginActivity">
-
-        </activity>
-        <activity android:name=".controller.SplashActivity"></activity>
+        <activity android:name=".controller.LoginActivity"></activity>
+        <activity android:name=".controller.SplashActivity" />
         <activity android:name=".controller.HomeActivity" />
 
         <meta-data

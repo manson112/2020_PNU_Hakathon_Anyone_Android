@@ -7,28 +7,40 @@ import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.fragment_home_hash.view.*
+import kotlinx.android.synthetic.main.fragment_home2_hash.view.*
 import pnu.hakathon.anyone.R
-import pnu.hakathon.anyone.adapter.home.HomeHashListAdapter
+import pnu.hakathon.anyone.adapter.home.HomeFragmentListOneAdapter
+import pnu.hakathon.anyone.adapter.home.HomeFragmentListThreeAdapter
+import pnu.hakathon.anyone.adapter.home.HomeFragmentListTwoAdapter
 
 class HomeHashFragment4 : Fragment() {
+    lateinit var context: MainActivity
+
     @Nullable
     @Override
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val v = inflater.inflate(R.layout.fragment_home_hash, container, false)
-        val context = activity as HomeActivity
-        val adapter = HomeHashListAdapter(context)
-        v.home_hash_fragment_recyclerview.adapter = adapter
-        context.homeViewModel.clean.value?.let {
-            adapter.setStores(it)
-        }
-        context.homeViewModel.clean.observe(context, Observer {
-            adapter.setStores(it)
-        })
+        val v = inflater.inflate(R.layout.fragment_home2_hash, container, false)
+        context = activity as MainActivity
 
+        val adapter1 = HomeFragmentListOneAdapter(context)
+        val adapter2 = HomeFragmentListTwoAdapter(context)
+        val adapter3 = HomeFragmentListThreeAdapter(context)
+
+        v.home2_fragment_recyclerview1.adapter = adapter1
+        v.home2_fragment_recommend_recyclerview1.adapter = adapter2
+        v.home2_fragment_recommend_recyclerview2.adapter = adapter3
+        context.homeViewModel.list4.list1.observe(context, Observer {
+            adapter1.setList(it)
+        })
+        context.homeViewModel.list4.list2.observe(context, Observer {
+            adapter2.setList(it)
+        })
+        context.homeViewModel.list4.list3.observe(context, Observer {
+            adapter3.setList(it)
+        })
         context.homeViewModel.setD()
 
         return v

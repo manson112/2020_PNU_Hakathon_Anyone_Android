@@ -16,7 +16,7 @@ class CategoryActivity2 : AppCompatActivity() {
         )
         setContentView(R.layout.activity_category2)
         category2_btn_cafe.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
         category2_btn_restaurant.setOnClickListener {
