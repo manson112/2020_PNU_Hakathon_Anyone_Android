@@ -31,6 +31,10 @@ class HomeFragment : Fragment() {
 
         v.home2_viewpager.adapter = tabAdapter
         v.home2_tablayout.setupWithViewPager(v.home2_viewpager)
+
+        v.home2_searchbar.setOnClickListener {
+            context.moveTab(2)
+        }
         return v
     }
 

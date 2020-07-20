@@ -116,6 +116,8 @@
             android:padding="4dp"
             android:singleLine="true"
             android:textSize="12sp"
+            android:focusable="false"
+            android:inputType="none"
             app:layout_constraintBottom_toBottomOf="@id/home2_guide5"
             app:layout_constraintEnd_toStartOf="@id/home2_profile_image_container"
             app:layout_constraintStart_toStartOf="@id/home2_guide3"

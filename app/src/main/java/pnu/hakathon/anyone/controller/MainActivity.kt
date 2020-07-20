@@ -9,10 +9,12 @@ import kotlinx.android.synthetic.main.main_tab.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.adapter.TabAdapter
 import pnu.hakathon.anyone.viewmodel.HomeViewModel
+import pnu.hakathon.anyone.viewmodel.SearchViewModel
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var homeViewModel: HomeViewModel
+    lateinit var searchViewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +22,10 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.activity_main)
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
 
         val tabAdapter = TabAdapter(supportFragmentManager)
         tabAdapter.addFragment(MapFragment.newInstance(), "지도")
@@ -33,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         main_viewpager.adapter = tabAdapter
         main_tablayout.setupWithViewPager(main_viewpager)
         setupTabIcons()
+        moveTab(1)
     }
 
     private fun setupTabIcons() {
@@ -53,6 +58,10 @@ class MainActivity : AppCompatActivity() {
         main_tablayout.getTabAt(1)?.customView = tab2
         main_tablayout.getTabAt(2)?.customView = tab3
         main_tablayout.getTabAt(3)?.customView = tab4
+    }
+
+    fun moveTab(position: Int) {
+        main_viewpager.currentItem = position
     }
 
 }

@@ -25,7 +25,7 @@ class SearchHistoryListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: SearchHistoryViewHolder, position: Int) {
         val current = histories[position]
-        holder.itemView.searchhistory_textview.text = current.searchQuery
+        holder.itemView.search_history_item_text.text = current.searchQuery
     }
 
     internal fun setHistories(histories: List<SearchHistory>) {
