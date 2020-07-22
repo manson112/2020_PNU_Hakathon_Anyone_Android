@@ -30,6 +30,7 @@
     <string name="home_hashtag6"># 공부(혼자)</string>
     <string name="home_hashtag7"># 맛</string>
     <string name="home_hashtag8"># 과제 모임</string>
+    <string name="home_seat">자리</string>
 
     <!--  MAIN  -->
     <string name="main_viewed">#최근조회</string>
@@ -65,7 +66,12 @@
     <!-- PROFILE -->
     <string name="profile_history_text">이전에 조회하신 곳들이예요</string>
     <string name="profile_favorite_text">하트를 내리신 곳들이예요</string>
+
+    <!-- MAP -->
+    <string name="map_item_percent">80%</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

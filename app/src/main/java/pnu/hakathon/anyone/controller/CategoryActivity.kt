@@ -25,8 +25,8 @@ class CategoryActivity : AppCompatActivity() {
             startActivity(intent)
         }
         category_btn_pub.setOnClickListener {
-            val intent = Intent(this, MapActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, MapActivity::class.java)
+//            startActivity(intent)
         }
         category_btn_fastfood.setOnClickListener {
             val intent = Intent(this, StoreDetailActivity::class.java)

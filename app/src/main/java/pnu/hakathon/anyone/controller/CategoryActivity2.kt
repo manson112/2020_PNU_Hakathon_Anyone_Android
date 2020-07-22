@@ -20,12 +20,12 @@ class CategoryActivity2 : AppCompatActivity() {
             startActivity(intent)
         }
         category2_btn_restaurant.setOnClickListener {
-            val intent = Intent(this, SignInByPhoneActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
         category2_btn_pub.setOnClickListener {
-            val intent = Intent(this, MapActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, MapActivity::class.java)
+//            startActivity(intent)
         }
         category2_btn_fastfood.setOnClickListener {
             val intent = Intent(this, StoreDetailActivity::class.java)

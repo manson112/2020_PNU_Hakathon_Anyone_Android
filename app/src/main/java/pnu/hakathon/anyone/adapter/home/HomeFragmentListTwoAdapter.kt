@@ -11,9 +11,8 @@ import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.model.HomeFragmentItemTwo
 
 class HomeFragmentListTwoAdapter internal constructor(
-    context: Context
+    val context: Context
 ) : RecyclerView.Adapter<HomeFragmentListTwoAdapter.ViewHolder>() {
-    private val mContext = context
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var stores = emptyList<HomeFragmentItemTwo>()
 
@@ -33,8 +32,13 @@ class HomeFragmentListTwoAdapter internal constructor(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = stores[position]
-        Glide.with(mContext).load(current.imageURL)
-            .into(holder.itemView.home_fragment_item2_image)
+        Glide.with(context).load(
+            context.resources.getIdentifier(
+                current.imageURL,
+                "drawable",
+                context.packageName
+            )
+        ).into(holder.itemView.home_fragment_item2_image)
         holder.itemView.home_fragment_item2_text.text = current.name
         holder.itemView.home_fragment_item2_seat.text = (current.total - current.current).toString()
 

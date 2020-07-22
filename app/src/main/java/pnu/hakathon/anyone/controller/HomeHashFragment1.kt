@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_home2_hash.view.*
 import pnu.hakathon.anyone.R
-import pnu.hakathon.anyone.adapter.home.HomeFragmentListOneAdapter
-import pnu.hakathon.anyone.adapter.home.HomeFragmentListThreeAdapter
-import pnu.hakathon.anyone.adapter.home.HomeFragmentListTwoAdapter
+import pnu.hakathon.anyone.adapter.home.HomeFragmentListAdapter
 
 class HomeHashFragment1 : Fragment() {
     lateinit var context: MainActivity
@@ -25,24 +25,21 @@ class HomeHashFragment1 : Fragment() {
         val v = inflater.inflate(R.layout.fragment_home2_hash, container, false)
         context = activity as MainActivity
 
-        val adapter1 = HomeFragmentListOneAdapter(context)
-        val adapter2 = HomeFragmentListTwoAdapter(context)
-        val adapter3 = HomeFragmentListThreeAdapter(context)
-        v.home2_fragment_recyclerview1.adapter = adapter1
-        v.home2_fragment_recommend_recyclerview1.adapter = adapter2
-        v.home2_fragment_recommend_recyclerview2.adapter = adapter3
+        val adapter = HomeFragmentListAdapter(context)
+        v.home2_fragment_recyclerview.adapter = adapter
+        val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
+        ContextCompat.getDrawable(context, R.drawable.home_hash_divider)?.let {
+            itemDecorator.setDrawable(
+                it
+            )
+        }
+        v.home2_fragment_recyclerview.addItemDecoration(itemDecorator)
 
-        context.homeViewModel.list1.list1.observe(context, Observer {
-            adapter1.setList(it)
-        })
-        context.homeViewModel.list1.list2.observe(context, Observer {
-            adapter2.setList(it)
-        })
-        context.homeViewModel.list1.list3.observe(context, Observer {
-            adapter3.setList(it)
+        context.homeViewModel.quite.observe(context, Observer {
+            it?.let { adapter.setList(it) }
         })
 
-        context.homeViewModel.setA()
+        context.homeViewModel.setDummyData()
         return v
     }
 

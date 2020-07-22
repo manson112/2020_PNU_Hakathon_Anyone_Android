@@ -8,7 +8,7 @@
     android:focusableInTouchMode="true"
     tools:context=".controller.MainActivity">
 
-    <androidx.viewpager.widget.ViewPager
+    <pnu.hakathon.anyone.customview.DeactivatedViewPager
         android:id="@+id/main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"

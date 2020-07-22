@@ -23,4 +23,9 @@
     <color name="colorMainTabSelected">#2eb9da</color>
 
     <color name="colorDetailTabIndicator">#fb5f40</color>
+
+    <color name="colorMapYellow">#F2A92B</color>
+    <color name="colorMapProgressBackground">#51DDDDDD</color>
+    <color name="colorMapProgressForeground">#75CDD8</color>
+    <color name="colorMapPercentText">#70000000</color>
 </resources>

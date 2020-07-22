@@ -11,9 +11,8 @@ import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.model.HomeFragmentItemThree
 
 class HomeFragmentListThreeAdapter internal constructor(
-    context: Context
+    val context: Context
 ) : RecyclerView.Adapter<HomeFragmentListThreeAdapter.ViewHolder>() {
-    private val mContext = context
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var stores = emptyList<HomeFragmentItemThree>()
 
@@ -33,8 +32,13 @@ class HomeFragmentListThreeAdapter internal constructor(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = stores[position]
-        Glide.with(mContext).load(current.imageURL)
-            .into(holder.itemView.home_fragment_item3_image)
+        Glide.with(context).load(
+            context.resources.getIdentifier(
+                current.imageURL,
+                "drawable",
+                context.packageName
+            )
+        ).into(holder.itemView.home_fragment_item3_image)
         holder.itemView.home_fragment_item3_text1.text = current.address
         holder.itemView.home_fragment_item3_text2.text = current.name
     }
