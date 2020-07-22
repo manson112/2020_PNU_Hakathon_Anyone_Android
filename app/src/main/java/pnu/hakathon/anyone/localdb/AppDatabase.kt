@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [SearchHistory::class, Bookmark::class], version = 3)
+@Database(entities = [SearchHistory::class, Bookmark::class], version = 5)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun searchHistoryDao(): SearchHistoryDao
     abstract fun bookmarkDao(): BookmarkDao
@@ -36,6 +36,7 @@ abstract class AppDatabase: RoomDatabase() {
                 instance
             }
         }
+
         private class AppDatabaseCallback(
             private val scope: CoroutineScope
         ) : RoomDatabase.Callback() {
@@ -44,7 +45,7 @@ abstract class AppDatabase: RoomDatabase() {
 
                 INSTANCE?.let { appDatabase ->
                     scope.launch(Dispatchers.IO) {
-//                        populateDatabase(appDatabase.searchHistoryDao(), appDatabase.bookmarkDao())
+                        populateDatabase(appDatabase.searchHistoryDao(), appDatabase.bookmarkDao())
                     }
                 }
             }
@@ -58,10 +59,41 @@ abstract class AppDatabase: RoomDatabase() {
 //
 //            searchHistory = SearchHistory(0,"KKK2")
 //            searchHistoryDao.insert(searchHistory)
-//
-//            bookmarkDao.deleteAll()
-//            bookmarkDao.insert(Bookmark(0, "dfdf"))
-//            bookmarkDao.insert(Bookmark(0, "dfdf2"))
+
+            bookmarkDao.deleteAll()
+            bookmarkDao.insert(
+                Bookmark(
+                    0,
+                    "1",
+                    "카페",
+                    "부산 커피",
+                    "부산 금정구 장전온천천로89번길 2",
+                    "search_image_sample1",
+                    "2020-07-17"
+                )
+            )
+            bookmarkDao.insert(
+                Bookmark(
+                    1,
+                    "1",
+                    "카페",
+                    "커피프린스",
+                    "부산 금정구 장전온천천로89번길 4",
+                    "search_image_sample2",
+                    "2020-07-18"
+                )
+            )
+            bookmarkDao.insert(
+                Bookmark(
+                    2,
+                    "1",
+                    "카페",
+                    "노스 커피 문창점",
+                    "부산 금정구 부산대학로64번길 40",
+                    "search_image_sample3",
+                    "2020-07-21"
+                )
+            )
 
         }
     }

@@ -12,6 +12,7 @@ class Bookmark(
     @ColumnInfo(name = "category") var categoryName: String = "",
     @ColumnInfo(name = "store_name") var storeName: String = "",
     @ColumnInfo(name = "address") var address: String = "",
+    @ColumnInfo(name = "imageURL") var imageURL: String = "",
     @ColumnInfo(name = "created_at") var createdAt: String = ""
 ) {
 
@@ -30,6 +31,9 @@ class Bookmark(
         }
         json.get("address")?.let {
             this.address = it.asString
+        }
+        json.get("imageURL")?.let {
+            this.imageURL = it.asString
         }
         json.get("created_at")?.let {
             this.createdAt = it.asString

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.BookmarkFragment">
+
+    <include layout="@layout/fragment_background" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/detail_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/bookmark_guide_1"
+        app:layout_constraintStart_toStartOf="@id/bookmark_guide_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/home_text1"
+        app:layout_constraintBottom_toBottomOf="@id/bookmark_guide_1"
+        app:layout_constraintEnd_toEndOf="@id/bookmark_guide_3"
+        app:layout_constraintStart_toStartOf="@id/bookmark_guide_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookmark_recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/bookmark_guide_3"
+        app:layout_constraintStart_toStartOf="@id/bookmark_guide_2"
+        app:layout_constraintTop_toTopOf="@id/bookmark_guide_1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bookmark_guide_1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bookmark_guide_2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bookmark_guide_3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+</androidx.constraintlayout.widget.ConstraintLayout>

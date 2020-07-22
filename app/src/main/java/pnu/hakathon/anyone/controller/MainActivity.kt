@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_tab.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.adapter.TabAdapter
+import pnu.hakathon.anyone.viewmodel.BookmarkViewModel
 import pnu.hakathon.anyone.viewmodel.HomeViewModel
 import pnu.hakathon.anyone.viewmodel.MapViewModel
 import pnu.hakathon.anyone.viewmodel.SearchViewModel
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var homeViewModel: HomeViewModel
     lateinit var searchViewModel: SearchViewModel
     lateinit var mapViewModel: MapViewModel
+    lateinit var bookmarkViewModel: BookmarkViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +34,12 @@ class MainActivity : AppCompatActivity() {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         mapViewModel = ViewModelProvider(this).get(MapViewModel::class.java)
+        bookmarkViewModel = ViewModelProvider(this).get(BookmarkViewModel::class.java)
 
         val tabAdapter = TabAdapter(supportFragmentManager)
         tabAdapter.addFragment(MapFragment.newInstance(), "지도")
         tabAdapter.addFragment(HomeFragment.newInstance(), "홈")
-        tabAdapter.addFragment(SearchFragment.newInstance(), "탐색")
+        tabAdapter.addFragment(BookmarkFragment.newInstance(), "북마크")
         tabAdapter.addFragment(ProfileFragment.newInstance(), "프로필")
 
         main_viewpager.offscreenPageLimit = 4
@@ -58,8 +61,8 @@ class MainActivity : AppCompatActivity() {
         tab2.main_tab_image.setImageResource(R.drawable.ic_home)
         tab2.main_tab_text.text = "홈"
         val tab3 = layoutInflater.inflate(R.layout.main_tab, null)
-        tab3.main_tab_image.setImageResource(R.drawable.ic_search)
-        tab3.main_tab_text.text = "탐색"
+        tab3.main_tab_image.setImageResource(R.drawable.ic_bookmark)
+        tab3.main_tab_text.text = "북마크"
         val tab4 = layoutInflater.inflate(R.layout.main_tab, null)
         tab4.main_tab_image.setImageResource(R.drawable.ic_profile)
         tab4.main_tab_text.text = "프로필"

@@ -3,9 +3,262 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".controller.ProfileFragment">
 
-    <include layout="@layout/fragment_background" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profile_image_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintBottom_toBottomOf="@id/profile_guide_1"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:background="@color/colorWhite" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="100dp">
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher" />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGreyTransparent"
+        app:layout_constraintTop_toTopOf="@id/profile_guide_1" />
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="유빈"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/profile_show"
+        app:layout_constraintStart_toEndOf="@id/profile_image_container"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/profile_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_show"
+        android:textColor="@color/colorProfileGreen"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/profile_guide_1"
+        app:layout_constraintStart_toStartOf="@id/profile_name"
+        app:layout_constraintTop_toBottomOf="@id/profile_name" />
+
+    <TextView
+        android:id="@+id/profile_manage_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/profile_manage"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/profile_guide_1" />
+
+    <LinearLayout
+        android:id="@+id/profile_manage_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:divider="@drawable/divider_black_vertical"
+        android:orientation="vertical"
+        android:paddingHorizontal="8dp"
+        android:showDividers="middle"
+        app:layout_constraintEnd_toEndOf="@id/profile_guide_3"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/profile_manage_text">
+
+        <TextView
+            android:id="@+id/profile_manage_info_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/profile_manage_info"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/profile_manage_notification_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/profile_manage_notification"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorGreyTransparent"
+        app:layout_constraintEnd_toEndOf="@id/profile_guide_3"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/profile_manage_container" />
+
+    <TextView
+        android:id="@+id/profile_share_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/profile_share"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/profile_manage_container" />
+
+    <LinearLayout
+        android:id="@+id/profile_share_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:divider="@drawable/divider_black_vertical"
+        android:orientation="vertical"
+        android:paddingHorizontal="8dp"
+        android:showDividers="middle"
+        app:layout_constraintEnd_toEndOf="@id/profile_guide_3"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/profile_share_text">
+
+        <TextView
+            android:id="@+id/profile_share_recommend_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/profile_share_text"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorGreyTransparent"
+        app:layout_constraintEnd_toEndOf="@id/profile_guide_3"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/profile_share_container" />
+
+    <TextView
+        android:id="@+id/profile_support_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/profile_support"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/profile_share_container" />
+
+    <LinearLayout
+        android:id="@+id/profile_support_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:divider="@drawable/divider_black_vertical"
+        android:orientation="vertical"
+        android:paddingHorizontal="8dp"
+        android:showDividers="middle"
+        app:layout_constraintEnd_toEndOf="@id/profile_guide_3"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/profile_support_text">
+
+        <TextView
+            android:id="@+id/profile_support_opinion_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/profile_opinion"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorGreyTransparent"
+        app:layout_constraintEnd_toEndOf="@id/profile_guide_3"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/profile_support_container" />
+
+    <TextView
+        android:id="@+id/profile_service_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/profile_service"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/profile_support_container" />
+
+    <LinearLayout
+        android:id="@+id/profile_service_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:divider="@drawable/divider_black_vertical"
+        android:orientation="vertical"
+        android:paddingHorizontal="8dp"
+        android:showDividers="middle"
+        app:layout_constraintEnd_toEndOf="@id/profile_guide_3"
+        app:layout_constraintStart_toStartOf="@id/profile_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/profile_service_text">
+
+        <TextView
+            android:id="@+id/profile_service_info_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/profile_service_info"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/profile_service_logout_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/profile_logout"
+            android:textColor="@color/colorProfileGreen"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/profile_guide_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/profile_guide_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/profile_guide_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
