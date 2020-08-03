@@ -39,7 +39,7 @@ class HomeHashFragment1 : Fragment() {
             it?.let { adapter.setList(it) }
         })
 
-        context.homeViewModel.setDummyData()
+//        context.homeViewModel.setDummyData()
         return v
     }
 

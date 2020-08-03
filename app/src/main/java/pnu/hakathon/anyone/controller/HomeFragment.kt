@@ -9,13 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.AppBarLayout
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.adapter.TabAdapter
-import pnu.hakathon.anyone.adapter.home.HomeFragmentListThreeAdapter
 import pnu.hakathon.anyone.adapter.home.HomeFragmentListTwoAdapter
+import kotlin.math.abs
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
     lateinit var context: MainActivity
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +41,7 @@ class HomeFragment : Fragment() {
         v.home2_viewpager.isPagingEnabled = false
 
         v.home2_searchbar.setOnClickListener {
-            context.moveTab(2)
+            context.toSearchActivity()
         }
 
         val adapter1 = HomeFragmentListTwoAdapter(context)
@@ -52,21 +54,28 @@ class HomeFragment : Fragment() {
             )
         }
         v.home2_recommend_recyclerview1.addItemDecoration(itemDecorator)
-
-        val adapter2 = HomeFragmentListThreeAdapter(context)
-        v.home2_recommend_recyclerview2.adapter = adapter2
-
         context.homeViewModel.recommend1.observe(context, Observer {
             it?.let { adapter1.setList(it) }
         })
 
-        context.homeViewModel.recommend2.observe(context, Observer {
-            it?.let { adapter2.setList(it) }
-        })
-
         context.homeViewModel.setDummyData2()
 
+        v.app_bar_layout.addOnOffsetChangedListener(this)
+
         return v
+    }
+
+    override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
+        val maxScroll = appBarLayout.totalScrollRange
+        val percentage =
+            abs(verticalOffset).toFloat() / maxScroll.toFloat()
+        topContainer.alpha = 1f - percentage
+        if (percentage == 1.0f) {
+            titleContainer.alpha = percentage
+        } else {
+            titleContainer.alpha = 0f
+        }
+
     }
 
     companion object {

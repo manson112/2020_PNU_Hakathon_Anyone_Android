@@ -34,7 +34,7 @@ class HomeHashFragment2 : Fragment() {
             )
         }
         v.home2_fragment_recyclerview.addItemDecoration(itemDecorator)
-        context.homeViewModel.quite.observe(context, Observer {
+        context.homeViewModel.noisy.observe(context, Observer {
             it?.let { adapter.setList(it) }
         })
         return v

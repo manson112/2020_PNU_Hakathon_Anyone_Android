@@ -85,6 +85,12 @@
     <!-- MAP -->
     <string name="map_item_percent">80%</string>
 
+    <!-- SIGN IN -->
+    <string name="signin_phone_number_placeholder">휴대폰 번호</string>
+    <string name="signin_send">인증</string>
+    <string name="signin_verification_code_placeholder">인증번호 입력</string>
+    <string name="signin_done">로그인 / 회원가입</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -18,5 +18,9 @@ interface RetrofitService {
     @POST("/store/info")
     @FormUrlEncoded
     fun requestStoreInfo(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
+
+    @POST("/store/home")
+    @FormUrlEncoded
+    fun requestHome(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
 }
 

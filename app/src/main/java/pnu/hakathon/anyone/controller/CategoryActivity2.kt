@@ -16,19 +16,20 @@ class CategoryActivity2 : AppCompatActivity() {
         )
         setContentView(R.layout.activity_category2)
         category2_btn_cafe.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java).putExtra("categoryID", "1")
             startActivity(intent)
         }
         category2_btn_restaurant.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java).putExtra("categoryID", "2")
+
             startActivity(intent)
         }
         category2_btn_pub.setOnClickListener {
-//            val intent = Intent(this, MapActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, MainActivity::class.java).putExtra("categoryID", "3")
+            startActivity(intent)
         }
         category2_btn_fastfood.setOnClickListener {
-            val intent = Intent(this, StoreDetailActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java).putExtra("categoryID", "4")
             startActivity(intent)
         }
     }

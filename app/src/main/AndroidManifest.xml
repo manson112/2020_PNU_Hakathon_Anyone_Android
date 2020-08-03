@@ -15,11 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".controller.HomeActivity2"></activity>
-        <activity android:name=".controller.CategoryActivity2">
-
-        </activity>
-        <activity android:name=".controller.LoginActivity"></activity>
+        <activity android:name=".controller.SignInActivity"></activity>
+        <activity android:name=".controller.HomeActivity2" />
+        <activity android:name=".controller.CategoryActivity2"></activity>
+        <activity android:name=".controller.LoginActivity" />
         <activity android:name=".controller.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,8 +1,10 @@
 package pnu.hakathon.anyone.controller
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import pnu.hakathon.anyone.R
 
 class LoginActivity : AppCompatActivity() {
@@ -13,5 +15,10 @@ class LoginActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_login)
+
+        login_button.setOnClickListener {
+            startActivity(Intent(this@LoginActivity, SignInActivity::class.java))
+            finish()
+        }
     }
 }

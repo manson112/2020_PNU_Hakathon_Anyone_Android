@@ -1,12 +1,10 @@
 package pnu.hakathon.anyone.controller
 
-import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.gun0912.tedpermission.PermissionListener
-import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_tab.view.*
 import pnu.hakathon.anyone.R
@@ -14,14 +12,13 @@ import pnu.hakathon.anyone.adapter.TabAdapter
 import pnu.hakathon.anyone.viewmodel.BookmarkViewModel
 import pnu.hakathon.anyone.viewmodel.HomeViewModel
 import pnu.hakathon.anyone.viewmodel.MapViewModel
-import pnu.hakathon.anyone.viewmodel.SearchViewModel
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var homeViewModel: HomeViewModel
-    lateinit var searchViewModel: SearchViewModel
     lateinit var mapViewModel: MapViewModel
     lateinit var bookmarkViewModel: BookmarkViewModel
+    lateinit var categoryID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +28,10 @@ class MainActivity : AppCompatActivity() {
         )
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.activity_main)
+
+        categoryID = intent.getStringExtra("categoryID")!!
+
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         mapViewModel = ViewModelProvider(this).get(MapViewModel::class.java)
         bookmarkViewModel = ViewModelProvider(this).get(BookmarkViewModel::class.java)
 
@@ -48,9 +47,10 @@ class MainActivity : AppCompatActivity() {
 
         main_viewpager.isPagingEnabled = false
 
+        homeViewModel.requestHome(categoryID)
+
         setupTabIcons()
         moveTab(1)
-        checkPermission()
     }
 
     private fun setupTabIcons() {
@@ -77,25 +77,9 @@ class MainActivity : AppCompatActivity() {
         main_viewpager.currentItem = position
     }
 
-    private fun checkPermission() {
-        TedPermission.with(this)
-            .setPermissionListener(permissionListener)
-            .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
-            .setPermissions(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-            .check()
+    fun toSearchActivity() {
+        startActivity(Intent(this, SearchActivity::class.java))
     }
 
-    val permissionListener = object : PermissionListener {
-        override fun onPermissionGranted() {
-
-        }
-
-        override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-            finish()
-        }
-    }
 
 }

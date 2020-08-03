@@ -22,6 +22,8 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/main_tab_selector"
         android:textIsSelectable="true"
+        android:clickable="false"
+        android:focusable="false"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

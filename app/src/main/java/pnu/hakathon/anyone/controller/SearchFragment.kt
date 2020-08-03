@@ -5,17 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_search.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.adapter.search.SearchHistoryListAdapter
-import pnu.hakathon.anyone.adapter.search.SearchListAdapter
-import pnu.hakathon.anyone.localdb.SearchHistory
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class SearchFragment : Fragment() {
@@ -31,46 +25,45 @@ class SearchFragment : Fragment() {
         val adapter =
             SearchHistoryListAdapter(context)
         v.search_history_recyclerview.adapter = adapter
-        val searchAdapter = SearchListAdapter(context)
-        v.search_recyclerview.adapter = searchAdapter
 
-        context.searchViewModel.searchHistories.observe(context, Observer { hists ->
-            hists?.let { adapter.setHistories(it) }
-        })
 
-        context.searchViewModel.searchResults.observe(context, Observer {
-            it?.let {
-                searchAdapter.setList(it)
-            }
-        })
-
-        v.search_searchbar.setOnFocusChangeListener { vv, hasFocus ->
-            if (hasFocus) {
-                v.search_history_container.visibility = View.VISIBLE
-            } else {
-                v.search_history_container.visibility = View.GONE
-                hideKeyboard()
-            }
-        }
-
-        v.search_searchbar.setOnEditorActionListener { vv, actionId, event ->
-            val searchQuery = v.search_searchbar.text.toString().trim()
-            if (searchQuery == "") {
-                return@setOnEditorActionListener false
-            }
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss", Locale.getDefault())
-                val currentDate = sdf.format(Date())
-                context.searchViewModel.insert(SearchHistory(0, searchQuery, currentDate))
-                v.search_searchbar.clearFocus()
-                context.searchViewModel.setDummy()
-                return@setOnEditorActionListener true
-            }
-            false
-        }
-        v.setOnClickListener {
-            hideKeyboard()
-        }
+//        context.searchViewModel.searchHistories.observe(context, Observer { hists ->
+//            hists?.let { adapter.setHistories(it) }
+//        })
+//        val searchAdapter = SearchListAdapter(context)
+//        v.search_recyclerview.adapter = searchAdapter
+//        context.searchViewModel.searchResults.observe(context, Observer {
+//            it?.let {
+//                searchAdapter.setList(it)
+//            }
+//        })
+//        v.search_searchbar.setOnFocusChangeListener { vv, hasFocus ->
+//            if (hasFocus) {
+//                v.search_history_container.visibility = View.VISIBLE
+//            } else {
+//                v.search_history_container.visibility = View.GONE
+//                hideKeyboard()
+//            }
+//        }
+//
+//        v.search_searchbar.setOnEditorActionListener { vv, actionId, event ->
+//            val searchQuery = v.search_searchbar.text.toString().trim()
+//            if (searchQuery == "") {
+//                return@setOnEditorActionListener false
+//            }
+//            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+//                val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss", Locale.getDefault())
+//                val currentDate = sdf.format(Date())
+//                context.searchViewModel.insert(SearchHistory(0, searchQuery, currentDate))
+//                v.search_searchbar.clearFocus()
+//                context.searchViewModel.setDummy()
+//                return@setOnEditorActionListener true
+//            }
+//            false
+//        }
+//        v.setOnClickListener {
+//            hideKeyboard()
+//        }
 
         return v
     }
