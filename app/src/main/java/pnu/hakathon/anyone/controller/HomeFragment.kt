@@ -18,6 +18,7 @@ import pnu.hakathon.anyone.adapter.home.HomeFragmentListTwoAdapter
 import kotlin.math.abs
 
 class HomeFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
+
     lateinit var context: MainActivity
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,11 +55,9 @@ class HomeFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
             )
         }
         v.home2_recommend_recyclerview1.addItemDecoration(itemDecorator)
-        context.homeViewModel.recommend1.observe(context, Observer {
+        context.homeViewModel.recommend.observe(context, Observer {
             it?.let { adapter1.setList(it) }
         })
-
-        context.homeViewModel.setDummyData2()
 
         v.app_bar_layout.addOnOffsetChangedListener(this)
 
@@ -75,7 +74,6 @@ class HomeFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         } else {
             titleContainer.alpha = 0f
         }
-
     }
 
     companion object {

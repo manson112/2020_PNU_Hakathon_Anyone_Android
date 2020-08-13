@@ -32,13 +32,7 @@ class HomeFragmentListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = list[position]
-        Glide.with(context).load(
-            context.resources.getIdentifier(
-                current.imageURL,
-                "drawable",
-                context.packageName
-            )
-        ).into(holder.itemView.home_fragment_item1_image)
+        Glide.with(context).load(current.imageURL).into(holder.itemView.home_fragment_item1_image)
         holder.itemView.home_fragment_item1_text.text = current.name
     }
 

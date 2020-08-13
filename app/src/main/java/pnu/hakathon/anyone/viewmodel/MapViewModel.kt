@@ -1,12 +1,41 @@
 package pnu.hakathon.anyone.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import net.daum.mf.map.api.MapPoint
 import pnu.hakathon.anyone.model.SearchModel
+import pnu.hakathon.anyone.repository.MapRepository
 
-class MapViewModel(application: Application) : AndroidViewModel(application) {
-    var list = MutableLiveData<List<SearchModel>>()
+class MapViewModel(savedStateHandle: SavedStateHandle, val repo: MapRepository) : ViewModel() {
+    val categoryID: String = savedStateHandle["categoryID"] ?: "1"
+    var lat: MutableLiveData<Double>? =
+        MutableLiveData(savedStateHandle["lat"] ?: 35.23177955501981)
+    var lng: MutableLiveData<Double>? =
+        MutableLiveData(savedStateHandle["lng"] ?: 129.08447619178358)
+    var list = repo.getStoreList(categoryID, lat?.value!!, lng?.value!!)
+    var currentAddress: MutableLiveData<String> = MutableLiveData("")
+
+    var isFindingLocation = MutableLiveData<Boolean>(true)
+    fun startLoading() {
+        isFindingLocation.value = true
+    }
+
+    fun stopLoading() {
+        isFindingLocation.value = false
+    }
+
+    fun getLat(): Double {
+        return lat?.value!!
+    }
+
+    fun getLng(): Double {
+        return lng?.value!!
+    }
+
+    fun getCenterMapPoint(): MapPoint {
+        return MapPoint.mapPointWithGeoCoord(getLat(), getLng())
+    }
 
     fun setDummyData() {
         val list = ArrayList<SearchModel>()
@@ -78,7 +107,7 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
             )
         )
 
-        this.list.value = list
+//        this.list.value = list
     }
 
 }

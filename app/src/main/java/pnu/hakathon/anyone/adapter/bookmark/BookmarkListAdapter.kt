@@ -26,13 +26,7 @@ class BookmarkListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: BookmarkViewHolder, position: Int) {
         val current = bookmarks[position]
-        Glide.with(context).load(
-            context.resources.getIdentifier(
-                current.imageURL,
-                "drawable",
-                context.packageName
-            )
-        ).into(holder.itemView.bookmark_item_store_image)
+        Glide.with(context).load(current.imageURL).into(holder.itemView.bookmark_item_store_image)
         holder.itemView.bookmark_item_store_category.text = current.categoryName
         holder.itemView.bookmark_item_store_name.text = current.storeName
         holder.itemView.bookmark_item_store_address.text = current.address

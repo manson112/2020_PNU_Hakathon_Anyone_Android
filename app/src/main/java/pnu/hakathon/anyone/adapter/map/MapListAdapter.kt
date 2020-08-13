@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.map_list_item.view.*
 import pnu.hakathon.anyone.R
-import pnu.hakathon.anyone.model.SearchModel
+import pnu.hakathon.anyone.localdb.MapStoreModel
 import kotlin.math.roundToInt
 
 class MapListAdapter internal constructor(
     val context: Context
 ) : RecyclerView.Adapter<MapListAdapter.ViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var list = emptyList<SearchModel>()
+    private var list = emptyList<MapStoreModel>()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -35,7 +35,7 @@ class MapListAdapter internal constructor(
             )
         ).into(holder.itemView.map_item_image)
 
-        holder.itemView.map_item_name.text = current.name
+        holder.itemView.map_item_name.text = current.storeName
         holder.itemView.map_item_hashtag.text = current.hashTag
         holder.itemView.map_item_address.text = current.address
 
@@ -44,7 +44,7 @@ class MapListAdapter internal constructor(
         holder.itemView.map_item_progress.progress = p
     }
 
-    internal fun setList(list: List<SearchModel>) {
+    internal fun setList(list: List<MapStoreModel>) {
         this.list = list
         notifyDataSetChanged()
     }

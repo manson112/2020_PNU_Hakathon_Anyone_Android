@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".controller.ProfileFragment">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/profile_image_container"
         android:layout_width="wrap_content"

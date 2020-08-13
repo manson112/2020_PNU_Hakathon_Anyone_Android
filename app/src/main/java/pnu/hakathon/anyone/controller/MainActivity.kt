@@ -4,20 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_tab.view.*
+import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.adapter.TabAdapter
-import pnu.hakathon.anyone.viewmodel.BookmarkViewModel
 import pnu.hakathon.anyone.viewmodel.HomeViewModel
-import pnu.hakathon.anyone.viewmodel.MapViewModel
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var homeViewModel: HomeViewModel
-    lateinit var mapViewModel: MapViewModel
-    lateinit var bookmarkViewModel: BookmarkViewModel
+    val homeViewModel: HomeViewModel by stateViewModel()
     lateinit var categoryID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,17 +27,13 @@ class MainActivity : AppCompatActivity() {
 
         categoryID = intent.getStringExtra("categoryID")!!
 
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        mapViewModel = ViewModelProvider(this).get(MapViewModel::class.java)
-        bookmarkViewModel = ViewModelProvider(this).get(BookmarkViewModel::class.java)
-
         val tabAdapter = TabAdapter(supportFragmentManager)
         tabAdapter.addFragment(MapFragment.newInstance(), "지도")
         tabAdapter.addFragment(HomeFragment.newInstance(), "홈")
         tabAdapter.addFragment(BookmarkFragment.newInstance(), "북마크")
         tabAdapter.addFragment(ProfileFragment.newInstance(), "프로필")
 
-        main_viewpager.offscreenPageLimit = 4
+        main_viewpager.offscreenPageLimit = 1
         main_viewpager.adapter = tabAdapter
         main_tablayout.setupWithViewPager(main_viewpager)
 

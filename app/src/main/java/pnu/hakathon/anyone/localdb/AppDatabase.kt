@@ -9,14 +9,32 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [SearchHistory::class, Bookmark::class], version = 5)
+@Database(
+    entities = [SearchHistory::class, Bookmark::class, MapStoreModel::class, NearStore::class],
+    version = 10
+)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun searchHistoryDao(): SearchHistoryDao
     abstract fun bookmarkDao(): BookmarkDao
+    abstract fun mapStoreListDao(): MapStoreListDao
+    abstract fun nearStoreDao(): NearStoreDao
 
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
+
+        fun getDatabase(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context,
+                    AppDatabase::class.java,
+                    "app_database"
+                ).fallbackToDestructiveMigration()
+                    .build()
+                INSTANCE = instance
+                instance
+            }
+        }
 
         fun getDatabase(
             context: Context,

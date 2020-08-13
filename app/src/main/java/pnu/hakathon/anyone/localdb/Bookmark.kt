@@ -1,5 +1,6 @@
 package pnu.hakathon.anyone.localdb
 
+import android.util.Log
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -32,8 +33,9 @@ class Bookmark(
         json.get("address")?.let {
             this.address = it.asString
         }
-        json.get("imageURL")?.let {
+        json.get("image")?.let {
             this.imageURL = it.asString
+            Log.d("BOOKMARK", it.asString)
         }
         json.get("created_at")?.let {
             this.createdAt = it.asString
