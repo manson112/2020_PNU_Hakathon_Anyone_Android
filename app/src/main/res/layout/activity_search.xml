@@ -7,7 +7,7 @@
     android:id="@+id/search_activity"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".controller.SearchActivity">
+    tools:context=".view.activity.SearchActivity">
 
     <include layout="@layout/fragment_background" />
 

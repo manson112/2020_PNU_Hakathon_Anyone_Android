@@ -6,7 +6,14 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import pnu.hakathon.anyone.localdb.AppDatabase
 import pnu.hakathon.anyone.network.RetrofitService
-import pnu.hakathon.anyone.repository.*
+import pnu.hakathon.anyone.repoimpl.BookmarkRepositoryImpl
+import pnu.hakathon.anyone.repoimpl.HomeRepositoryImpl
+import pnu.hakathon.anyone.repoimpl.MapRepositoryImpl
+import pnu.hakathon.anyone.repoimpl.StoreDetailRepositoryImpl
+import pnu.hakathon.anyone.repository.BookmarkRepository
+import pnu.hakathon.anyone.repository.HomeRepository
+import pnu.hakathon.anyone.repository.MapRepository
+import pnu.hakathon.anyone.repository.StoreDetailRepository
 import pnu.hakathon.anyone.viewmodel.BookmarkViewModel
 import pnu.hakathon.anyone.viewmodel.HomeViewModel
 import pnu.hakathon.anyone.viewmodel.MapViewModel
@@ -16,9 +23,27 @@ import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 val appModule = module {
-    single<HomeRepository> { HomeRepositoryImpl(get(), get(), get()) }
-    single<BookmarkRepository> { BookmarkRepositoryImpl(get(), get(), get()) }
-    single<MapRepository> { MapRepositoryImpl(get(), get(), get()) }
+    single<HomeRepository> {
+        HomeRepositoryImpl(
+            get(),
+            get(),
+            get()
+        )
+    }
+    single<BookmarkRepository> {
+        BookmarkRepositoryImpl(
+            get(),
+            get(),
+            get()
+        )
+    }
+    single<MapRepository> {
+        MapRepositoryImpl(
+            get(),
+            get(),
+            get()
+        )
+    }
     single<StoreDetailRepository> { StoreDetailRepositoryImpl() }
 
     factory { provideServerApi(provideServerRetrofit()) }

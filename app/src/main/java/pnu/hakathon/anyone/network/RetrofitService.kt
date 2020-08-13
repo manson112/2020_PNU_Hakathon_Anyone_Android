@@ -1,6 +1,5 @@
 package pnu.hakathon.anyone.network
 
-import pnu.hakathon.anyone.model.ServerResponse
 import retrofit2.Call
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded

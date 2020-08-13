@@ -8,6 +8,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import pnu.hakathon.anyone.dao.BookmarkDao
+import pnu.hakathon.anyone.dao.MapStoreListDao
+import pnu.hakathon.anyone.dao.NearStoreDao
+import pnu.hakathon.anyone.dao.SearchHistoryDao
+import pnu.hakathon.anyone.entity.Bookmark
+import pnu.hakathon.anyone.entity.MapStoreModel
+import pnu.hakathon.anyone.entity.NearStore
+import pnu.hakathon.anyone.entity.SearchHistory
 
 @Database(
     entities = [SearchHistory::class, Bookmark::class, MapStoreModel::class, NearStore::class],

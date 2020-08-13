@@ -7,10 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import pnu.hakathon.anyone.entity.SearchHistory
 import pnu.hakathon.anyone.localdb.AppDatabase
-import pnu.hakathon.anyone.localdb.SearchHistory
-import pnu.hakathon.anyone.localdb.SearchHistoryRepository
 import pnu.hakathon.anyone.model.SearchModel
+import pnu.hakathon.anyone.repository.SearchHistoryRepository
 
 class SearchViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: SearchHistoryRepository
@@ -20,7 +20,9 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
     init {
         val searchHistoryDao =
             AppDatabase.getDatabase(application, viewModelScope).searchHistoryDao()
-        repository = SearchHistoryRepository(searchHistoryDao)
+        repository = SearchHistoryRepository(
+            searchHistoryDao
+        )
         searchHistories = repository.allSearchHistories
     }
 

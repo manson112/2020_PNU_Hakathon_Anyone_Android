@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.CategoryActivity2">
+    tools:context=".view.activity.CategoryActivity2">
 
     <include layout="@layout/activity_background" />
 

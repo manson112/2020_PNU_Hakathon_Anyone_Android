@@ -2,6 +2,8 @@ package pnu.hakathon.anyone.model
 
 import android.util.Log
 import pnu.hakathon.anyone.network.Network
+import pnu.hakathon.anyone.network.Request
+import pnu.hakathon.anyone.network.ServerResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

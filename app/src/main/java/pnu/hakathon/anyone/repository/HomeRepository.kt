@@ -1,7 +1,7 @@
 package pnu.hakathon.anyone.repository
 
 import androidx.lifecycle.LiveData
-import pnu.hakathon.anyone.localdb.NearStore
+import pnu.hakathon.anyone.entity.NearStore
 
 interface HomeRepository {
     //    fun getHashItems(categoryID: String, obj: String): LiveData<List<HomeHashItem>>

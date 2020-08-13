@@ -5,20 +5,22 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import pnu.hakathon.anyone.localdb.*
+import pnu.hakathon.anyone.entity.Bookmark
+import pnu.hakathon.anyone.entity.SearchHistory
+import pnu.hakathon.anyone.localdb.AppDatabase
 import pnu.hakathon.anyone.model.User
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
-    private val bmRepository: BookmarkRepository
-    private val shRepository: SearchHistoryRepository
+//    private val bmRepository: BookmarkRepository
+//    private val shRepository: SearchHistoryRepository
 
 
     init {
         val bookmarkDao = AppDatabase.getDatabase(application, viewModelScope).bookmarkDao()
         val searchHistoryDao =
             AppDatabase.getDatabase(application, viewModelScope).searchHistoryDao()
-        bmRepository = BookmarkRepository(bookmarkDao)
-        shRepository = SearchHistoryRepository(searchHistoryDao)
+//        bmRepository = BookmarkRepository(bookmarkDao)
+//        shRepository = SearchHistoryRepository(searchHistoryDao)
     }
 
     fun requestBookmark() {
@@ -49,10 +51,10 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun saveBookmark(bm: Bookmark) = viewModelScope.launch(Dispatchers.IO) {
-        bmRepository.insert(bm)
+//        bmRepository.insert(bm)
     }
 
     private fun saveSearchHistory(sh: SearchHistory) = viewModelScope.launch(Dispatchers.IO) {
-        shRepository.insert(sh)
+//        shRepository.insert(sh)
     }
 }
