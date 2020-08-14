@@ -21,7 +21,8 @@ class HomeRepositoryImpl(
         lng: Double
     ): LiveData<List<NearStore>> {
         getNearStoresFromServer(categoryID, lat, lng)
-        return nearStoreDao.getStoresNearBy(categoryID, lat, lng)
+        return nearStoreDao.getStores(categoryID)
+//        return nearStoreDao.getStoresNearBy(categoryID, lat, lng)
     }
 
     fun getNearStoresFromServer(categoryID: String, lat: Double, lng: Double) {
@@ -36,11 +37,15 @@ class HomeRepositoryImpl(
                 ).execute()
                 if (response.isSuccessful) {
                     response.body()?.responseData?.let { arr ->
+                        Log.d("getNearStoresFromServer", response.body()?.responseData.toString())
+                        nearStoreDao.deleteAll()
                         for (i in 0 until arr.size()) {
                             nearStoreDao.insert(
                                 NearStore().jsonToObj(arr[i].asJsonObject)
                             )
                         }
+                    } ?: run {
+                        nearStoreDao.deleteAll()
                     }
                 }
             } catch (e: ConnectException) {

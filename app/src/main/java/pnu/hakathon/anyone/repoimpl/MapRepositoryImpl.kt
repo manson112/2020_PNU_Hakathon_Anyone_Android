@@ -21,7 +21,8 @@ class MapRepositoryImpl(
         lng: Double
     ): LiveData<List<MapStoreModel>> {
         getStoreListFromServer(categoryID, lat, lng)
-        return mapStoreListDao.getMapStoreList(categoryID, lat, lng)
+//        return mapStoreListDao.getMapStoreList(categoryID, lat, lng)
+        return mapStoreListDao.getMapStore(categoryID)
     }
 
     override fun getStoreListFromServer(categoryID: String, lat: Double, lng: Double) {
@@ -36,11 +37,14 @@ class MapRepositoryImpl(
                 ).execute()
                 if (response.isSuccessful) {
                     response.body()?.responseData?.let { arr ->
+                        mapStoreListDao.deleteAll()
                         for (i in 0 until arr.size()) {
                             mapStoreListDao.insert(
                                 MapStoreModel().jsonToObj(arr[i].asJsonObject)
                             )
                         }
+                    } ?: run {
+                        mapStoreListDao.deleteAll()
                     }
                 }
             } catch (e: ConnectException) {

@@ -1,9 +1,11 @@
 package pnu.hakathon.anyone.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import pnu.hakathon.anyone.entity.NearStore
 import pnu.hakathon.anyone.model.HomeHashItem
 import pnu.hakathon.anyone.model.StoreModel
 import pnu.hakathon.anyone.repository.HomeRepository
@@ -14,12 +16,22 @@ class HomeViewModel(savedStateHandle: SavedStateHandle, private val repo: HomeRe
     var noisy = MutableLiveData<List<HomeHashItem>>()
     var kind = MutableLiveData<List<HomeHashItem>>()
     var clean = MutableLiveData<List<HomeHashItem>>()
+    var categoryID: String = "1"
 
-    val categoryID: String = savedStateHandle["categoryID"] ?: "1"
     var lat: Double = savedStateHandle["lat"] ?: 35.23177955501981
     var lng: Double = savedStateHandle["lng"] ?: 129.08447619178358
 
-    var recommend = repo.getStoresNearBy(categoryID, lat, lng)
+    var recommend: LiveData<List<NearStore>> = MutableLiveData()
+
+    fun setLatLng(lat: Double, lng: Double) {
+        this.lat = lat
+        this.lng = lng
+        getNewList()
+    }
+
+    fun getNewList() {
+        recommend = repo.getStoresNearBy(categoryID, lat, lng)
+    }
 
     fun requestHome(categoryID: String) {
         StoreModel.requestHome(categoryID, {

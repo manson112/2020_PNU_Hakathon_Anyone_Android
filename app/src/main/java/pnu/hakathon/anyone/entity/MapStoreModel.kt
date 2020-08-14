@@ -1,5 +1,6 @@
 package pnu.hakathon.anyone.entity
 
+import android.util.Log
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -17,7 +18,8 @@ data class MapStoreModel(
     @ColumnInfo(name = "total_seat") var total: Int = 0,
     @ColumnInfo(name = "current_seat") var current: Int = 0,
     @ColumnInfo(name = "latitude") var lat: Double = 0.0,
-    @ColumnInfo(name = "longitude") var lng: Double = 0.0
+    @ColumnInfo(name = "longitude") var lng: Double = 0.0,
+    @ColumnInfo(name = "distance") var distance: Int = 0
 ) {
     fun jsonToObj(json: JsonObject): MapStoreModel {
         json.get("id")?.let {
@@ -44,20 +46,27 @@ data class MapStoreModel(
         json.get("current_seat")?.let {
             this.current = it.asInt
         }
-        json.get("latitude")?.let {
+        json.get("lat")?.let {
             if (it.toString() != "") {
                 this.lat = it.asDouble
             }
         }
-        json.get("longitude")?.let {
+        json.get("lng")?.let {
             if (it.toString() != "") {
                 this.lng = it.asDouble
             }
         }
+        json.get("distance")?.let {
+            this.distance = it.asDouble.toInt()
+        }
+        Log.d("MapStoreModel", this.toString())
         return this
     }
-}
 
+    override fun toString(): String {
+        return "MapStoreModel(id=$id, categoryID='$categoryID', imageURL='$imageURL', storeName='$storeName', hashTag='$hashTag', address='$address', total=$total, current=$current, lat=$lat, lng=$lng, distance=$distance)"
+    }
+}
 
 data class ReqMapStore(
     var data: Data = Data()

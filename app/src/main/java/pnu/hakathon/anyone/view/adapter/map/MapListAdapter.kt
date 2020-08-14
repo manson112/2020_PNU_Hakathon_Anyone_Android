@@ -28,11 +28,7 @@ class MapListAdapter internal constructor(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = list[position]
         Glide.with(context).load(
-            context.resources.getIdentifier(
-                current.imageURL,
-                "drawable",
-                context.packageName
-            )
+                current.imageURL
         ).into(holder.itemView.map_item_image)
 
         holder.itemView.map_item_name.text = current.storeName

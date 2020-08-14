@@ -9,9 +9,11 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.bookmark_item.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.entity.Bookmark
+import pnu.hakathon.anyone.viewmodel.BookmarkViewModel
 
 class BookmarkListAdapter internal constructor(
-    val context: Context
+    val context: Context,
+    private val viewModel: BookmarkViewModel
 ):RecyclerView.Adapter<BookmarkListAdapter.BookmarkViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var bookmarks = emptyList<Bookmark>()
@@ -31,6 +33,9 @@ class BookmarkListAdapter internal constructor(
         holder.itemView.bookmark_item_store_name.text = current.storeName
         holder.itemView.bookmark_item_store_address.text = current.address
         holder.itemView.bookmark_item_created_at.text = "2020-07-02"
+        holder.itemView.setOnClickListener {
+            viewModel.selectBookmark(position)
+        }
     }
 
     internal fun setBookmarks(bookmarks: List<Bookmark>) {

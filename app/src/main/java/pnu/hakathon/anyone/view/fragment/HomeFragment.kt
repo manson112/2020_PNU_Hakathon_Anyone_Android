@@ -57,7 +57,16 @@ class HomeFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         }
         v.home2_recommend_recyclerview1.addItemDecoration(itemDecorator)
         context.homeViewModel.recommend.observe(context, Observer {
-            it?.let { adapter1.setList(it) }
+            it?.let {
+                adapter1.setList(it)
+                if (it.isEmpty()) {
+                    v.home2_empty_text.visibility = View.VISIBLE
+                    v.home2_text1.visibility = View.INVISIBLE
+                } else {
+                    v.home2_empty_text.visibility = View.GONE
+                    v.home2_text1.visibility = View.VISIBLE
+                }
+            }
         })
 
         v.app_bar_layout.addOnOffsetChangedListener(this)

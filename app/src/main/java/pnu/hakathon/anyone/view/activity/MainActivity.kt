@@ -37,13 +37,15 @@ class MainActivity : AppCompatActivity() {
         tabAdapter.addFragment(BookmarkFragment.newInstance(), "북마크")
         tabAdapter.addFragment(ProfileFragment.newInstance(), "프로필")
 
-        main_viewpager.offscreenPageLimit = 1
+        main_viewpager.offscreenPageLimit = 4
         main_viewpager.adapter = tabAdapter
         main_tablayout.setupWithViewPager(main_viewpager)
 
         main_viewpager.isPagingEnabled = false
 
-        homeViewModel.requestHome(categoryID)
+//        homeViewModel.requestHome(categoryID)
+        homeViewModel.categoryID = categoryID
+        homeViewModel.getNewList()
 
         setupTabIcons()
         moveTab(1)

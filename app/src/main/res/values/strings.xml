@@ -84,6 +84,7 @@
 
     <!-- MAP -->
     <string name="map_item_percent">80%</string>
+    <string name="map_nothing">주변에 상점이 없습니다!</string>
 
     <!-- SIGN IN -->
     <string name="signin_phone_number_placeholder">휴대폰 번호</string>

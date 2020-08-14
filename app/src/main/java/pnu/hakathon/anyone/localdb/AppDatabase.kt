@@ -19,7 +19,7 @@ import pnu.hakathon.anyone.entity.SearchHistory
 
 @Database(
     entities = [SearchHistory::class, Bookmark::class, MapStoreModel::class, NearStore::class],
-    version = 10
+    version = 12
 )
 abstract class AppDatabase: RoomDatabase() {
     abstract fun searchHistoryDao(): SearchHistoryDao
@@ -71,13 +71,23 @@ abstract class AppDatabase: RoomDatabase() {
 
                 INSTANCE?.let { appDatabase ->
                     scope.launch(Dispatchers.IO) {
-                        populateDatabase(appDatabase.searchHistoryDao(), appDatabase.bookmarkDao())
+                        populateDatabase(
+                            appDatabase.searchHistoryDao(),
+                            appDatabase.bookmarkDao(),
+                            appDatabase.nearStoreDao(),
+                            appDatabase.mapStoreListDao()
+                        )
                     }
                 }
             }
         }
 
-        fun populateDatabase(searchHistoryDao: SearchHistoryDao, bookmarkDao: BookmarkDao) {
+        fun populateDatabase(
+            searchHistoryDao: SearchHistoryDao,
+            bookmarkDao: BookmarkDao,
+            nearStoreDao: NearStoreDao,
+            mapStoreListDao: MapStoreListDao
+        ) {
 //            searchHistoryDao.deleteAll()
 //
 //            var searchHistory = SearchHistory(0,"KKK")
@@ -85,6 +95,8 @@ abstract class AppDatabase: RoomDatabase() {
 //
 //            searchHistory = SearchHistory(0,"KKK2")
 //            searchHistoryDao.insert(searchHistory)
+//            nearStoreDao.deleteAll()
+//            mapStoreListDao.deleteAll()
 
             bookmarkDao.deleteAll()
             bookmarkDao.insert(

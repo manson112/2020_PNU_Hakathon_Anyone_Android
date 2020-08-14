@@ -1,5 +1,6 @@
 package pnu.hakathon.anyone.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_bookmark.view.*
 import org.koin.android.ext.android.inject
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.view.activity.MainActivity
+import pnu.hakathon.anyone.view.activity.StoreDetailActivity
 import pnu.hakathon.anyone.view.adapter.bookmark.BookmarkListAdapter
 import pnu.hakathon.anyone.viewmodel.BookmarkViewModel
 
@@ -25,7 +27,7 @@ class BookmarkFragment : Fragment() {
     ): View? {
         val v = inflater.inflate(R.layout.fragment_bookmark, container, false)
         context = activity as MainActivity
-        val adapter = BookmarkListAdapter(context)
+        val adapter = BookmarkListAdapter(context, bookmarkViewModel)
         v.bookmark_recyclerView.adapter = adapter
 
         val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
@@ -38,6 +40,10 @@ class BookmarkFragment : Fragment() {
 
         bookmarkViewModel.bookmarks.observe(context, Observer {
             it?.let { adapter.setBookmarks(it) }
+        })
+        bookmarkViewModel.selected.observe(context, Observer {
+            val intent = Intent(context, StoreDetailActivity::class.java)
+            context.startActivity(intent)
         })
 
         return v

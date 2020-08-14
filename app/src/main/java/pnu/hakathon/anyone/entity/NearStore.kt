@@ -36,12 +36,12 @@ data class NearStore(
         json.get("current_seat")?.let {
             this.current = it.asInt
         }
-        json.get("latitude")?.let {
+        json.get("lat")?.let {
             if (it.toString() != "") {
                 this.lat = it.asDouble
             }
         }
-        json.get("longitude")?.let {
+        json.get("lng")?.let {
             if (it.toString() != "") {
                 this.lng = it.asDouble
             }

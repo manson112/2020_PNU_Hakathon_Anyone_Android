@@ -32,6 +32,8 @@ class BookmarkRepositoryImpl(
                                 Bookmark().jsonToObj(arr[i].asJsonObject)
                             )
                         }
+                    } ?: run {
+                        bookmarkDao.deleteAll()
                     }
                 }
             } catch (e: ConnectException) {

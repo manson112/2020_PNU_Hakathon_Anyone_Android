@@ -36,6 +36,7 @@ class MapFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -45,12 +46,12 @@ class MapFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_map, container, false)
         context = activity as MainActivity
 
+        mapViewModel.categoryID = context.categoryID
+        mapViewModel.getNewList()
         checkPermission()
-
         val mapView = MapView(container?.context)
 
         setupMap(v, mapView)
-
         // List
         val adapter = MapListAdapter(context)
         v.map_recyclerview.adapter = adapter
@@ -59,6 +60,30 @@ class MapFragment : Fragment() {
         mapViewModel.list.observe(context, Observer {
             it?.let {
                 adapter.setList(it)
+                mapView.removeAllPOIItems()
+
+                for (i in it.indices) {
+                    val mp = MapPoint.mapPointWithGeoCoord(it[i].lat, it[i].lng)
+                    val marker = MapPOIItem()
+                    marker.itemName = it[i].storeName
+                    marker.tag = i + 1
+                    marker.mapPoint = mp
+                    marker.markerType = MapPOIItem.MarkerType.CustomImage
+                    marker.customImageResourceId = R.drawable.custom_marker
+                    marker.isCustomImageAutoscale = true
+                    marker.setCustomImageAnchor(0.5f, 1.0f)
+
+                    mapView.addPOIItem(marker)
+                }
+
+                if (it.isEmpty()) {
+                    v.map_empty_text.visibility = View.VISIBLE
+                } else {
+                    v.map_empty_text.visibility = View.INVISIBLE
+                }
+            }
+            currentMarker?.let { cur ->
+                mapView.addPOIItem(cur)
             }
         })
         mapViewModel.lat?.observe(context, Observer {
@@ -79,52 +104,21 @@ class MapFragment : Fragment() {
                 v.map_find_location_progress.visibility = View.GONE
             }
         })
-
-        mapViewModel.setDummyData()
-
         v.map_my_location.setOnClickListener {
             getLocation()
         }
         return v
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putDouble("lat", mapViewModel.getLat())
+        outState.putDouble("lat", mapViewModel.getLng())
+        super.onSaveInstanceState(outState)
+    }
+
     fun setupMap(v: View, mapView: MapView) {
         val mapPoint = MapPoint.mapPointWithGeoCoord(35.23177955501981, 129.08447619178358)
-        mapView.setMapCenterPointAndZoomLevel(mapPoint, 3, true)
-
-        val mp1 = MapPoint.mapPointWithGeoCoord(35.23224699968794, 129.08454306909528)
-        val mp2 = MapPoint.mapPointWithGeoCoord(35.233351670722854, 129.0850216495288)
-        val mp3 = MapPoint.mapPointWithGeoCoord(35.23314214085866, 129.08476092829864)
-        val marker1 = MapPOIItem()
-        val marker2 = MapPOIItem()
-        val marker3 = MapPOIItem()
-        marker1.itemName = "유달리"
-        marker1.tag = 1
-        marker1.mapPoint = mp1
-        marker1.markerType = MapPOIItem.MarkerType.CustomImage
-        marker1.customImageResourceId = R.drawable.custom_marker
-        marker1.isCustomImageAutoscale = false
-        marker1.setCustomImageAnchor(0.5f, 1.0f)
-
-        marker2.itemName = "더 벤티"
-        marker2.tag = 2
-        marker2.mapPoint = mp2
-        marker2.markerType = MapPOIItem.MarkerType.CustomImage
-        marker2.customImageResourceId = R.drawable.custom_marker
-        marker2.isCustomImageAutoscale = false
-        marker2.setCustomImageAnchor(0.5f, 1.0f)
-
-        marker3.itemName = "팔공티"
-        marker3.tag = 3
-        marker3.mapPoint = mp3
-        marker3.markerType = MapPOIItem.MarkerType.CustomImage
-        marker3.customImageResourceId = R.drawable.custom_marker
-        marker3.isCustomImageAutoscale = false
-        marker3.setCustomImageAnchor(0.5f, 1.0f)
-
-        mapView.addPOIItem(marker1)
-        mapView.addPOIItem(marker2)
-        mapView.addPOIItem(marker3)
+        mapView.setMapCenterPointAndZoomLevel(mapPoint, 1, true)
 
         v.map_view.addView(mapView)
     }
@@ -149,19 +143,18 @@ class MapFragment : Fragment() {
             .check()
     }
 
-
     val permissionListener = object : PermissionListener {
         override fun onPermissionGranted() {
             locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
             getLocation()
         }
-
         override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
             context.finish()
         }
     }
 
     fun getLocation() {
+        mapViewModel.needUpdate()
         mapViewModel.startLoading()
         try {
             locationManager?.requestLocationUpdates(
@@ -182,13 +175,16 @@ class MapFragment : Fragment() {
         override fun onLocationChanged(location: Location?) {
             mapViewModel.lat?.value = location?.latitude
             mapViewModel.lng?.value = location?.longitude
+            if (mapViewModel.needToUpdate) {
+                getCompleteAddressString(
+                    context,
+                    mapViewModel.lat!!.value!!,
+                    mapViewModel.lng!!.value!!
+                )
+                mapViewModel.getNewList()
+                context.homeViewModel.setLatLng(location?.latitude!!, location.longitude)
 
-
-            getCompleteAddressString(
-                context,
-                mapViewModel.lat!!.value!!,
-                mapViewModel.lng!!.value!!
-            )
+            }
         }
 
         override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
@@ -228,14 +224,16 @@ class MapFragment : Fragment() {
         }
 
         // "대한민국 " 글자 지워버림
-        strAdd = strAdd.substring(5)
+        if (strAdd.length >= 6) {
+            strAdd = strAdd.substring(5)
+        }
         mapViewModel.currentAddress.value = strAdd
         return strAdd
     }
 
     fun changeCenter(mapView: MapView, mapPoint: MapPoint) {
         mapView.setMapCenterPoint(mapPoint, true)
-        mapView.setMapCenterPointAndZoomLevel(mapPoint, 4, true)
+        mapView.setMapCenterPointAndZoomLevel(mapPoint, 2, true)
         mapView.zoomIn(true)
     }
 
@@ -247,7 +245,7 @@ class MapFragment : Fragment() {
             marker.mapPoint = mapPoint
             marker.markerType = MapPOIItem.MarkerType.CustomImage
             marker.customImageResourceId = R.drawable.custom_marker_current_image
-            marker.isCustomImageAutoscale = false
+            marker.isCustomImageAutoscale = true
             marker.setCustomImageAnchor(0.5f, 1.0f)
             mapView.addPOIItem(marker)
         }
@@ -261,9 +259,9 @@ class MapFragment : Fragment() {
 
     fun setCurrentCircle(mapView: MapView, mapPoint: MapPoint) {
         currentCircle =
-            MapCircle(mapPoint, 500, Color.parseColor("#00000000"), Color.parseColor("#30000000"))
+            MapCircle(mapPoint, 220, Color.parseColor("#00000000"), Color.parseColor("#30000000"))
         currentCircle?.let { circle ->
-            circle.tag = 4
+            circle.tag = 100
             mapView.addCircle(circle)
         }
     }
