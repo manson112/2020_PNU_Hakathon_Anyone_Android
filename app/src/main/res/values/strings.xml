@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Anyone</string>
 
+    <string name="splash_text">채워주세요\n자리를,\n마음을,\n사회를.</string>
+
     <!--  LOGIN  -->
     <string name="login_phone">휴대폰 번호</string>
     <string name="login_email">구글 이메일</string>
@@ -85,6 +87,7 @@
     <!-- MAP -->
     <string name="map_item_percent">80%</string>
     <string name="map_nothing">주변에 상점이 없습니다!</string>
+    <string name="map_search_here">이 지역에서 검색</string>
 
     <!-- SIGN IN -->
     <string name="signin_phone_number_placeholder">휴대폰 번호</string>

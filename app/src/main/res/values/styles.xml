@@ -5,8 +5,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/colorWhite</item>
         <item name="android:textViewStyle">@style/CustomTextViewStyle</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@color/colorWhite</item>
     </style>
 
     <style name="CustomTabText" parent="TextAppearance.Design.Tab">

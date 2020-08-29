@@ -14,21 +14,20 @@ class HomeViewModel(savedStateHandle: SavedStateHandle, private val repo: HomeRe
     ViewModel() {
     var quite = MutableLiveData<List<HomeHashItem>>()
     var noisy = MutableLiveData<List<HomeHashItem>>()
-    var kind = MutableLiveData<List<HomeHashItem>>()
+    var kind  = MutableLiveData<List<HomeHashItem>>()
     var clean = MutableLiveData<List<HomeHashItem>>()
     var categoryID: String = "1"
 
     var lat: Double = savedStateHandle["lat"] ?: 35.23177955501981
     var lng: Double = savedStateHandle["lng"] ?: 129.08447619178358
 
-    var recommend: LiveData<List<NearStore>> = MutableLiveData()
+    var recommend :LiveData<List<NearStore>> = MutableLiveData()
 
     fun setLatLng(lat: Double, lng: Double) {
         this.lat = lat
         this.lng = lng
         getNewList()
     }
-
     fun getNewList() {
         recommend = repo.getStoresNearBy(categoryID, lat, lng)
     }

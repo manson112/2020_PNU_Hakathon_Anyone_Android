@@ -24,10 +24,10 @@ data class NearStore(
         json.get("category_id")?.let {
             this.categoryID = it.asString
         }
-        json.get("imageURL")?.let {
+        json.get("image")?.let {
             this.imageURL = it.asString
         }
-        json.get("store_name")?.let {
+        json.get("name")?.let {
             this.storeName = it.asString
         }
         json.get("total_seat")?.let {

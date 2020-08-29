@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_home2_hash.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.view.activity.MainActivity
-import pnu.hakathon.anyone.view.adapter.home.HomeFragmentListAdapter
+import pnu.hakathon.anyone.view.adapter.home.HomeFragmentHashListAdapter
 
 class HomeHashFragment3 : Fragment() {
     lateinit var context: MainActivity
@@ -26,7 +26,7 @@ class HomeHashFragment3 : Fragment() {
         val v = inflater.inflate(R.layout.fragment_home2_hash, container, false)
         context = activity as MainActivity
 
-        val adapter = HomeFragmentListAdapter(context)
+        val adapter = HomeFragmentHashListAdapter(context)
         v.home2_fragment_recyclerview.adapter = adapter
         val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
         ContextCompat.getDrawable(context, R.drawable.home_hash_divider)?.let {

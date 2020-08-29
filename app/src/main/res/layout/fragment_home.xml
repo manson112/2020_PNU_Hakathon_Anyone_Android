@@ -18,38 +18,20 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             android:minHeight="?attr/actionBarSize"
+            android:background="@color/colorWhite"
             app:expandedTitleMarginBottom="16dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <include layout="@layout/appbar_background" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/topContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/detail_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/home2_guide_1"
-                    app:layout_constraintStart_toStartOf="@id/home2_guide_2"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/detail_title"
-                    app:layout_constraintBottom_toBottomOf="@id/home2_guide_1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
+                <TextView
                     android:id="@+id/home2_top_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/home_text2"
+                    android:text="유빈님\n오늘도 채워주세요"
                     app:layout_constraintStart_toStartOf="@id/home2_guide_2"
                     app:layout_constraintTop_toBottomOf="@id/home2_guide_1" />
 
@@ -134,7 +116,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.18" />
+                    app:layout_constraintGuide_percent="0.08" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/home2_guide_2"

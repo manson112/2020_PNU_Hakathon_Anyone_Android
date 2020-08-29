@@ -117,52 +117,32 @@
             app:layout_constraintStart_toEndOf="@id/detail_icn_location"
             app:layout_constraintTop_toTopOf="@id/detail_icn_location" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/detail_circle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="100dp"
-            app:layout_constraintStart_toStartOf="@id/detail_guide_1"
-            app:layout_constraintTop_toBottomOf="@id/detail_icn_location">
 
             <ImageView
+                android:id="@+id/test"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="#555555" />
+                android:background="#555555"
+                app:layout_constraintStart_toStartOf="@id/detail_guide_1"
+                app:layout_constraintTop_toBottomOf="@id/detail_icn_location"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
 
-                <TextView
-                    android:id="@+id/detail_current_percent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="73"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/detail_text_percent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <me.manson112.custom.shadeprogressbar.ShadeProgressBar
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:src="@drawable/ic_moon"
+                app:itemSize="60dp"
+                app:shadeSize="60dp"
+                app:shadeColor="#555555"
+                app:sideCornerRadius="50dp"
+                app:percentage="10"
+                app:layout_constraintStart_toStartOf="@id/test"
+                app:layout_constraintEnd_toEndOf="@id/test"
+                app:layout_constraintTop_toTopOf="@id/test"
+                app:layout_constraintBottom_toBottomOf="@id/test"
+                />
 
-                <TextView
-                    android:id="@+id/detail_text_percent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="%"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/detail_current_percent"
-                    app:layout_constraintStart_toEndOf="@id/detail_current_percent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/detail_rectangle"
@@ -171,8 +151,8 @@
             android:layout_marginStart="20dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="@id/detail_guide_2"
-            app:layout_constraintStart_toEndOf="@id/detail_circle"
-            app:layout_constraintTop_toTopOf="@id/detail_circle">
+            app:layout_constraintStart_toEndOf="@id/test"
+            app:layout_constraintTop_toTopOf="@id/test">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -199,7 +179,7 @@
             android:layout_marginEnd="70dp"
             app:layout_constraintEnd_toEndOf="@id/detail_guide_2"
             app:layout_constraintStart_toStartOf="@id/detail_guide_1"
-            app:layout_constraintTop_toBottomOf="@id/detail_circle"
+            app:layout_constraintTop_toBottomOf="@id/test"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/colorDetailTabIndicator"
             app:tabMode="fixed"

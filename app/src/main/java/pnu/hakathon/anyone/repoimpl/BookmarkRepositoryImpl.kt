@@ -21,13 +21,13 @@ class BookmarkRepositoryImpl(
     }
 
     private fun getBookmarksFromServer(userID: String) {
-
         executor.execute {
             try {
                 val response = webService.requestBookmark(ReqBookmark(userID).toMap()).execute()
                 if (response.isSuccessful) {
                     response.body()?.responseData?.let { arr ->
                         for (i in 0 until arr.size()) {
+                            Log.d("BOOKMARK FROM SERVER", arr[i].toString())
                             bookmarkDao.insert(
                                 Bookmark().jsonToObj(arr[i].asJsonObject)
                             )

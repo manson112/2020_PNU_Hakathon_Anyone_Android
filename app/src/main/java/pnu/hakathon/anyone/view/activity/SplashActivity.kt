@@ -2,6 +2,7 @@ package pnu.hakathon.anyone.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import pnu.hakathon.anyone.R
@@ -15,7 +16,12 @@ class SplashActivity : AppCompatActivity() {
         )
         setContentView(R.layout.activity_splash)
 
-        startActivity(Intent(this, CategoryActivity2::class.java))
-        finish()
+        val h = Handler()
+
+        h.postDelayed({
+            startActivity(Intent(this, CategoryActivity2::class.java))
+            finish()
+        }, 2000)
+
     }
 }

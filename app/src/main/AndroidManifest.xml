@@ -17,27 +17,23 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".view.activity.SignInActivity"></activity>
-        <activity android:name=".view.HomeActivity2" />
         <activity android:name=".view.activity.CategoryActivity2"></activity>
         <activity android:name=".view.activity.LoginActivity" />
         <activity android:name=".view.activity.SplashActivity">
+
+        </activity>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="f9130ff8af73bdff1b29129b628dbfa1" />
+
+        <activity android:name=".view.activity.StoreDetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.HomeActivity" />
-
-        <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="f9130ff8af73bdff1b29129b628dbfa1" />
-
-        <activity android:name=".view.MapActivity" />
-        <activity android:name=".view.CategoryActivity" />
-        <activity android:name=".view.SignInByPhoneActivity" />
-        <activity android:name=".view.activity.StoreDetailActivity" />
-        <activity android:name=".view.BookmarkActivity" />
         <activity android:name=".view.activity.SearchActivity" />
         <activity android:name=".view.activity.MainActivity" />
     </application>

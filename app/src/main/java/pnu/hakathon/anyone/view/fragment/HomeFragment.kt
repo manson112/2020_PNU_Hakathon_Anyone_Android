@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.view.activity.MainActivity
 import pnu.hakathon.anyone.view.adapter.TabAdapter
-import pnu.hakathon.anyone.view.adapter.home.HomeFragmentListTwoAdapter
+import pnu.hakathon.anyone.view.adapter.home.HomeFragmentListAdapter
 import kotlin.math.abs
 
 class HomeFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
@@ -46,8 +46,8 @@ class HomeFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
             context.toSearchActivity()
         }
 
-        val adapter1 = HomeFragmentListTwoAdapter(context)
-        v.home2_recommend_recyclerview1.adapter = adapter1
+        val adapter = HomeFragmentListAdapter(context)
+        v.home2_recommend_recyclerview1.adapter = adapter
 
         val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
         ContextCompat.getDrawable(context, R.drawable.home_hash_divider)?.let {
@@ -58,7 +58,7 @@ class HomeFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         v.home2_recommend_recyclerview1.addItemDecoration(itemDecorator)
         context.homeViewModel.recommend.observe(context, Observer {
             it?.let {
-                adapter1.setList(it)
+                adapter.setList(it)
                 if (it.isEmpty()) {
                     v.home2_empty_text.visibility = View.VISIBLE
                     v.home2_text1.visibility = View.INVISIBLE

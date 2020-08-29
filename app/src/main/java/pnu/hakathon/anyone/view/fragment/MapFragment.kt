@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.gun0912.tedpermission.PermissionListener
@@ -34,9 +35,10 @@ class MapFragment : Fragment() {
     var currentMarker: MapPOIItem? = null
     var currentCircle: MapCircle? = null
 
+    var researchContainer: LinearLayout? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -45,11 +47,12 @@ class MapFragment : Fragment() {
     ): View? {
         val v = inflater.inflate(R.layout.fragment_map, container, false)
         context = activity as MainActivity
-
+        checkPermission()
+        researchContainer = v.map_research_container
         mapViewModel.categoryID = context.categoryID
         mapViewModel.getNewList()
-        checkPermission()
         val mapView = MapView(container?.context)
+        mapView.setMapViewEventListener(mapViewEventListener)
 
         setupMap(v, mapView)
         // List
@@ -60,6 +63,7 @@ class MapFragment : Fragment() {
         mapViewModel.list.observe(context, Observer {
             it?.let {
                 adapter.setList(it)
+                v.map_research_container.visibility = View.INVISIBLE
                 mapView.removeAllPOIItems()
 
                 for (i in it.indices) {
@@ -104,10 +108,33 @@ class MapFragment : Fragment() {
                 v.map_find_location_progress.visibility = View.GONE
             }
         })
+
+        v.map_research_container.setOnClickListener {
+            val center = mapView.mapCenterPoint
+            mapViewModel.lat?.value = center.mapPointGeoCoord.latitude
+            mapViewModel.lng?.value = center.mapPointGeoCoord.longitude
+            context.homeViewModel.setLatLng(center.mapPointGeoCoord.latitude, center.mapPointGeoCoord.longitude)
+            mapViewModel.getNewList()
+        }
         v.map_my_location.setOnClickListener {
             getLocation()
         }
         return v
+    }
+
+    val mapViewEventListener = object : MapView.MapViewEventListener {
+        override fun onMapViewCenterPointMoved(p0: MapView?, p1: MapPoint?) {
+            Log.d("MAPFRAGMENT", "MAP VIEW CENTER POINT MOVED")
+            researchContainer?.visibility = View.VISIBLE
+        }
+        override fun onMapViewDoubleTapped(p0: MapView?, p1: MapPoint?) {}
+        override fun onMapViewInitialized(p0: MapView?) {}
+        override fun onMapViewDragStarted(p0: MapView?, p1: MapPoint?) {}
+        override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {}
+        override fun onMapViewDragEnded(p0: MapView?, p1: MapPoint?) {}
+        override fun onMapViewSingleTapped(p0: MapView?, p1: MapPoint?) {}
+        override fun onMapViewZoomLevelChanged(p0: MapView?, p1: Int) {}
+        override fun onMapViewLongPressed(p0: MapView?, p1: MapPoint?) {}
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -118,7 +145,7 @@ class MapFragment : Fragment() {
 
     fun setupMap(v: View, mapView: MapView) {
         val mapPoint = MapPoint.mapPointWithGeoCoord(35.23177955501981, 129.08447619178358)
-        mapView.setMapCenterPointAndZoomLevel(mapPoint, 1, true)
+        mapView.setMapCenterPointAndZoomLevel(mapPoint, 2, true)
 
         v.map_view.addView(mapView)
     }
@@ -173,9 +200,9 @@ class MapFragment : Fragment() {
 
     val mLocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location?) {
-            mapViewModel.lat?.value = location?.latitude
-            mapViewModel.lng?.value = location?.longitude
             if (mapViewModel.needToUpdate) {
+                mapViewModel.lat?.value = location?.latitude
+                mapViewModel.lng?.value = location?.longitude
                 getCompleteAddressString(
                     context,
                     mapViewModel.lat!!.value!!,
@@ -183,18 +210,11 @@ class MapFragment : Fragment() {
                 )
                 mapViewModel.getNewList()
                 context.homeViewModel.setLatLng(location?.latitude!!, location.longitude)
-
             }
         }
-
-        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-        }
-
-        override fun onProviderEnabled(provider: String?) {
-        }
-
-        override fun onProviderDisabled(provider: String?) {
-        }
+        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
+        override fun onProviderEnabled(provider: String?) {}
+        override fun onProviderDisabled(provider: String?) {}
     }
 
     fun getCompleteAddressString(
@@ -233,14 +253,14 @@ class MapFragment : Fragment() {
 
     fun changeCenter(mapView: MapView, mapPoint: MapPoint) {
         mapView.setMapCenterPoint(mapPoint, true)
-        mapView.setMapCenterPointAndZoomLevel(mapPoint, 2, true)
+        mapView.setMapCenterPointAndZoomLevel(mapPoint, 3, true)
         mapView.zoomIn(true)
     }
 
     fun setCurrentMarker(mapView: MapView, mapPoint: MapPoint) {
         currentMarker = MapPOIItem()
         currentMarker?.let { marker ->
-            marker.itemName = "Default marker"
+            marker.itemName = "내 위"
             marker.tag = 0
             marker.mapPoint = mapPoint
             marker.markerType = MapPOIItem.MarkerType.CustomImage
@@ -259,7 +279,7 @@ class MapFragment : Fragment() {
 
     fun setCurrentCircle(mapView: MapView, mapPoint: MapPoint) {
         currentCircle =
-            MapCircle(mapPoint, 220, Color.parseColor("#00000000"), Color.parseColor("#30000000"))
+            MapCircle(mapPoint, 400, Color.parseColor("#00000000"), Color.parseColor("#30000000"))
         currentCircle?.let { circle ->
             circle.tag = 100
             mapView.addCircle(circle)
@@ -271,7 +291,6 @@ class MapFragment : Fragment() {
             mapView.removeCircle(it)
         }
     }
-
 
     companion object {
         fun newInstance(): MapFragment {

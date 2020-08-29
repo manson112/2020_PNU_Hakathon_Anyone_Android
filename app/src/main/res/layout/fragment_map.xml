@@ -25,23 +25,6 @@
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/detail_arrow"
-        app:layout_constraintBottom_toBottomOf="@id/map_guide_2"
-        app:layout_constraintStart_toStartOf="@id/map_guide_3"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/home_text1"
-        app:layout_constraintBottom_toBottomOf="@id/map_guide_2"
-        app:layout_constraintEnd_toEndOf="@id/map_guide_4"
-        app:layout_constraintStart_toStartOf="@id/map_guide_3"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -56,7 +39,40 @@
             android:id="@+id/map_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+        <LinearLayout
+            android:id="@+id/map_research_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:orientation="horizontal"
+            android:background="@drawable/map_research_background"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="4dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginBottom="10dp"
+            >
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_autorenew_24px"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:background="@color/colorGrey"
+                android:layout_marginHorizontal="3dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textSize="12sp"
+                android:text="@string/map_search_here"
+                android:textColor="@color/colorHomeBlue"
+                />
+
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 
     <ImageView
         android:id="@+id/map_icon"
@@ -135,7 +151,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_percent="0.02" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/map_guide_3"

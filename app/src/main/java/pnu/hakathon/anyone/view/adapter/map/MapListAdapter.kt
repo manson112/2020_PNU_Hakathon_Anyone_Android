@@ -31,9 +31,18 @@ class MapListAdapter internal constructor(
                 current.imageURL
         ).into(holder.itemView.map_item_image)
 
-        holder.itemView.map_item_name.text = current.storeName
-        holder.itemView.map_item_hashtag.text = current.hashTag
-        holder.itemView.map_item_address.text = current.address
+        var tmpName = current.storeName
+        if (tmpName.length > 9) {
+            tmpName= tmpName.substring(IntRange(0, 7)) + "..."
+        }
+        holder.itemView.map_item_name.text = tmpName
+
+        var tmpAddress = current.address
+        if (tmpAddress.length > 13) {
+            tmpAddress= tmpAddress.substring(IntRange(0, 10)) + "..."
+        }
+        holder.itemView.map_item_address.text = tmpAddress
+        holder.itemView.map_item_distance.text = current.distance.toString()
 
         val p = ((current.current.toFloat() / current.total.toFloat()) * 100).roundToInt()
         holder.itemView.map_item_percent.text = "$p%"
