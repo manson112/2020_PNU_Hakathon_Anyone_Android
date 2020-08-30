@@ -20,7 +20,6 @@ class HomeFragmentListAdapter internal constructor(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        Log.d("HOMELISTTWO", "view holder is created")
         return ViewHolder(
             inflater.inflate(
                 R.layout.home_fragment_item2,
@@ -38,15 +37,15 @@ class HomeFragmentListAdapter internal constructor(
         Glide.with(context).load(current.imageURL).into(holder.itemView.home_fragment_item2_image)
         Log.d("HOMELISTTWO", current.storeName)
         holder.itemView.home_fragment_item2_text.text = current.storeName
-        holder.itemView.home_fragment_item2_seat.text = (current.total - current.current).toString()
+        holder.itemView.home_fragment_item2_address.text = current.address
+//        holder.itemView.home_fragment_item2_seat.text = (current.total - current.current).toString()
         holder.itemView.setOnClickListener {
             Log.d("HOMELISTTWO", "POSITION:$position is clicked")
         }
     }
 
-    internal fun setList(hs: List<NearStore>) {
-        Log.d("HOMELISTTWO", "setList")
-        this.stores = hs
+    internal fun setList(ns: List<NearStore>) {
+        this.stores = ns
         notifyDataSetChanged()
     }
 }

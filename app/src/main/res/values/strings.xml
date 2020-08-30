@@ -1,7 +1,28 @@
 <resources>
     <string name="app_name">Anyone</string>
 
+    <string name="app_title">채워주세요</string>
+
     <string name="splash_text">채워주세요\n자리를,\n마음을,\n사회를.</string>
+
+    <string name="category_text">어디를 가고 싶으신가요?</string>
+
+    <string name="tab_home">홈</string>
+    <string name="tab_map">지도</string>
+    <string name="tab_bookmark">즐겨찾기</string>
+    <string name="tab_profile">프로필</string>
+
+    <string name="home_text_1">자리를,&#160;마음을,&#160;사회를\n채워주세요!</string>
+    <string name="home_text_2">근처에 총&#160;</string>
+    <string name="home_text_3">개의 자리가 있어요!</string>
+    <string name="home_text_4">오늘 이런&#160;</string>
+    <string name="home_text_5">는 어때요?</string>
+    <string name="home_text_6">현민님이 원하시는 분위기의&#160;</string>
+    <string name="home_text_7">를 골라주세요!</string>
+    <string name="home_text_8">근처 자리가 있는&#160;</string>
+    <string name="home_text_9">예요!</string>
+
+
 
     <!--  LOGIN  -->
     <string name="login_phone">휴대폰 번호</string>

@@ -15,7 +15,9 @@ data class NearStore(
     @ColumnInfo(name = "current_seat") var current: Int = 0,
     @ColumnInfo(name = "total_seat") var total: Int = 0,
     @ColumnInfo(name = "latitude") var lat: Double = 0.0,
-    @ColumnInfo(name = "longitude") var lng: Double = 0.0
+    @ColumnInfo(name = "longitude") var lng: Double = 0.0,
+    @ColumnInfo(name = "address") var address: String = ""
+
 ) {
     fun jsonToObj(json: JsonObject): NearStore {
         json.get("id")?.let {
@@ -45,6 +47,9 @@ data class NearStore(
             if (it.toString() != "") {
                 this.lng = it.asDouble
             }
+        }
+        json.get("address")?.let {
+            this.address = it.asString
         }
         return this
     }

@@ -4,29 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".view.activity.SplashActivity">
 
-    <include layout="@layout/activity_background" />
-
     <ImageView
-        android:id="@+id/splash_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/splash_text1"
-        app:layout_constraintBottom_toTopOf="@id/splash_text2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
+        app:layout_constraintBottom_toTopOf="@id/splash_guide_1"
+        android:src="@drawable/battery"
+        />
+    <TextView
         android:id="@+id/splash_text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/splash_text2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/splash_text"
+        android:textSize="21sp"
+        android:lineSpacingMultiplier="1.2"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toStartOf="@id/splash_guide_3"
+        app:layout_constraintTop_toBottomOf="@id/splash_guide_2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/splash_guide_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/splash_guide_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.48"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/splash_guide_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.56"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

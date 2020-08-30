@@ -7,25 +7,29 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".view.activity.MainActivity">
-    <pnu.hakathon.anyone.view.customview.DeactivatedViewPager
-        android:id="@+id/main_viewpager"
+    <include android:id="@+id/app_bar" layout="@layout/app_bar"/>
+    <fragment
+        android:id="@+id/main_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph='@navigation/graph'
         android:focusable="true"
         android:focusableInTouchMode="true"
-        app:layout_constraintBottom_toTopOf="@id/main_tablayout"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/main_bottomBar"
+        app:layout_constraintTop_toBottomOf="@id/app_bar"/>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/main_tablayout"
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/main_bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:tabGravity="fill"
-        app:tabIndicator="@null"
-        app:tabMaxWidth="0dp"
-        app:tabMode="fixed" />
+        app:backgroundColor="@color/colorPrimary"
+        app:indicatorColor="@color/colorPrimary"
+        app:textColor="@color/colorWhite"
+        app:textSize="15sp"
+        app:iconSize="25dp"
+        app:menu="@menu/main_tab_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

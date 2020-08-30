@@ -28,9 +28,12 @@ class HomeViewModel(savedStateHandle: SavedStateHandle, private val repo: HomeRe
         this.lng = lng
         getNewList()
     }
+
     fun getNewList() {
         recommend = repo.getStoresNearBy(categoryID, lat, lng)
     }
+
+
 
     fun requestHome(categoryID: String) {
         StoreModel.requestHome(categoryID, {
