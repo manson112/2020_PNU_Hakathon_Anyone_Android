@@ -12,6 +12,7 @@
     <string name="tab_bookmark">즐겨찾기</string>
     <string name="tab_profile">프로필</string>
 
+    <!-- HOME(NEW) -->
     <string name="home_text_1">자리를,&#160;마음을,&#160;사회를\n채워주세요!</string>
     <string name="home_text_2">근처에 총&#160;</string>
     <string name="home_text_3">개의 자리가 있어요!</string>
@@ -22,7 +23,25 @@
     <string name="home_text_8">근처 자리가 있는&#160;</string>
     <string name="home_text_9">예요!</string>
 
+    <!-- BOOKMARK(NEW) -->
+    <string name="bookmark_text_1">즐겨찾기</string>
+    <string name="bookmark_text_2">카페</string>
+    <string name="bookmark_text_3">음식점</string>
+    <string name="bookmark_text_4">더보기</string>
 
+    <!-- PROFILE(NEW) -->
+    <string name="profile_text_1">즐겨찾기</string>
+    <string name="profile_text_2">최근 방문한 곳</string>
+    <string name="profile_text_3">근처 소상공인</string>
+    <string name="profile_text_4">공지사항</string>
+    <string name="profile_text_5">개인/보안</string>
+    <string name="profile_text_6">버전정보</string>
+    <string name="profile_text_7">알림</string>
+    <string name="profile_text_8">화면</string>
+    <string name="profile_text_9">고객센터/도움말</string>
+    <string name="profile_text_10">기타</string>
+
+    <string name="map_item_empty_seat">잔여:&#160;</string>
 
     <!--  LOGIN  -->
     <string name="login_phone">휴대폰 번호</string>

@@ -29,6 +29,7 @@
         android:text="@string/app_title"
         android:textColor="@color/colorWhite"
         android:textSize="23sp"
+        android:fontFamily="@font/jalnan"
         app:layout_constraintTop_toBottomOf="@id/category_guide_5"
         app:layout_constraintEnd_toStartOf="@id/category_guide_4"/>
 
@@ -37,7 +38,6 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="@string/category_text"
-        android:fontFamily="sans-serif-medium"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/category_guide_2"
         app:layout_constraintBottom_toBottomOf="@id/category_guide_6"

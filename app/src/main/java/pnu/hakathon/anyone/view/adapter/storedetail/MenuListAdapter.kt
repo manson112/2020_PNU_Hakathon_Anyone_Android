@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.detail_menu_item.view.*
+import kotlinx.android.synthetic.main.item_detail_menu.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.model.MenuModel
 
@@ -20,7 +20,7 @@ class MenuListAdapter internal constructor(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(inflater.inflate(R.layout.detail_menu_item, parent, false))
+        return ViewHolder(inflater.inflate(R.layout.item_detail_menu, parent, false))
     }
 
     override fun getItemCount(): Int = list.size
@@ -31,7 +31,6 @@ class MenuListAdapter internal constructor(
         Glide.with(context).load(current.imageURL).into(holder.itemView.detail_menu_image)
         holder.itemView.detail_menu_name.text = current.name
         holder.itemView.detail_menu_cost.text = current.cost + "원"
-
     }
 
     internal fun setMenu(menus: List<MenuModel>) {

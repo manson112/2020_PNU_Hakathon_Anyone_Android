@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.searchhistory_item.view.*
+import kotlinx.android.synthetic.main.item_searchhistory.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.entity.SearchHistory
 
@@ -18,7 +18,7 @@ class SearchHistoryListAdapter internal constructor(
     inner class SearchHistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHistoryViewHolder {
-        return SearchHistoryViewHolder(inflater.inflate(R.layout.searchhistory_item, parent, false))
+        return SearchHistoryViewHolder(inflater.inflate(R.layout.item_searchhistory, parent, false))
     }
 
     override fun getItemCount() = histories.size

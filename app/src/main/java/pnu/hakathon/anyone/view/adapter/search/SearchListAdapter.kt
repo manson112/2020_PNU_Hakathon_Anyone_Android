@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.search_item.view.*
+import kotlinx.android.synthetic.main.item_search.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.model.SearchModel
 
@@ -19,7 +19,7 @@ class SearchListAdapter internal constructor(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(inflater.inflate(R.layout.search_item, parent, false))
+        return ViewHolder(inflater.inflate(R.layout.item_search, parent, false))
     }
 
     override fun getItemCount() = list.size

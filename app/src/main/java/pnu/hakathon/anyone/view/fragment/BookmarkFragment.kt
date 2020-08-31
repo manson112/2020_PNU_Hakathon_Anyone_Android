@@ -28,7 +28,7 @@ class BookmarkFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_bookmark, container, false)
         context = activity as MainActivity
         val adapter = BookmarkListAdapter(context, bookmarkViewModel)
-        v.bookmark_recyclerView.adapter = adapter
+        v.bookmark_recyclerView_cafe.adapter = adapter
 
         val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         ContextCompat.getDrawable(context, R.drawable.recycler_divider_vertical)?.let {
@@ -36,7 +36,7 @@ class BookmarkFragment : Fragment() {
                 it
             )
         }
-        v.bookmark_recyclerView.addItemDecoration(itemDecorator)
+        v.bookmark_recyclerView_cafe.addItemDecoration(itemDecorator)
 
         bookmarkViewModel.bookmarks.observe(context, Observer {
             it?.let { adapter.setBookmarks(it) }

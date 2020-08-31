@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:text="@string/splash_text"
         android:textSize="21sp"
+        android:fontFamily="@font/jalnan"
         android:lineSpacingMultiplier="1.2"
         android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toStartOf="@id/splash_guide_3"

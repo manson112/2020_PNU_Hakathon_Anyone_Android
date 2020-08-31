@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingVertical="2dp"
     android:background="@android:color/transparent">
 
     <androidx.cardview.widget.CardView
@@ -24,7 +25,7 @@
                 android:id="@+id/map_item_image_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp"
+                app:cardCornerRadius="8dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +43,7 @@
                 android:id="@+id/map_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -94,36 +95,68 @@
                 tools:text="부산 금정구 장전온천천로 93" />
 
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginVertical="10dp"
+                android:paddingHorizontal="16dp"
+                android:background="@drawable/item_map_battery_bg"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <ProgressBar
-                    android:id="@+id/map_item_progress"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:progress="80"
-                    android:progressDrawable="@drawable/custom_progress_bar_3"
+                <ImageView
+                    android:id="@+id/map_item_battery"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_battery_1"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
+                    />
                 <TextView
                     android:id="@+id/map_item_percent"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/map_item_percent"
-                    android:textColor="@color/colorMapPercentText"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/jalnan"
+                    android:textSize="18sp"
+                    android:textColor="#4c4c4c"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/map_item_battery"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/map_item_empty_seat_fix"/>
+
+                <TextView
+                    android:id="@+id/map_item_empty_seat_fix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/map_item_battery"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/map_item_percent"
+                    android:fontFamily="@font/jalnan"
+                    android:textSize="12sp"
+                    android:textColor="#4c4c4c"
+                    android:textStyle="bold"
+                    android:text="@string/map_item_empty_seat"
+
+                    />
+
+                <TextView
+                    android:id="@+id/map_item_empty_seat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/map_item_empty_seat_fix"
+                    app:layout_constraintTop_toTopOf="@id/map_item_empty_seat_fix"
+                    app:layout_constraintBottom_toBottomOf="@id/map_item_empty_seat_fix"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/jalnan"
+                    android:textColor="#4c4c4c"
+                    android:textStyle="bold"
+                    tools:text="6"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

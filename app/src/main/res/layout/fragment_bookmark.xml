@@ -6,19 +6,105 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.BookmarkFragment">
 
-    <include layout="@layout/fragment_background" />
+    <TextView
+        android:id="@+id/bookmark_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:text="@string/bookmark_text_1"
+        app:layout_constraintTop_toTopOf="@id/bookmark_guide_1"
+        app:layout_constraintStart_toStartOf="@id/bookmark_guide_2"/>
 
+    <View
+        android:id="@+id/bookmark_title_separator"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#dcdcdc"
+        app:layout_constraintStart_toStartOf="@id/bookmark_guide_2"
+        app:layout_constraintEnd_toEndOf="@id/bookmark_guide_3"
+        app:layout_constraintTop_toBottomOf="@id/bookmark_title"/>
+
+    <TextView
+        android:id="@+id/bookmark_title_cafe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:text="@string/bookmark_text_2"
+        app:layout_constraintTop_toBottomOf="@id/bookmark_title_separator"
+        app:layout_constraintStart_toStartOf="@id/bookmark_guide_2"/>
+
+    <TextView
+        android:id="@+id/bookmark_cafe_btn_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bookmark_text_4"
+        android:background="@drawable/button_more_bookmark"
+        android:paddingHorizontal="20dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="10sp"
+        android:paddingVertical="1.5dp"
+        app:layout_constraintTop_toTopOf="@id/bookmark_title_cafe"
+        app:layout_constraintEnd_toEndOf="@id/bookmark_guide_3"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bookmark_recyclerView"
+        android:id="@+id/bookmark_recyclerView_cafe"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/bookmark_guide_1" />
+        app:layout_constraintEnd_toEndOf="@id/bookmark_guide_3"
+        app:layout_constraintStart_toStartOf="@id/bookmark_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/bookmark_title_cafe"  />
+
+    <View
+        android:id="@+id/bookmark_cafe_separator"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#dcdcdc"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/bookmark_guide_2"
+        app:layout_constraintEnd_toEndOf="@id/bookmark_guide_3"
+        app:layout_constraintTop_toBottomOf="@id/bookmark_recyclerView_cafe"/>
+
+    <TextView
+        android:id="@+id/bookmark_title_restaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:text="@string/bookmark_text_3"
+        app:layout_constraintTop_toBottomOf="@id/bookmark_cafe_separator"
+        app:layout_constraintStart_toStartOf="@id/bookmark_guide_2"/>
+
+    <TextView
+        android:id="@+id/bookmark_restaurant_btn_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bookmark_text_4"
+        android:background="@drawable/button_more_bookmark"
+        android:paddingHorizontal="20dp"
+        android:textColor="@color/colorWhite"
+        android:paddingVertical="1.5dp"
+        android:textSize="10sp"
+        app:layout_constraintTop_toTopOf="@id/bookmark_title_restaurant"
+        app:layout_constraintEnd_toEndOf="@id/bookmark_guide_3"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookmark_recyclerView_restaurant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="@id/bookmark_guide_3"
+        app:layout_constraintStart_toStartOf="@id/bookmark_guide_2"
+        app:layout_constraintTop_toBottomOf="@id/bookmark_title_restaurant"  />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bookmark_guide_1"
@@ -32,24 +118,10 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.08" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/bookmark_guide_3"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.92" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/bookmark_guide_4"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
         app:layout_constraintGuide_percent="0.04" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/bookmark_guide_5"
+        android:id="@+id/bookmark_guide_3"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical"

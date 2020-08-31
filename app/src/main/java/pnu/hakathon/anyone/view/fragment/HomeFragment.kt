@@ -66,8 +66,6 @@ class HomeFragment : Fragment(){
 
         return v
     }
-
-
     companion object {
         fun newInstance(): HomeFragment {
             return HomeFragment()

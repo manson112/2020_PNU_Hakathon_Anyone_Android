@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.bookmark_item.view.*
+import kotlinx.android.synthetic.main.item_bookmark.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.entity.Bookmark
 import pnu.hakathon.anyone.viewmodel.BookmarkViewModel
@@ -21,7 +21,7 @@ class BookmarkListAdapter internal constructor(
     inner class BookmarkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder {
-        return BookmarkViewHolder(inflater.inflate(R.layout.bookmark_item, parent, false))
+        return BookmarkViewHolder(inflater.inflate(R.layout.item_bookmark, parent, false))
     }
 
     override fun getItemCount() = bookmarks.size
@@ -29,10 +29,10 @@ class BookmarkListAdapter internal constructor(
     override fun onBindViewHolder(holder: BookmarkViewHolder, position: Int) {
         val current = bookmarks[position]
         Glide.with(context).load(current.imageURL).into(holder.itemView.bookmark_item_store_image)
-        holder.itemView.bookmark_item_store_category.text = current.categoryName
+//        holder.itemView.bookmark_item_store_category.text = current.categoryName
         holder.itemView.bookmark_item_store_name.text = current.storeName
-        holder.itemView.bookmark_item_store_address.text = current.address
-        holder.itemView.bookmark_item_created_at.text = "2020-07-02"
+//        holder.itemView.bookmark_item_store_address.text = current.address
+//        holder.itemView.bookmark_item_created_at.text = "2020-07-02"
         holder.itemView.setOnClickListener {
             viewModel.selectBookmark(position)
         }

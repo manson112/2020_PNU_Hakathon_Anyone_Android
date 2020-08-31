@@ -20,7 +20,7 @@ class RecentlyViewedItemListAdapter internal constructor(
         parent: ViewGroup,
         viewType: Int
     ): RecentlyViewedItemViewHolder {
-        return RecentlyViewedItemViewHolder(inflater.inflate(R.layout.bookmark_item, parent, false))
+        return RecentlyViewedItemViewHolder(inflater.inflate(R.layout.item_bookmark, parent, false))
     }
 
     override fun getItemCount() = recentlyViewedItems.size

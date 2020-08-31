@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.gun0912.tedpermission.PermissionListener
@@ -36,7 +37,7 @@ class MapFragment : Fragment() {
     var currentCircle: MapCircle? = null
 
     var researchContainer: LinearLayout? = null
-
+    var sl: NestedScrollView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -49,6 +50,7 @@ class MapFragment : Fragment() {
         context = activity as MainActivity
         checkPermission()
         researchContainer = v.map_research_container
+        sl = v.map_scroll_view
         mapViewModel.categoryID = context.categoryID
         mapViewModel.getNewList()
         val mapView = MapView(container?.context)
@@ -83,7 +85,7 @@ class MapFragment : Fragment() {
                 if (it.isEmpty()) {
                     v.map_empty_text.visibility = View.VISIBLE
                 } else {
-                    v.map_empty_text.visibility = View.INVISIBLE
+                    v.map_empty_text.visibility = View.GONE
                 }
             }
             currentMarker?.let { cur ->
@@ -99,14 +101,14 @@ class MapFragment : Fragment() {
             mapViewModel.stopLoading()
         })
         mapViewModel.currentAddress.observe(context, Observer {
-            v.map_current_address.text = it
+//            v.map_current_address.text = it
         })
         mapViewModel.isFindingLocation.observe(context, Observer {
-            if (it) {
-                v.map_find_location_progress.visibility = View.VISIBLE
-            } else {
-                v.map_find_location_progress.visibility = View.GONE
-            }
+//            if (it) {
+//                v.map_find_location_progress.visibility = View.VISIBLE
+//            } else {
+//                v.map_find_location_progress.visibility = View.GONE
+//            }
         })
 
         v.map_research_container.setOnClickListener {
@@ -116,25 +118,40 @@ class MapFragment : Fragment() {
             context.homeViewModel.setLatLng(center.mapPointGeoCoord.latitude, center.mapPointGeoCoord.longitude)
             mapViewModel.getNewList()
         }
-        v.map_my_location.setOnClickListener {
-            getLocation()
-        }
+//        v.map_my_location.setOnClickListener {
+//            getLocation()
+//        }
         return v
     }
 
     val mapViewEventListener = object : MapView.MapViewEventListener {
+        override fun onMapViewInitialized(p0: MapView?) {}
         override fun onMapViewCenterPointMoved(p0: MapView?, p1: MapPoint?) {
             Log.d("MAPFRAGMENT", "MAP VIEW CENTER POINT MOVED")
             researchContainer?.visibility = View.VISIBLE
+            sl?.requestDisallowInterceptTouchEvent(true)
         }
-        override fun onMapViewDoubleTapped(p0: MapView?, p1: MapPoint?) {}
-        override fun onMapViewInitialized(p0: MapView?) {}
-        override fun onMapViewDragStarted(p0: MapView?, p1: MapPoint?) {}
-        override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {}
-        override fun onMapViewDragEnded(p0: MapView?, p1: MapPoint?) {}
-        override fun onMapViewSingleTapped(p0: MapView?, p1: MapPoint?) {}
-        override fun onMapViewZoomLevelChanged(p0: MapView?, p1: Int) {}
-        override fun onMapViewLongPressed(p0: MapView?, p1: MapPoint?) {}
+        override fun onMapViewDoubleTapped(p0: MapView?, p1: MapPoint?) {
+            sl?.requestDisallowInterceptTouchEvent(true)
+        }
+        override fun onMapViewDragStarted(p0: MapView?, p1: MapPoint?) {
+            sl?.requestDisallowInterceptTouchEvent(true)
+        }
+        override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {
+            sl?.requestDisallowInterceptTouchEvent(true)
+        }
+        override fun onMapViewDragEnded(p0: MapView?, p1: MapPoint?) {
+            sl?.requestDisallowInterceptTouchEvent(true)
+        }
+        override fun onMapViewSingleTapped(p0: MapView?, p1: MapPoint?) {
+            sl?.requestDisallowInterceptTouchEvent(true)
+        }
+        override fun onMapViewZoomLevelChanged(p0: MapView?, p1: Int) {
+            sl?.requestDisallowInterceptTouchEvent(true)
+        }
+        override fun onMapViewLongPressed(p0: MapView?, p1: MapPoint?) {
+            sl?.requestDisallowInterceptTouchEvent(true)
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

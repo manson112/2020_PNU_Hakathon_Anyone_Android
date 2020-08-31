@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.home_fragment_item2.view.*
+import kotlinx.android.synthetic.main.item_home2.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.entity.NearStore
 
@@ -22,7 +22,7 @@ class HomeFragmentListAdapter internal constructor(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             inflater.inflate(
-                R.layout.home_fragment_item2,
+                R.layout.item_home2,
                 parent,
                 false
             )

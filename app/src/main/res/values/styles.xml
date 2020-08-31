@@ -12,14 +12,12 @@
 
     <style name="CustomTabText" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">15sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textStyle">normal</item>
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:fontFamily">@font/jalnan</item>
     </style>
 
     <style name="CustomTextViewStyle" parent="android:Widget.TextView">
-        <item name="android:fontFamily">@font/jalnan</item>
     </style>
 
 
