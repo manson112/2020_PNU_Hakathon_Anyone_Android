@@ -1,56 +1,27 @@
 package pnu.hakathon.anyone.repoimpl
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import pnu.hakathon.anyone.dao.NearStoreDao
-import pnu.hakathon.anyone.entity.NearStore
-import pnu.hakathon.anyone.entity.ReqNearStore
-import pnu.hakathon.anyone.network.RetrofitService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import pnu.hakathon.anyone.dao.StoreListDao
 import pnu.hakathon.anyone.repository.HomeRepository
-import java.net.ConnectException
-import java.util.concurrent.Executor
+import kotlin.math.cos
+import kotlin.math.sin
 
 class HomeRepositoryImpl(
-    private val webService: RetrofitService,
-    private val executor: Executor,
-    private val nearStoreDao: NearStoreDao
+    private val storeListDao: StoreListDao
 ) : HomeRepository {
-    override fun getStoresNearBy(
+    override suspend fun getStoresNearBy(
         categoryID: String,
         lat: Double,
         lng: Double
-    ): LiveData<List<NearStore>> {
-        getNearStoresFromServer(categoryID, lat, lng)
-        return nearStoreDao.getStores(categoryID)
-//        return nearStoreDao.getStoresNearBy(categoryID, lat, lng)
-    }
-
-    fun getNearStoresFromServer(categoryID: String, lat: Double, lng: Double) {
-        executor.execute {
-            try {
-                val response = webService.requestStoreNearMe(
-                    ReqNearStore(
-                        categoryID,
-                        lat.toString(),
-                        lng.toString()
-                    ).toMap()
-                ).execute()
-                if (response.isSuccessful) {
-                    response.body()?.responseData?.let { arr ->
-                        Log.d("getNearStoresFromServer", response.body()?.responseData.toString())
-                        nearStoreDao.deleteAll()
-                        for (i in 0 until arr.size()) {
-                            nearStoreDao.insert(
-                                NearStore().jsonToObj(arr[i].asJsonObject)
-                            )
-                        }
-                    } ?: run {
-                        nearStoreDao.deleteAll()
-                    }
-                }
-            } catch (e: ConnectException) {
-                Log.e("getNearStoresFromServer", "Cannot connect to server")
-            }
-        }
-    }
+    ) = flow {
+        val cos_lat = cos(Math.toRadians(lat)).toString()
+        val sin_lat = sin(Math.toRadians(lat)).toString()
+        val cos_lng = cos(Math.toRadians(lng)).toString()
+        val sin_lng = sin(Math.toRadians(lng)).toString()
+        val distance = cos(0.5 / 6317).toString()
+        val list = storeListDao.getStoresNear(categoryID, cos_lat, sin_lat, cos_lng, sin_lng, distance)
+        emit(list)
+    }.flowOn(Dispatchers.IO)
 }

@@ -9,16 +9,11 @@ import pnu.hakathon.anyone.localdb.AppDatabase
 import pnu.hakathon.anyone.network.RetrofitService
 import pnu.hakathon.anyone.network.ServerResponse
 import pnu.hakathon.anyone.network.ServerResponseDeserializer
-import pnu.hakathon.anyone.repoimpl.BookmarkRepositoryImpl
-import pnu.hakathon.anyone.repoimpl.HomeRepositoryImpl
-import pnu.hakathon.anyone.repoimpl.MapRepositoryImpl
-import pnu.hakathon.anyone.repoimpl.StoreDetailRepositoryImpl
-import pnu.hakathon.anyone.repository.BookmarkRepository
-import pnu.hakathon.anyone.repository.HomeRepository
-import pnu.hakathon.anyone.repository.MapRepository
-import pnu.hakathon.anyone.repository.StoreDetailRepository
+import pnu.hakathon.anyone.repoimpl.*
+import pnu.hakathon.anyone.repository.*
 import pnu.hakathon.anyone.viewmodel.BookmarkViewModel
 import pnu.hakathon.anyone.viewmodel.HomeViewModel
+import pnu.hakathon.anyone.viewmodel.MainViewModel
 import pnu.hakathon.anyone.viewmodel.MapViewModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,8 +23,6 @@ import java.util.concurrent.Executors
 val appModule = module {
     single<HomeRepository> {
         HomeRepositoryImpl(
-            get(),
-            get(),
             get()
         )
     }
@@ -43,24 +36,24 @@ val appModule = module {
     single<MapRepository> {
         MapRepositoryImpl(
             get(),
-            get(),
             get()
         )
     }
     single<StoreDetailRepository> { StoreDetailRepositoryImpl() }
+    single<MainRepository> { MainRepositoryImpl(get(), get()) }
 
     factory { provideServerApi(provideServerRetrofit()) }
     factory { provideExecutor() }
-
     factory { AppDatabase.getDatabase(androidApplication()) }
     factory { get<AppDatabase>().bookmarkDao() }
     factory { get<AppDatabase>().searchHistoryDao() }
-    factory { get<AppDatabase>().mapStoreListDao() }
-    factory { get<AppDatabase>().nearStoreDao() }
+    factory { get<AppDatabase>().storeListDao() }
 
     viewModel { (handle: SavedStateHandle) -> HomeViewModel(handle, get()) }
     viewModel { (handle: SavedStateHandle) -> MapViewModel(handle, get()) }
     viewModel { BookmarkViewModel(get()) }
+    viewModel { MainViewModel(get()) }
+
 //    viewModel { SearchViewModel(get()) }
 //    viewModel { StoreDetailViewModel(get()) }
 

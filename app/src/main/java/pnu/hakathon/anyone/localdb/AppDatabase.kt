@@ -6,26 +6,21 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import pnu.hakathon.anyone.dao.BookmarkDao
-import pnu.hakathon.anyone.dao.MapStoreListDao
-import pnu.hakathon.anyone.dao.NearStoreDao
 import pnu.hakathon.anyone.dao.SearchHistoryDao
+import pnu.hakathon.anyone.dao.StoreListDao
 import pnu.hakathon.anyone.entity.Bookmark
-import pnu.hakathon.anyone.entity.MapStoreModel
-import pnu.hakathon.anyone.entity.NearStore
 import pnu.hakathon.anyone.entity.SearchHistory
+import pnu.hakathon.anyone.entity.StoreModel
 
 @Database(
-    entities = [SearchHistory::class, Bookmark::class, MapStoreModel::class, NearStore::class],
-    version = 13
+    entities = [SearchHistory::class, Bookmark::class,  StoreModel::class],
+    version = 14
 )
 abstract class AppDatabase: RoomDatabase() {
     abstract fun searchHistoryDao(): SearchHistoryDao
     abstract fun bookmarkDao(): BookmarkDao
-    abstract fun mapStoreListDao(): MapStoreListDao
-    abstract fun nearStoreDao(): NearStoreDao
+    abstract fun storeListDao(): StoreListDao
 
     companion object {
         @Volatile
@@ -69,70 +64,22 @@ abstract class AppDatabase: RoomDatabase() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onOpen(db)
 
-                INSTANCE?.let { appDatabase ->
-                    scope.launch(Dispatchers.IO) {
-                        populateDatabase(
-                            appDatabase.searchHistoryDao(),
-                            appDatabase.bookmarkDao(),
-                            appDatabase.nearStoreDao(),
-                            appDatabase.mapStoreListDao()
-                        )
-                    }
-                }
+//                INSTANCE?.let { appDatabase ->
+//                    scope.launch(Dispatchers.IO) {
+//                        populateDatabase(
+//                            appDatabase.searchHistoryDao(),
+//                            appDatabase.bookmarkDao(),
+//                            appDatabase.storeListDao()
+//                        )
+//                    }
+//                }
             }
         }
 
         fun populateDatabase(
-            searchHistoryDao: SearchHistoryDao,
             bookmarkDao: BookmarkDao,
-            nearStoreDao: NearStoreDao,
-            mapStoreListDao: MapStoreListDao
+            nearStoreDao: StoreListDao
         ) {
-//            searchHistoryDao.deleteAll()
-//
-//            var searchHistory = SearchHistory(0,"KKK")
-//            searchHistoryDao.insert(searchHistory)
-//
-//            searchHistory = SearchHistory(0,"KKK2")
-//            searchHistoryDao.insert(searchHistory)
-//            nearStoreDao.deleteAll()
-//            mapStoreListDao.deleteAll()
-
-            bookmarkDao.deleteAll()
-            bookmarkDao.insert(
-                Bookmark(
-                    0,
-                    "1",
-                    "카페",
-                    "부산 커피",
-                    "부산 금정구 장전온천천로89번길 2",
-                    "search_image_sample1",
-                    "2020-07-17"
-                )
-            )
-            bookmarkDao.insert(
-                Bookmark(
-                    1,
-                    "1",
-                    "카페",
-                    "커피프린스",
-                    "부산 금정구 장전온천천로89번길 4",
-                    "search_image_sample2",
-                    "2020-07-18"
-                )
-            )
-            bookmarkDao.insert(
-                Bookmark(
-                    2,
-                    "1",
-                    "카페",
-                    "노스 커피 문창점",
-                    "부산 금정구 부산대학로64번길 40",
-                    "search_image_sample3",
-                    "2020-07-21"
-                )
-            )
-
         }
     }
 }

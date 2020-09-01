@@ -1,19 +1,21 @@
 package pnu.hakathon.anyone.view.adapter
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import pnu.hakathon.anyone.view.fragment.HomeHashFragment1
+import pnu.hakathon.anyone.view.fragment.HomeHashFragment2
+import pnu.hakathon.anyone.view.fragment.HomeHashFragment3
+import pnu.hakathon.anyone.view.fragment.HomeHashFragment4
 
-class TabAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-    private val fragmentList = ArrayList<Fragment>()
-    private val fragmentTitleList = ArrayList<String>()
+class TabAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+    override fun getItemCount(): Int = 4
 
-    override fun getItem(position: Int): Fragment = fragmentList[position]
-    override fun getCount(): Int = fragmentList.size
-
-    override fun getPageTitle(position: Int): CharSequence? = fragmentTitleList[position]
-    fun addFragment(fragment: Fragment, title: String) {
-        fragmentList.add(fragment)
-        fragmentTitleList.add(title)
+    override fun createFragment(position: Int): Fragment {
+        return when(position) {
+            0 -> HomeHashFragment1()
+            1 -> HomeHashFragment2()
+            2 -> HomeHashFragment3()
+            else -> HomeHashFragment4()
+        }
     }
 }

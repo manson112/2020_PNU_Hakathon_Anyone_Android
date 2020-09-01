@@ -34,7 +34,7 @@ class BookmarkListAdapter internal constructor(
 //        holder.itemView.bookmark_item_store_address.text = current.address
 //        holder.itemView.bookmark_item_created_at.text = "2020-07-02"
         holder.itemView.setOnClickListener {
-            viewModel.selectBookmark(position)
+//            viewModel.selectBookmark(position)
         }
     }
 

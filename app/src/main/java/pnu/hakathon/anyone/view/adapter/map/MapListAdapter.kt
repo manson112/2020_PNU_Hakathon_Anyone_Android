@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_map_list.view.*
 import pnu.hakathon.anyone.R
-import pnu.hakathon.anyone.entity.MapStoreModel
+import pnu.hakathon.anyone.entity.StoreModel
 import kotlin.math.roundToInt
 
 class MapListAdapter internal constructor(
     val context: Context
 ) : RecyclerView.Adapter<MapListAdapter.ViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var list = emptyList<MapStoreModel>()
+    private var list = emptyList<StoreModel>()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -29,7 +29,7 @@ class MapListAdapter internal constructor(
         val current = list[position]
         Glide.with(context).load(
                 current.imageURL
-        ).into(holder.itemView.map_item_image)
+        ).placeholder(R.drawable.image_empty).into(holder.itemView.map_item_image)
 
         var tmpName = current.storeName
         if (tmpName.length > 9) {
@@ -62,7 +62,7 @@ class MapListAdapter internal constructor(
             .into(holder.itemView.map_item_battery)
     }
 
-    internal fun setList(list: List<MapStoreModel>) {
+    internal fun setList(list: List<StoreModel>) {
         this.list = list
         notifyDataSetChanged()
     }

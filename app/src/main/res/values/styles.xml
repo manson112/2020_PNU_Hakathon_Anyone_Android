@@ -12,7 +12,7 @@
 
     <style name="CustomTabText" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">15sp</item>
-        <item name="android:textStyle">normal</item>
+        <item name="android:textStyle">bold</item>
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
     </style>
@@ -20,18 +20,16 @@
     <style name="CustomTextViewStyle" parent="android:Widget.TextView">
     </style>
 
-
     <style name="myCustomAppBarTheme" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>
         <item name="actionBarStyle">@style/AppTheme.ActionBar</item>
         <item name="colorControlNormal">@color/colorWhite</item>
+
     </style>
 
     <style name="AppTheme.ActionBar" parent="Widget.AppCompat.Light.ActionBar">
         <item name="android:titleTextStyle">@style/AppTheme.ActionBar.TitleText</item>
         <item name="titleTextStyle">@style/AppTheme.ActionBar.TitleText</item>
-        <item name="android:height">70dp</item>
-        <item name="height">70dp</item>
     </style>
 
     <style name="AppTheme.ActionBar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">

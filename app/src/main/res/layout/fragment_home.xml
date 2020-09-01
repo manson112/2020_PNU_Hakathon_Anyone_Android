@@ -210,6 +210,25 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/home_tablayout"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/colorTabClicked"
+            app:tabMode="fixed"
+            app:tabRippleColor="@null"
+            app:tabSelectedTextColor="@color/colorBlack"
+            app:tabTextAppearance="@style/CustomTabText"
+            app:tabTextColor="@color/colorBlack"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/home_hash_pager"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

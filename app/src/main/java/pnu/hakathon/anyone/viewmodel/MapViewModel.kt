@@ -1,56 +1,31 @@
 package pnu.hakathon.anyone.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
 import net.daum.mf.map.api.MapPoint
-import pnu.hakathon.anyone.entity.MapStoreModel
+import pnu.hakathon.anyone.entity.StoreModel
 import pnu.hakathon.anyone.repository.MapRepository
+import timber.log.Timber
 
 class MapViewModel(var savedStateHandle: SavedStateHandle, val repo: MapRepository) : ViewModel() {
     var categoryID: String = "1"
-    var lat: MutableLiveData<Double>? =
-        MutableLiveData(savedStateHandle["lat"] ?: 35.23177955501981)
-    var lng: MutableLiveData<Double>? =
-        MutableLiveData(savedStateHandle["lng"] ?: 129.08447619178358)
-    var list: LiveData<List<MapStoreModel>> = MutableLiveData()
-    var currentAddress: MutableLiveData<String> = MutableLiveData("")
-    var isFindingLocation = MutableLiveData<Boolean>(true)
-    var needToUpdate = true
+    var locLiveData = MutableLiveData(Loc())
+    var list: LiveData<List<StoreModel>>
 
-    fun startLoading() {
-        isFindingLocation.value = true
+    init {
+        list = locLiveData.switchMap {
+            Timber.d("LIST INIT")
+            liveData<List<StoreModel>>(viewModelScope.coroutineContext + Dispatchers.IO) {
+                emitSource(repo.getStoreList(categoryID, it.lat, it.lng).asLiveData())
+            }
+        }
     }
 
-    fun stopLoading() {
-        isFindingLocation.value = false
+    fun setLatLng(loc: Loc) {
+        locLiveData.value = loc
     }
 
-    fun getLat(): Double {
-        return lat?.value!!
+    fun getCenterMapPoint(): MapPoint{
+        return MapPoint.mapPointWithGeoCoord(locLiveData.value!!.lat, locLiveData.value!!.lng)
     }
-
-    fun getLng(): Double {
-        return lng?.value!!
-    }
-
-    fun getCenterMapPoint(): MapPoint {
-        return MapPoint.mapPointWithGeoCoord(getLat(), getLng())
-    }
-
-    fun getNewList() {
-        list = repo.getStoreList(categoryID, lat?.value!!, lng?.value!!)
-        noNeedToUpdate()
-    }
-
-    fun noNeedToUpdate() {
-        needToUpdate = false
-    }
-
-    fun needUpdate() {
-        needToUpdate = true
-    }
-
-
 }

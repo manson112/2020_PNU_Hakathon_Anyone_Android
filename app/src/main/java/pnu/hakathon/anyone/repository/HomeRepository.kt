@@ -1,9 +1,9 @@
 package pnu.hakathon.anyone.repository
 
-import androidx.lifecycle.LiveData
-import pnu.hakathon.anyone.entity.NearStore
+import kotlinx.coroutines.flow.Flow
+import pnu.hakathon.anyone.entity.StoreModel
 
 interface HomeRepository {
     //    fun getHashItems(categoryID: String, obj: String): LiveData<List<HomeHashItem>>
-    fun getStoresNearBy(categoryID: String, lat: Double, lng: Double): LiveData<List<NearStore>>
+    suspend fun getStoresNearBy(categoryID: String, lat: Double, lng: Double): Flow<List<StoreModel>>
 }

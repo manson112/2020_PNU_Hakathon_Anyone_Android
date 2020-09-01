@@ -1,9 +1,8 @@
 package pnu.hakathon.anyone.repository
 
-import androidx.lifecycle.LiveData
-import pnu.hakathon.anyone.entity.MapStoreModel
+import kotlinx.coroutines.flow.Flow
+import pnu.hakathon.anyone.entity.StoreModel
 
 interface MapRepository {
-    fun getStoreList(categoryID: String, lat: Double, lng: Double): LiveData<List<MapStoreModel>>
-    fun getStoreListFromServer(categoryID: String, lat: Double, lng: Double)
+    suspend fun getStoreList(categoryID: String, lat: Double, lng: Double): Flow<List<StoreModel>>
 }

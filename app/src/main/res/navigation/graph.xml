@@ -12,30 +12,30 @@
         <action
             android:id="@+id/action_firstFragment_to_secondFragment"
             app:destination="@id/second_fragment" />
+        <action
+            android:id="@+id/action_secondFragment_to_thirdFragment"
+            app:destination="@id/third_fragment" />
+        <action
+            android:id="@+id/action_thirdFragment_to_fourthFragment"
+            app:destination="@id/fourth_fragment" />
     </fragment>
     <fragment
         android:id="@+id/second_fragment"
         android:name="pnu.hakathon.anyone.view.fragment.MapFragment"
         android:label="Map Fragment"
         tools:layout="@layout/fragment_map" >
-        <action
-            android:id="@+id/action_secondFragment_to_thirdFragment"
-            app:destination="@id/third_fragment" />
+
     </fragment>
     <fragment
         android:id="@+id/third_fragment"
         android:name="pnu.hakathon.anyone.view.fragment.BookmarkFragment"
         android:label="Bookmark Fragment"
         tools:layout="@layout/fragment_bookmark" >
-        <action
-            android:id="@+id/action_thirdFragment_to_fourthFragment"
-            app:destination="@id/fourth_fragment" />
     </fragment>
     <fragment
         android:id="@+id/fourth_fragment"
         android:name="pnu.hakathon.anyone.view.fragment.ProfileFragment"
         android:label="Fourth Fragment"
         tools:layout="@layout/fragment_profile" >
-
     </fragment>
 </navigation>

@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_home2.view.*
 import pnu.hakathon.anyone.R
-import pnu.hakathon.anyone.entity.NearStore
+import pnu.hakathon.anyone.entity.StoreModel
 
 class HomeFragmentListAdapter internal constructor(
     val context: Context
 ) : RecyclerView.Adapter<HomeFragmentListAdapter.ViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var stores = emptyList<NearStore>()
+    private var stores = emptyList<StoreModel>()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -33,9 +33,7 @@ class HomeFragmentListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = stores[position]
-        Log.d("HOMELISTTWO", current.storeName)
-        Glide.with(context).load(current.imageURL).into(holder.itemView.home_fragment_item2_image)
-        Log.d("HOMELISTTWO", current.storeName)
+        Glide.with(context).load(current.imageURL).placeholder(R.drawable.image_empty).into(holder.itemView.home_fragment_item2_image)
         holder.itemView.home_fragment_item2_text.text = current.storeName
         holder.itemView.home_fragment_item2_address.text = current.address
 //        holder.itemView.home_fragment_item2_seat.text = (current.total - current.current).toString()
@@ -44,7 +42,7 @@ class HomeFragmentListAdapter internal constructor(
         }
     }
 
-    internal fun setList(ns: List<NearStore>) {
+    internal fun setList(ns: List<StoreModel>) {
         this.stores = ns
         notifyDataSetChanged()
     }

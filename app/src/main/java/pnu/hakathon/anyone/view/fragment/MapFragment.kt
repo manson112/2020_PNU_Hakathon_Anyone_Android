@@ -1,11 +1,8 @@
 package pnu.hakathon.anyone.view.fragment
 
-import android.Manifest
 import android.content.Context
 import android.graphics.Color
-import android.location.*
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,62 +10,73 @@ import android.widget.LinearLayout
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.gun0912.tedpermission.PermissionListener
-import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.fragment_map.view.*
 import net.daum.mf.map.api.MapCircle
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import pnu.hakathon.anyone.R
-import pnu.hakathon.anyone.view.activity.MainActivity
 import pnu.hakathon.anyone.view.adapter.map.MapListAdapter
+import pnu.hakathon.anyone.viewmodel.Loc
+import pnu.hakathon.anyone.viewmodel.MainViewModel
 import pnu.hakathon.anyone.viewmodel.MapViewModel
-import java.util.*
+import timber.log.Timber
 
 
 class MapFragment : Fragment() {
+    private val mainViewModel by sharedViewModel<MainViewModel>()
     private val mapViewModel: MapViewModel by stateViewModel()
-    lateinit var context: MainActivity
 
-    var locationManager: LocationManager? = null
+    var mapView: MapView? = null
+
     var currentMarker: MapPOIItem? = null
     var currentCircle: MapCircle? = null
 
     var researchContainer: LinearLayout? = null
     var sl: NestedScrollView? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val v = inflater.inflate(R.layout.fragment_map, container, false)
-        context = activity as MainActivity
-        checkPermission()
-        researchContainer = v.map_research_container
-        sl = v.map_scroll_view
-        mapViewModel.categoryID = context.categoryID
-        mapViewModel.getNewList()
-        val mapView = MapView(container?.context)
-        mapView.setMapViewEventListener(mapViewEventListener)
+        researchContainer   = v.map_research_container
+        sl                  = v.map_scroll_view
 
-        setupMap(v, mapView)
+        setupMap(v, container?.context!!)
+
+        if (mainViewModel.locationUpdated.value!!) {
+            mapViewModel.setLatLng(mainViewModel.curLoc.value!!)
+            updateMap(true)
+        } else {
+            mainViewModel.locationUpdated.observe(viewLifecycleOwner, Observer {
+                if (it) {
+                    mapViewModel.setLatLng(mainViewModel.curLoc.value!!)
+                    updateMap(true)
+                    mainViewModel.locationUpdated.removeObservers(viewLifecycleOwner)
+                }
+            })
+        }
+
         // List
-        val adapter = MapListAdapter(context)
+        val adapter = MapListAdapter(container.context!!)
         v.map_recyclerview.adapter = adapter
 
         // Observers
-        mapViewModel.list.observe(context, Observer {
+        mapViewModel.list.observe(viewLifecycleOwner, Observer {
+            Timber.d("LIST HAS BEEN UPDATED")
+
+            v.map_empty_text.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
+
             it?.let {
                 adapter.setList(it)
                 v.map_research_container.visibility = View.INVISIBLE
-                mapView.removeAllPOIItems()
+                mapView?.removeAllPOIItems()
 
                 for (i in it.indices) {
+                    Timber.d("${it[i].storeName} / ${it[i].distance}")
                     val mp = MapPoint.mapPointWithGeoCoord(it[i].lat, it[i].lng)
                     val marker = MapPOIItem()
                     marker.itemName = it[i].storeName
@@ -78,8 +86,7 @@ class MapFragment : Fragment() {
                     marker.customImageResourceId = R.drawable.custom_marker
                     marker.isCustomImageAutoscale = true
                     marker.setCustomImageAnchor(0.5f, 1.0f)
-
-                    mapView.addPOIItem(marker)
+                    mapView?.addPOIItem(marker)
                 }
 
                 if (it.isEmpty()) {
@@ -89,45 +96,24 @@ class MapFragment : Fragment() {
                 }
             }
             currentMarker?.let { cur ->
-                mapView.addPOIItem(cur)
+                mapView?.addPOIItem(cur)
             }
-        })
-        mapViewModel.lat?.observe(context, Observer {
-            updateMap(mapView)
-            mapViewModel.stopLoading()
-        })
-        mapViewModel.lng?.observe(context, Observer {
-            updateMap(mapView)
-            mapViewModel.stopLoading()
-        })
-        mapViewModel.currentAddress.observe(context, Observer {
-//            v.map_current_address.text = it
-        })
-        mapViewModel.isFindingLocation.observe(context, Observer {
-//            if (it) {
-//                v.map_find_location_progress.visibility = View.VISIBLE
-//            } else {
-//                v.map_find_location_progress.visibility = View.GONE
-//            }
         })
 
         v.map_research_container.setOnClickListener {
-            val center = mapView.mapCenterPoint
-            mapViewModel.lat?.value = center.mapPointGeoCoord.latitude
-            mapViewModel.lng?.value = center.mapPointGeoCoord.longitude
-            context.homeViewModel.setLatLng(center.mapPointGeoCoord.latitude, center.mapPointGeoCoord.longitude)
-            mapViewModel.getNewList()
+            mapView?.let {
+                val center = it.mapCenterPoint
+                mapViewModel.setLatLng(Loc(center.mapPointGeoCoord.latitude, center.mapPointGeoCoord.longitude))
+                updateMap(false)
+                v.map_research_container.visibility = View.GONE
+            }
         }
-//        v.map_my_location.setOnClickListener {
-//            getLocation()
-//        }
         return v
     }
 
     val mapViewEventListener = object : MapView.MapViewEventListener {
         override fun onMapViewInitialized(p0: MapView?) {}
         override fun onMapViewCenterPointMoved(p0: MapView?, p1: MapPoint?) {
-            Log.d("MAPFRAGMENT", "MAP VIEW CENTER POINT MOVED")
             researchContainer?.visibility = View.VISIBLE
             sl?.requestDisallowInterceptTouchEvent(true)
         }
@@ -154,118 +140,26 @@ class MapFragment : Fragment() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putDouble("lat", mapViewModel.getLat())
-        outState.putDouble("lat", mapViewModel.getLng())
-        super.onSaveInstanceState(outState)
-    }
 
-    fun setupMap(v: View, mapView: MapView) {
-        val mapPoint = MapPoint.mapPointWithGeoCoord(35.23177955501981, 129.08447619178358)
-        mapView.setMapCenterPointAndZoomLevel(mapPoint, 2, true)
-
+    private fun setupMap(v: View, context: Context) {
+        mapView = MapView(context)
+        mapView?.setMapViewEventListener(mapViewEventListener)
+        val mapPoint = mapViewModel.getCenterMapPoint()
+        mapView?.setMapCenterPointAndZoomLevel(mapPoint, 2, true)
         v.map_view.addView(mapView)
     }
 
-    private fun updateMap(mapView: MapView) {
-        val mapPoint = mapViewModel.getCenterMapPoint()
-        changeCenter(mapView, mapPoint)
-        removeCurrentMarker(mapView)
-        removeCurrentCircle(mapView)
-        setCurrentMarker(mapView, mapPoint)
-        setCurrentCircle(mapView, mapPoint)
-    }
-
-    private fun checkPermission() {
-        TedPermission.with(context)
-            .setPermissionListener(permissionListener)
-            .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
-            .setPermissions(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-            .check()
-    }
-
-    val permissionListener = object : PermissionListener {
-        override fun onPermissionGranted() {
-            locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            getLocation()
-        }
-        override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-            context.finish()
-        }
-    }
-
-    fun getLocation() {
-        mapViewModel.needUpdate()
-        mapViewModel.startLoading()
-        try {
-            locationManager?.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER,
-                100, 1f, mLocationListener
-            )
-            locationManager?.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER,
-                100, 1f, mLocationListener
-            )
-        } catch (e: SecurityException) {
-            e.printStackTrace()
-            mapViewModel.stopLoading()
-        }
-    }
-
-    val mLocationListener = object : LocationListener {
-        override fun onLocationChanged(location: Location?) {
-            if (mapViewModel.needToUpdate) {
-                mapViewModel.lat?.value = location?.latitude
-                mapViewModel.lng?.value = location?.longitude
-                getCompleteAddressString(
-                    context,
-                    mapViewModel.lat!!.value!!,
-                    mapViewModel.lng!!.value!!
-                )
-                mapViewModel.getNewList()
-                context.homeViewModel.setLatLng(location?.latitude!!, location.longitude)
+    private fun updateMap(isFirst: Boolean) {
+        mapView?.let {
+            val mapPoint = mapViewModel.getCenterMapPoint()
+            changeCenter(it, mapPoint)
+            if (isFirst) {
+                removeCurrentMarker(it)
+                setCurrentMarker(it, mapPoint)
             }
+            removeCurrentCircle(it)
+            setCurrentCircle(it, mapPoint)
         }
-        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
-        override fun onProviderEnabled(provider: String?) {}
-        override fun onProviderDisabled(provider: String?) {}
-    }
-
-    fun getCompleteAddressString(
-        context: Context?,
-        LATITUDE: Double,
-        LONGITUDE: Double
-    ): String? {
-        var strAdd = ""
-        val geocoder = Geocoder(context, Locale.getDefault())
-        try {
-            val addresses: List<Address>? =
-                geocoder.getFromLocation(LATITUDE, LONGITUDE, 1)
-            if (addresses != null) {
-                val returnedAddress: Address = addresses[0]
-                val strReturnedAddress = StringBuilder("")
-                for (i in 0..returnedAddress.getMaxAddressLineIndex()) {
-                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n")
-                }
-                strAdd = strReturnedAddress.toString()
-                Log.w("MyCurrentloctionaddress", strReturnedAddress.toString())
-            } else {
-                Log.w("MyCurrentloctionaddress", "No Address returned!")
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Log.w("MyCurrentloctionaddress", "Canont get Address!")
-        }
-
-        // "대한민국 " 글자 지워버림
-        if (strAdd.length >= 6) {
-            strAdd = strAdd.substring(5)
-        }
-        mapViewModel.currentAddress.value = strAdd
-        return strAdd
     }
 
     fun changeCenter(mapView: MapView, mapPoint: MapPoint) {
@@ -288,13 +182,13 @@ class MapFragment : Fragment() {
         }
     }
 
-    fun removeCurrentMarker(mapView: MapView) {
+    private fun removeCurrentMarker(mapView: MapView) {
         currentMarker?.let {
             mapView.removePOIItem(it)
         }
     }
 
-    fun setCurrentCircle(mapView: MapView, mapPoint: MapPoint) {
+    private fun setCurrentCircle(mapView: MapView, mapPoint: MapPoint) {
         currentCircle =
             MapCircle(mapPoint, 400, Color.parseColor("#00000000"), Color.parseColor("#30000000"))
         currentCircle?.let { circle ->
@@ -303,7 +197,7 @@ class MapFragment : Fragment() {
         }
     }
 
-    fun removeCurrentCircle(mapView: MapView) {
+    private fun removeCurrentCircle(mapView: MapView) {
         currentCircle?.let {
             mapView.removeCircle(it)
         }

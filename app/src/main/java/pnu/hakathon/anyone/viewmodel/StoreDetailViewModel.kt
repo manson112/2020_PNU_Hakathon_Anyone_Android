@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import pnu.hakathon.anyone.dto.StoreDetail
 import pnu.hakathon.anyone.model.MenuModel
-import pnu.hakathon.anyone.model.StoreModel
 
 class StoreDetailViewModel(application: Application) : AndroidViewModel(application) {
     val store = MutableLiveData<StoreDetail>()
@@ -13,15 +12,6 @@ class StoreDetailViewModel(application: Application) : AndroidViewModel(applicat
     var storeID: String? = null
 
     fun requestStoreInfo() {
-        storeID?.let { stID ->
-            StoreModel.requestStoreInfo(stID, {
-                it?.responseData?.let { arr ->
-                    store.value = StoreDetail().jsonToObj(arr[0].asJsonObject)
-                }
-            }, {
-
-            })
-        }
     }
 
     fun setDummyMenu() {

@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.home_fragment_item1.view.*
 import pnu.hakathon.anyone.R
-import pnu.hakathon.anyone.model.HomeHashItem
+import pnu.hakathon.anyone.entity.StoreModel
 
 class HomeFragmentHashListAdapter internal constructor(
     val context: Context
 ) : RecyclerView.Adapter<HomeFragmentHashListAdapter.ViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var list = emptyList<HomeHashItem>()
+    private var list = emptyList<StoreModel>()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -33,10 +33,10 @@ class HomeFragmentHashListAdapter internal constructor(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = list[position]
         Glide.with(context).load(current.imageURL).into(holder.itemView.home_fragment_item1_image)
-        holder.itemView.home_fragment_item1_text.text = current.name
+        holder.itemView.home_fragment_item1_text.text = current.storeName
     }
 
-    fun setList(list: List<HomeHashItem>) {
+    fun setList(list: List<StoreModel>) {
         this.list = list
         notifyDataSetChanged()
     }

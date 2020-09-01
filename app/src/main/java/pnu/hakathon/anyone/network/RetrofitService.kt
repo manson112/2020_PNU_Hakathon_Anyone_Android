@@ -8,26 +8,26 @@ import retrofit2.http.POST
 interface RetrofitService {
     @POST("/user/bookmark")
     @FormUrlEncoded
-    fun requestBookmark(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
+    suspend fun requestBookmark(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
 
     @POST("/user/search/history")
     @FormUrlEncoded
-    fun requestSearchHistory(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
+    suspend fun requestSearchHistory(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
 
     @POST("/store/info")
     @FormUrlEncoded
-    fun requestStoreInfo(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
+    suspend fun requestStoreInfo(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
 
     @POST("/store/home")
     @FormUrlEncoded
-    fun requestHome(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
+    suspend fun requestHome(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
 
     @POST("/store/near")
     @FormUrlEncoded
-    fun requestStoreMapNearMe(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
+    suspend fun requestStoreMapNearMe(@FieldMap(encoded = true) data: HashMap<String, String>): ServerResponse
 
     @POST("/store/home/near")
     @FormUrlEncoded
-    fun requestStoreNearMe(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
+    suspend fun requestStoreNearMe(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
 }
 
