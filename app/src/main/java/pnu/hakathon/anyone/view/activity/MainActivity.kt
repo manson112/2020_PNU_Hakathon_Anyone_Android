@@ -108,6 +108,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+//
+//    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+//        super.onSaveInstanceState(outState, outPersistentState)
+//        Timber.d("curLoc = ${mainViewModel.curLoc.value!!.lat} ${mainViewModel.curLoc.value!!.lng} ")
+//        outState.putDouble("lat", mainViewModel.curLoc.value!!.lat)
+//        outState.putDouble("lng", mainViewModel.curLoc.value!!.lng)
+//    }
+
     val mLocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location?) {
             mainViewModel.setLatLng(location?.latitude!!, location.longitude)

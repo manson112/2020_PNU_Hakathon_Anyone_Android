@@ -10,8 +10,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_margin="8dp"
         app:cardElevation="0dp"
+        android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,24 +20,32 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/map_item_image_container"
+            <com.skydoves.transformationlayout.TransformationLayout
+                android:id="@+id/map_item_transformationLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:transformation_duration="500">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/map_item_image_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/map_item_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/detail_image_sample" />
-            </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/map_item_image"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/detail_image_sample" />
+                </androidx.cardview.widget.CardView>
+            </com.skydoves.transformationlayout.TransformationLayout>
 
             <TextView
                 android:id="@+id/map_item_name"
@@ -48,7 +56,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/map_item_distance"
-                app:layout_constraintStart_toEndOf="@id/map_item_image_container"
+                app:layout_constraintStart_toEndOf="@id/map_item_transformationLayout"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="부산 커피" />
 
@@ -161,5 +169,4 @@
 
 
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
+import timber.log.Timber
 import java.lang.reflect.Type
 
 class ServerResponseDeserializer : JsonDeserializer<ServerResponse> {
@@ -19,6 +20,7 @@ class ServerResponseDeserializer : JsonDeserializer<ServerResponse> {
             val resultCode = jsonObject.get("code").asInt
             val message = jsonObject.get("message").asString
             var dataList: JsonArray? = null
+            Timber.d(json.toString())
             if (!jsonObject.get("response_data").isJsonNull) {
                 dataList = jsonObject.getAsJsonArray("response_data")
             }

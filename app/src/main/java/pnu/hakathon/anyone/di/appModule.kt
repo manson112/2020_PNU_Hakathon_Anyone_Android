@@ -11,10 +11,7 @@ import pnu.hakathon.anyone.network.ServerResponse
 import pnu.hakathon.anyone.network.ServerResponseDeserializer
 import pnu.hakathon.anyone.repoimpl.*
 import pnu.hakathon.anyone.repository.*
-import pnu.hakathon.anyone.viewmodel.BookmarkViewModel
-import pnu.hakathon.anyone.viewmodel.HomeViewModel
-import pnu.hakathon.anyone.viewmodel.MainViewModel
-import pnu.hakathon.anyone.viewmodel.MapViewModel
+import pnu.hakathon.anyone.viewmodel.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.Executor
@@ -28,8 +25,6 @@ val appModule = module {
     }
     single<BookmarkRepository> {
         BookmarkRepositoryImpl(
-            get(),
-            get(),
             get()
         )
     }
@@ -39,7 +34,7 @@ val appModule = module {
             get()
         )
     }
-    single<StoreDetailRepository> { StoreDetailRepositoryImpl() }
+    single<StoreDetailRepository> { StoreDetailRepositoryImpl(get()) }
     single<MainRepository> { MainRepositoryImpl(get(), get()) }
 
     factory { provideServerApi(provideServerRetrofit()) }
@@ -53,9 +48,9 @@ val appModule = module {
     viewModel { (handle: SavedStateHandle) -> MapViewModel(handle, get()) }
     viewModel { BookmarkViewModel(get()) }
     viewModel { MainViewModel(get()) }
+    viewModel { StoreDetailViewModel(get()) }
 
 //    viewModel { SearchViewModel(get()) }
-//    viewModel { StoreDetailViewModel(get()) }
 
 }
 

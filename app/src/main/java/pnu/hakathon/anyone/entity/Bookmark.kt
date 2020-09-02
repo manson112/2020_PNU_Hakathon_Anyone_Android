@@ -16,7 +16,6 @@ class Bookmark(
     @ColumnInfo(name = "imageURL") var imageURL: String = "",
     @ColumnInfo(name = "created_at") var createdAt: String = ""
 ) {
-
     fun jsonToObj(json: JsonObject): Bookmark {
         json.get("id")?.let {
             this.id = it.asInt

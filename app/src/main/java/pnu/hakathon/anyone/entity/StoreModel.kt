@@ -1,16 +1,19 @@
 package pnu.hakathon.anyone.entity
 
+import android.os.Parcelable
 import android.util.Log
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.JsonObject
+import kotlinx.android.parcel.Parcelize
 import pnu.hakathon.anyone.network.Request
 import kotlin.math.cos
 import kotlin.math.sin
 
 @Entity(tableName = "stores")
-data class StoreModel(
+@Parcelize
+data class StoreModel (
     @PrimaryKey var id: Int = 0,
     @ColumnInfo(name = "category_id") var categoryID: String = "",
     @ColumnInfo(name = "image_url") var imageURL: String = "",
@@ -29,8 +32,9 @@ data class StoreModel(
     @ColumnInfo(name = "noise") var noise: Double = 0.0,
     @ColumnInfo(name = "cleanliness") var cleanliness: Double = 0.0,
     @ColumnInfo(name = "kindness") var kindness: Double = 0.0,
-    @ColumnInfo(name = "wifi") var wifi: Double = 0.0
-) {
+    @ColumnInfo(name = "wifi") var wifi: Double = 0.0,
+    @ColumnInfo(name = "bookmarked") var bookmarked: Boolean = false
+) : Parcelable {
     fun jsonToObj(json: JsonObject): StoreModel {
         json.get("id")?.let {
             this.id = it.asInt
@@ -84,6 +88,9 @@ data class StoreModel(
         }
         json.get("wifi")?.let {
             this.wifi = it.asDouble
+        }
+        json.get("bookmarked")?.let {
+            this.bookmarked = it.asBoolean
         }
         Log.d("MapStoreModel", this.toString())
         return this

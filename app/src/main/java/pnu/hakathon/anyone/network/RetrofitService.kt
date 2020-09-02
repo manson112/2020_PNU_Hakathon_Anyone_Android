@@ -8,7 +8,11 @@ import retrofit2.http.POST
 interface RetrofitService {
     @POST("/user/bookmark")
     @FormUrlEncoded
-    suspend fun requestBookmark(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
+    suspend fun requestBookmark(@FieldMap(encoded = true) data: HashMap<String, String>): ServerResponse
+
+    @POST("/user/bookmark/put")
+    @FormUrlEncoded
+    suspend fun requestSetBookmark(@FieldMap(encoded = true) data: HashMap<String, String>): ServerResponse
 
     @POST("/user/search/history")
     @FormUrlEncoded

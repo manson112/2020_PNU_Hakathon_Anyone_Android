@@ -37,6 +37,7 @@ class HomeHashFragment3 : Fragment() {
         v.home2_fragment_recyclerview.addItemDecoration(itemDecorator)
         mainViewModel.store_noisy.observe(viewLifecycleOwner, Observer {
             adapter.setList(it)
+            v.home_hash_empty_text.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
         })
 
         return v

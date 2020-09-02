@@ -1,5 +1,6 @@
 package pnu.hakathon.anyone.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import pnu.hakathon.anyone.R
+import pnu.hakathon.anyone.view.activity.SearchActivity
 import pnu.hakathon.anyone.view.adapter.TabAdapter
 import pnu.hakathon.anyone.view.adapter.home.HomeFragmentListAdapter
 import pnu.hakathon.anyone.viewmodel.MainViewModel
@@ -45,9 +47,9 @@ class HomeFragment : Fragment(){
             }
         }.attach()
 
-//        v.home2_searchbar.setOnClickListener {
-//            context.toSearchActivity()
-//        }
+        v.home_searchbar.setOnClickListener {
+            startActivity(Intent(requireActivity(), SearchActivity::class.java))
+        }
 
         val adapter = HomeFragmentListAdapter(container.context)
         v.home_recommend_recyclerview.adapter = adapter
@@ -61,18 +63,10 @@ class HomeFragment : Fragment(){
         mainViewModel.stores.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.setList(it)
-
                 var seats = 0
                 it.forEach { item -> seats += (item.total - item.current) }
                 v.home_text_num_of_seat.text = seats.toString()
-
-                if (it.isEmpty()) {
-//                    v.home2_empty_text.visibility = View.VISIBLE
-//                    v.home2_text1.visibility = View.INVISIBLE
-                } else {
-//                    v.home2_empty_text.visibility = View.GONE
-//                    v.home2_text1.visibility = View.VISIBLE
-                }
+                v.home_empty_text.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
             }
         })
 

@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_map_list.view.*
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.entity.StoreModel
+import pnu.hakathon.anyone.view.activity.StoreDetailActivity
 import kotlin.math.roundToInt
 
 class MapListAdapter internal constructor(
@@ -16,11 +18,24 @@ class MapListAdapter internal constructor(
 ) : RecyclerView.Adapter<MapListAdapter.ViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var list = emptyList<StoreModel>()
+    private var onClickedTime = System.currentTimeMillis()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(inflater.inflate(R.layout.item_map_list, parent, false))
+        return ViewHolder(inflater.inflate(R.layout.item_map_list, parent, false)).apply {
+            itemView.setOnClickListener {
+                val position = adapterPosition.takeIf { it != NO_POSITION } ?: return@setOnClickListener
+                val currentTime = System.currentTimeMillis()
+                if (currentTime - onClickedTime > itemView.map_item_transformationLayout.duration) {
+                    StoreDetailActivity.startActivity(
+                        itemView.map_item_transformationLayout,
+                        list[position]
+                    )
+                    onClickedTime = currentTime
+                }
+            }
+        }
     }
 
     override fun getItemCount() = list.size

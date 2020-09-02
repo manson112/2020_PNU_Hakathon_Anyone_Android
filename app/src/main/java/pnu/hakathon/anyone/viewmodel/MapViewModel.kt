@@ -13,6 +13,7 @@ class MapViewModel(var savedStateHandle: SavedStateHandle, val repo: MapReposito
     var list: LiveData<List<StoreModel>>
 
     init {
+        Timber.d("${savedStateHandle.get<Double>("lat")}, ${savedStateHandle.get<Double>("lng")}")
         list = locLiveData.switchMap {
             Timber.d("LIST INIT")
             liveData<List<StoreModel>>(viewModelScope.coroutineContext + Dispatchers.IO) {
@@ -28,4 +29,6 @@ class MapViewModel(var savedStateHandle: SavedStateHandle, val repo: MapReposito
     fun getCenterMapPoint(): MapPoint{
         return MapPoint.mapPointWithGeoCoord(locLiveData.value!!.lat, locLiveData.value!!.lng)
     }
+
+
 }

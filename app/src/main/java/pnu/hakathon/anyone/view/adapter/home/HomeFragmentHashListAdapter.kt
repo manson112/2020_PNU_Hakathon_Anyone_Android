@@ -27,12 +27,11 @@ class HomeFragmentHashListAdapter internal constructor(
             )
         )
     }
-
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = list[position]
-        Glide.with(context).load(current.imageURL).into(holder.itemView.home_fragment_item1_image)
+        Glide.with(context).load(current.imageURL).placeholder(R.drawable.image_empty).into(holder.itemView.home_fragment_item1_image)
         holder.itemView.home_fragment_item1_text.text = current.storeName
     }
 

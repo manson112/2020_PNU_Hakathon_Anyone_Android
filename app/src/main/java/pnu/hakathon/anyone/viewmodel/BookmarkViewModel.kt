@@ -1,14 +1,23 @@
 package pnu.hakathon.anyone.viewmodel
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import pnu.hakathon.anyone.entity.StoreModel
 import pnu.hakathon.anyone.repository.BookmarkRepository
 
 class BookmarkViewModel(private val repo: BookmarkRepository) : ViewModel() {
-//    val bookmarks: LiveData<List<Bookmark>> = repo./*getBookmarks("1")
-//    var selected = MutableLiveData<Bookmark>()
-//
-//    fun selectBookmark(pos: Int) {
-//        selected.value = bookmarks.value?.get(pos)
-//    }*/
+    private val bookmarks: LiveData<List<StoreModel>> = liveData {
+        emitSource(repo.getBookmarksFromServer("1").asLiveData())
+    }
+    val cafe: LiveData<List<StoreModel>>
+    val rest: LiveData<List<StoreModel>>
+
+    init {
+        cafe = bookmarks.map { bm ->
+            bm.filter { it.categoryID == "1" }
+        }
+        rest = bookmarks.map { bm ->
+            bm.filter { it.categoryID == "2" }
+        }
+    }
 
 }

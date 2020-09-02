@@ -15,7 +15,7 @@ import pnu.hakathon.anyone.entity.StoreModel
 
 @Database(
     entities = [SearchHistory::class, Bookmark::class,  StoreModel::class],
-    version = 14
+    version = 16
 )
 abstract class AppDatabase: RoomDatabase() {
     abstract fun searchHistoryDao(): SearchHistoryDao

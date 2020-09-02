@@ -26,7 +26,6 @@ class MainViewModel(private val repo: MainRepository): ViewModel() {
     val locationUpdated: LiveData<Boolean>
         get() = _locationUpdated
 
-
     private var fetchingLiveData: MutableLiveData<Int> = MutableLiveData()
 
     var stores: LiveData<List<StoreModel>>
@@ -34,7 +33,6 @@ class MainViewModel(private val repo: MainRepository): ViewModel() {
     var store_clean: LiveData<List<StoreModel>>
     var store_noisy: LiveData<List<StoreModel>>
     var store_kind: LiveData<List<StoreModel>>
-
 
     init {
         stores = address.switchMap {
@@ -46,6 +44,7 @@ class MainViewModel(private val repo: MainRepository): ViewModel() {
         store_clean = stores.map { s -> s.filter { i -> i.cleanliness >= 3 } }
         store_noisy = stores.map { s -> s.filter { i -> i.noise >= 3 } }
         store_kind = stores.map { s -> s.filter { i -> i.kindness >= 3 } }
+
     }
 
     fun setCategory(categoryID: String, categoryName: String) {
@@ -63,6 +62,8 @@ class MainViewModel(private val repo: MainRepository): ViewModel() {
             this._address.value = address
         }
     }
+
+
 
     fun getCurrentCenterMapPoint(): MapPoint{
         return MapPoint.mapPointWithGeoCoord(curLoc.value!!.lat, curLoc.value!!.lng)

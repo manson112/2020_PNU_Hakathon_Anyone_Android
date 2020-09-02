@@ -203,6 +203,7 @@ class MapFragment : Fragment() {
         }
     }
 
+
     companion object {
         fun newInstance(): MapFragment {
             return MapFragment()
