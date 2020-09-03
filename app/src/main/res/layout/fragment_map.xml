@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/map_scroll_view"
-    tools:context=".view.fragment.MapFragment"
+    tools:context=".ui.fragment.MapFragment"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_margin="10dp"
             app:cardCornerRadius="15dp"
             app:cardElevation="5dp">
-            <RelativeLayout
+            <FrameLayout
                 android:id="@+id/map_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -58,13 +58,31 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/map_list_shimmer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_map_list" />
+                <include layout="@layout/shimmer_map_list" />
+                <include layout="@layout/shimmer_map_list" />
+                <include layout="@layout/shimmer_map_list" />
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/map_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="6dp"
+            tools:listitem="@layout/item_map_list"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_goneMarginTop="8dp" />
 

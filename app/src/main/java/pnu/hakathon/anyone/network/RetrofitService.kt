@@ -30,6 +30,10 @@ interface RetrofitService {
     @FormUrlEncoded
     suspend fun requestStoreMapNearMe(@FieldMap(encoded = true) data: HashMap<String, String>): ServerResponse
 
+    @POST("/store/search")
+    @FormUrlEncoded
+    suspend fun requestSearch(@FieldMap(encoded = true) data: HashMap<String, String>): ServerResponse
+
     @POST("/store/home/near")
     @FormUrlEncoded
     suspend fun requestStoreNearMe(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>

@@ -11,13 +11,15 @@ class MapViewModel(var savedStateHandle: SavedStateHandle, val repo: MapReposito
     var categoryID: String = "1"
     var locLiveData = MutableLiveData(Loc())
     var list: LiveData<List<StoreModel>>
+    var isLoading = MutableLiveData(true)
 
     init {
         Timber.d("${savedStateHandle.get<Double>("lat")}, ${savedStateHandle.get<Double>("lng")}")
         list = locLiveData.switchMap {
+            isLoading.postValue(true)
             Timber.d("LIST INIT")
             liveData<List<StoreModel>>(viewModelScope.coroutineContext + Dispatchers.IO) {
-                emitSource(repo.getStoreList(categoryID, it.lat, it.lng).asLiveData())
+                emitSource(repo.getStoreList(categoryID, it.lat, it.lng, {isLoading.postValue(false)}, {isLoading.postValue(false)}).asLiveData())
             }
         }
     }

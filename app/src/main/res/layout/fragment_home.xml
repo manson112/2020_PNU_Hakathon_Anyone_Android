@@ -158,6 +158,8 @@
                 android:text="@string/home_text_4"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/jalnan"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
             <TextView
@@ -167,6 +169,8 @@
                 tools:text="카페"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/jalnan"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/home_text_4"/>
             <TextView
@@ -176,6 +180,8 @@
                 android:textColor="@color/colorBlack"
                 android:text="@string/home_text_5"
                 android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/jalnan"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/home_text_category_1"/>
 
@@ -226,7 +232,9 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/home_hash_pager"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
+            android:paddingVertical="15dp"
+
             />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -241,6 +249,8 @@
                 android:text="@string/home_text_8"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/jalnan"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -251,6 +261,8 @@
                 android:textColor="@color/colorBlack"
                 tools:text="카페"
                 android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/jalnan"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/home_text_8"
                 />
@@ -262,19 +274,38 @@
                 android:textColor="@color/colorBlack"
                 android:text="@string/home_text_9"
                 android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/jalnan"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/home_text_category_3"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/home_list_shimmer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_main_list" />
+                <include layout="@layout/shimmer_main_list" />
+                <include layout="@layout/shimmer_main_list" />
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_recommend_recyclerview"
-            android:paddingVertical="10dp"
-            android:paddingHorizontal="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            android:layout_marginTop="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_home_list"/>
 
         <TextView
             android:id="@+id/home_empty_text"

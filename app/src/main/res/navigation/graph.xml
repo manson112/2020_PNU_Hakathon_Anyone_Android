@@ -6,12 +6,16 @@
     android:id="@+id/graph">
     <fragment
         android:id="@+id/first_fragment"
-        android:name="pnu.hakathon.anyone.view.fragment.HomeFragment"
+        android:name="pnu.hakathon.anyone.ui.fragment.HomeFragment"
         android:label="Home Fragment"
         tools:layout="`@layout/fragment_home" >
         <action
             android:id="@+id/action_firstFragment_to_secondFragment"
-            app:destination="@id/second_fragment" />
+            app:destination="@id/second_fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_secondFragment_to_thirdFragment"
             app:destination="@id/third_fragment" />
@@ -21,20 +25,20 @@
     </fragment>
     <fragment
         android:id="@+id/second_fragment"
-        android:name="pnu.hakathon.anyone.view.fragment.MapFragment"
+        android:name="pnu.hakathon.anyone.ui.fragment.MapFragment"
         android:label="Map Fragment"
         tools:layout="@layout/fragment_map" >
 
     </fragment>
     <fragment
         android:id="@+id/third_fragment"
-        android:name="pnu.hakathon.anyone.view.fragment.BookmarkFragment"
+        android:name="pnu.hakathon.anyone.ui.fragment.BookmarkFragment"
         android:label="Bookmark Fragment"
         tools:layout="@layout/fragment_bookmark" >
     </fragment>
     <fragment
         android:id="@+id/fourth_fragment"
-        android:name="pnu.hakathon.anyone.view.fragment.ProfileFragment"
+        android:name="pnu.hakathon.anyone.ui.fragment.ProfileFragment"
         android:label="Fourth Fragment"
         tools:layout="@layout/fragment_profile" >
     </fragment>

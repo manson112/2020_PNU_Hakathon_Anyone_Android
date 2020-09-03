@@ -5,7 +5,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
-    app:cardCornerRadius="10dp"
     app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,14 +38,19 @@
         </com.skydoves.transformationlayout.TransformationLayout>
 
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/bookmark_item_store_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
             android:textSize="14sp"
             android:layout_marginStart="2dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="start"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="@id/item_transformationLayout"
+            app:layout_constraintEnd_toEndOf="@id/item_transformationLayout"
             app:layout_constraintTop_toBottomOf="@id/item_transformationLayout"
             tools:text="부산커피" />
 

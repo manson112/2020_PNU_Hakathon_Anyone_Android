@@ -37,4 +37,16 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
+    <style name="ThemeOverlay.SearchView" parent="Widget.AppCompat.SearchView">
+        <!-- Text color -->
+        <item name="android:editTextColor">@color/colorWhite</item>
+        <!-- Hint text color -->
+        <item name="android:textColorHint">@color/colorGrey</item>
+        <item name="searchIcon">@drawable/ic_search_white</item>
+        <item name="iconTint">@color/colorWhite</item>
+        <item name="closeIconTint">@color/colorWhite</item>
+        <item name="tint">@color/colorWhite</item>
+        <item name="tintMode">src_in</item>
+    </style>
+
 </resources>

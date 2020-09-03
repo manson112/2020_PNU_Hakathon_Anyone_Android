@@ -90,14 +90,16 @@ data class StoreModel (
             this.wifi = it.asDouble
         }
         json.get("bookmarked")?.let {
-            this.bookmarked = it.asBoolean
+            this.bookmarked = it.asInt != 0
         }
         Log.d("MapStoreModel", this.toString())
         return this
     }
+
     override fun toString(): String {
-        return "StoreModel(id=$id, categoryID='$categoryID', imageURL='$imageURL', storeName='$storeName', hashTag='$hashTag', address='$address', total=$total, current=$current, lat=$lat, lng=$lng, cos_lat=$cos_lat, sin_lat=$sin_lat, cos_lng=$cos_lng, sin_lng=$sin_lng, distance=$distance, noise=$noise, cleanliness=$cleanliness, kindness=$kindness, wifi=$wifi)"
+        return "StoreModel(id=$id, categoryID='$categoryID', imageURL='$imageURL', storeName='$storeName', hashTag='$hashTag', address='$address', total=$total, current=$current, lat=$lat, lng=$lng, cos_lat=$cos_lat, sin_lat=$sin_lat, cos_lng=$cos_lng, sin_lng=$sin_lng, distance=$distance, noise=$noise, cleanliness=$cleanliness, kindness=$kindness, wifi=$wifi, bookmarked=$bookmarked)"
     }
+
 }
 
 data class ReqMapStore(

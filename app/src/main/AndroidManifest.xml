@@ -16,10 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activity.SignInActivity"></activity>
-        <activity android:name=".view.activity.CategoryActivity"></activity>
-        <activity android:name=".view.activity.LoginActivity" />
-        <activity android:name=".view.activity.SplashActivity">
+        <activity android:name=".ui.activity.SignInActivity"></activity>
+        <activity android:name=".ui.activity.CategoryActivity"></activity>
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,11 +31,12 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="f9130ff8af73bdff1b29129b628dbfa1" />
 
-        <activity android:name=".view.activity.StoreDetailActivity">
+        <activity android:name=".ui.activity.StoreDetailActivity">
 
         </activity>
-        <activity android:name=".view.activity.SearchActivity" />
-        <activity android:name=".view.activity.MainActivity">
+        <activity android:name=".ui.activity.SearchActivity">
+        </activity>
+        <activity android:name=".ui.activity.MainActivity">
 
         </activity>
     </application>

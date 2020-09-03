@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".view.activity.MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
     <include android:id="@+id/app_bar" layout="@layout/app_bar"/>
 

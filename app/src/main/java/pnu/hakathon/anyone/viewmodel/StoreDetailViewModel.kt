@@ -12,15 +12,20 @@ import timber.log.Timber
 
 class StoreDetailViewModel(private val repo: StoreDetailRepository) : ViewModel() {
     var bookmarked = MutableLiveData(false)
-    var store: StoreModel = StoreModel()
+    var store: MutableLiveData<StoreModel> = MutableLiveData(StoreModel())
 
     fun setBookmark(isChecked: Boolean) {
         CoroutineScope(viewModelScope.coroutineContext + Dispatchers.IO). launch {
-            repo.setBookmark("1", store.id.toString(), isChecked, {
-                bookmarked.value = isChecked
+            repo.setBookmark("1", store.value!!.id.toString(), isChecked, {
+                CoroutineScope(Dispatchers.Main).launch {
+                    bookmarked.value = isChecked
+                }
             }, {
                 Timber.d("Bookmark putting error")
             })
         }
+    }
+    fun setStore(st: StoreModel) {
+        store.value = st
     }
 }

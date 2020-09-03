@@ -17,16 +17,22 @@ class MapRepositoryImpl(
     override suspend fun getStoreList(
         categoryID: String,
         lat: Double,
-        lng: Double
+        lng: Double,
+        onSuccess: () -> Unit,
+        onError: () -> Unit
     ) = flow {
         val response = webService.requestStoreMapNearMe(ReqMapStore(categoryID, lat.toString(), lng.toString()).toMap())
         Timber.d(response.toString())
-        response.responseData?.let { arr ->
-            val list = ArrayList<StoreModel>()
-            arr.forEach {
-                list.add(StoreModel().jsonToObj(it.asJsonObject))
+        if (response.code != 200) {
+            emit(ArrayList<StoreModel>())
+            onError()
+        } else {
+            response.responseData?.let { arr ->
+                val list = ArrayList<StoreModel>()
+                arr.forEach {
+                    list.add(StoreModel().jsonToObj(it.asJsonObject))
 //                storeListDao.insert(StoreModel().jsonToObj(it.asJsonObject))
-            }
+                }
 //            val cos_lat = cos(Math.toRadians(lat)).toString()
 //            val sin_lat = sin(Math.toRadians(lat)).toString()
 //            val cos_lng = cos(Math.toRadians(lng)).toString()
@@ -40,9 +46,12 @@ class MapRepositoryImpl(
 //                sin_lng,
 //                distance
 //            )
-            emit(list)
-        } ?: run {
-            emit(ArrayList<StoreModel>())
+                emit(list)
+                onSuccess()
+            } ?: run {
+                emit(ArrayList<StoreModel>())
+                onSuccess()
+            }
         }
     }.flowOn(Dispatchers.IO)
 

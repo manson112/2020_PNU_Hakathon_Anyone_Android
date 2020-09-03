@@ -6,20 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
-import pnu.hakathon.anyone.dao.BookmarkDao
-import pnu.hakathon.anyone.dao.SearchHistoryDao
 import pnu.hakathon.anyone.dao.StoreListDao
-import pnu.hakathon.anyone.entity.Bookmark
-import pnu.hakathon.anyone.entity.SearchHistory
 import pnu.hakathon.anyone.entity.StoreModel
 
 @Database(
-    entities = [SearchHistory::class, Bookmark::class,  StoreModel::class],
-    version = 16
+    entities = [StoreModel::class],
+    version = 17
 )
 abstract class AppDatabase: RoomDatabase() {
-    abstract fun searchHistoryDao(): SearchHistoryDao
-    abstract fun bookmarkDao(): BookmarkDao
     abstract fun storeListDao(): StoreListDao
 
     companion object {
@@ -63,23 +57,8 @@ abstract class AppDatabase: RoomDatabase() {
         ) : RoomDatabase.Callback() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onOpen(db)
-
-//                INSTANCE?.let { appDatabase ->
-//                    scope.launch(Dispatchers.IO) {
-//                        populateDatabase(
-//                            appDatabase.searchHistoryDao(),
-//                            appDatabase.bookmarkDao(),
-//                            appDatabase.storeListDao()
-//                        )
-//                    }
-//                }
             }
         }
 
-        fun populateDatabase(
-            bookmarkDao: BookmarkDao,
-            nearStoreDao: StoreListDao
-        ) {
-        }
     }
 }
