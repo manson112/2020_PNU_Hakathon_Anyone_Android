@@ -15,14 +15,14 @@ import kotlin.math.roundToInt
 
 class MapListAdapter internal constructor(
     val context: Context
-) : RecyclerView.Adapter<MapListAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var list = emptyList<StoreModel>()
     private var onClickedTime = System.currentTimeMillis()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(inflater.inflate(R.layout.item_map_list, parent, false)).apply {
             itemView.setOnClickListener {
                 val position = adapterPosition.takeIf { it != NO_POSITION } ?: return@setOnClickListener
@@ -40,7 +40,7 @@ class MapListAdapter internal constructor(
 
     override fun getItemCount() = list.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val current = list[position]
         Glide.with(context).load(
                 current.imageURL
