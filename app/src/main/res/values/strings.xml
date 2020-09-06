@@ -44,44 +44,18 @@
     <string name="map_item_empty_seat">잔여:&#160;</string>
 
     <!--  LOGIN  -->
-    <string name="login_phone">휴대폰 번호</string>
-    <string name="login_email">구글 이메일</string>
 
     <!--  LANDING (카페, 식당, 술집, 패스트푸드 선택) -->
-    <string name="landing_cafe">시원한 카페</string>
-    <string name="landing_restaurant">든든한 음식점</string>
-    <string name="landing_pub">즐거운 술집</string>
-    <string name="landing_fastfood">패스트푸드</string>
 
     <!--  HOME  -->
-    <string name="home_location">내 주위</string>
-    <string name="home_hashtag1">#조용한</string>
-    <string name="home_hashtag2">#활기찬</string>
-    <string name="home_hashtag3">#친절한</string>
-    <string name="home_hashtag4">#깨끗한</string>
-    <string name="home_recommend">오늘 이런 카페는 어때요?</string>
-    <string name="home_recommend_sub">근처 자리가 많이 있는 카페예요!</string>
-    <string name="home_hashtag">채움이의 추천 해시태그!</string>
-    <string name="home_hashtag_sub">건강하게 채움이를 채워주세요!</string>
-    <string name="home_album">카페 앨범</string>
-    <string name="home_album_sub">현민님 취향에 맞게 추천해드려요!</string>
-    <string name="home_text1">주변 자리가 있는 카페</string>
-    <string name="home_text2">유빈님께 추천드리는 카페 Playlist</string>
-    <string name="home_text3">목적에 맞게 찾아보세요~</string>
-    <string name="home_seat">자리</string>
 
     <!--  MAIN  -->
-    <string name="main_viewed">#최근조회</string>
 
     <!--  SEARCH  -->
     <string name="search_bar_placeholder">카페 이름을 검색해보세요</string>
-    <string name="search_history">#최근검색</string>
 
     <!--  DETAIL  -->
-    <string name="detail_menu">MENU</string>
-    <string name="detail_review">REVIEW</string>
     <string name="detail_more_photo">사진 더보기</string>
-    <string name="detail_phonecall">전화하기</string>
     <string name="detail_review_text1">조용한</string>
     <string name="detail_review_text2">활기찬</string>
     <string name="detail_review_text3">더러운</string>
@@ -92,32 +66,10 @@
     <string name="detail_review_text8">WIFI빠름</string>
 
     <!-- 즐겨찾기 -->
-    <string name="bookmark_favorite">자주가는</string>
-    <string name="bookmark_recommended">추천하는</string>
 
     <!-- REVIEW -->
-    <string name="review_noise">소음</string>
-    <string name="review_cleanliness">청결도</string>
-    <string name="review_kindness">친절함</string>
-    <string name="review_wifi">WIFI</string>
 
     <!-- PROFILE -->
-    <string name="profile_show">프로필 보기</string>
-
-    <string name="profile_manage">계정 관리</string>
-    <string name="profile_manage_info">개인 정보</string>
-    <string name="profile_manage_notification">알림</string>
-
-    <string name="profile_share">추천</string>
-    <string name="profile_share_text">친구 초대하기</string>
-
-    <string name="profile_support">지원</string>
-    <string name="profile_opinion">의견 남기기</string>
-
-    <string name="profile_service">약관</string>
-    <string name="profile_service_info">서비스 약관</string>
-    <string name="profile_login">로그인</string>
-    <string name="profile_logout">로그아웃</string>
 
     <!-- MAP -->
     <string name="map_item_percent">80%</string>
@@ -125,13 +77,8 @@
     <string name="map_search_here">이 지역에서 검색</string>
 
     <!-- SIGN IN -->
-    <string name="signin_phone_number_placeholder">휴대폰 번호</string>
-    <string name="signin_send">인증</string>
-    <string name="signin_verification_code_placeholder">인증번호 입력</string>
-    <string name="signin_done">로그인 / 회원가입</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

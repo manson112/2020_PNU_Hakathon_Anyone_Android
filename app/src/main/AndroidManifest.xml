@@ -16,9 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.SignInActivity"></activity>
         <activity android:name=".ui.activity.CategoryActivity"></activity>
-        <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

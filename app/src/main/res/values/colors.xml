@@ -5,34 +5,14 @@
     <color name="colorAccent">#2eb9da</color>
 
     <color name="colorGrey">#dddddd</color>
-    <color name="colorGrey2">#7C7C7C</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
 
     <color name="colorBlackTransparent">#40000000</color>
-    <color name="colorGreyTransparent">#405E5E5E</color>
-    <color name="colorBlueTransparent">#34198DDF</color>
 
-    <color name="colorTabBg">#542d69</color>
     <color name="colorTabClicked">#52aeff</color>
 
-    <color name="colorHomeYellow">#f7b108</color>
-    <color name="colorHomeOrange">#d95c3f</color>
     <color name="colorHomeBlue">#3467d9</color>
-    <color name="colorHomeLightBlue">#29b9d9</color>
-
-    <color name="colorMainTabSelected">#2eb9da</color>
-
-    <color name="colorDetailTabIndicator">#fb5f40</color>
-
-    <color name="colorMapYellow">#F2A92B</color>
-    <color name="colorMapProgressBackground">#51DDDDDD</color>
-    <color name="colorMapProgressForeground">#75CDD8</color>
-    <color name="colorMapPercentText">#70000000</color>
-
-    <color name="colorProfileGreen">#34B67E</color>
-
-    <color name="colorNewYellow">#FFCB51</color>
 
     <color name="colorShimmer">#D5D5D5</color>
 </resources>
