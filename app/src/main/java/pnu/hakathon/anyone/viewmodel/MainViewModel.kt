@@ -35,12 +35,12 @@ class MainViewModel(private val repo: MainRepository): ViewModel() {
         stores = address.switchMap {
             isLoading.postValue(true)
             liveData<List<StoreModel>>(viewModelScope.coroutineContext + Dispatchers.IO) {
-//                emitSource(repo.getStores(categoryID, curLoc.value!!.lat, curLoc.value!!.lng, {isLoading.postValue(false)}, {isLoading.postValue(false)}).asLiveData())
-                emitSource(repo.getStores(categoryID, 35.23177955501981, 129.08447619178358, {
-                    isLoading.postValue(false)
-                }, {
-                    isLoading.postValue(false)
-                }).asLiveData())
+                emitSource(repo.getStores(categoryID, curLoc.value!!.lat, curLoc.value!!.lng, {isLoading.postValue(false)}, {isLoading.postValue(false)}).asLiveData())
+//                emitSource(repo.getStores(categoryID, 35.23177955501981, 129.08447619178358, {
+//                    isLoading.postValue(false)
+//                }, {
+//                    isLoading.postValue(false)
+//                }).asLiveData())
             }
         }
         store_quiet = stores.map { s -> s.filter { i -> i.noise < 3 } }

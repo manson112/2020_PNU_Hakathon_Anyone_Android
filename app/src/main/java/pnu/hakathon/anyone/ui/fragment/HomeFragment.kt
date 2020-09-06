@@ -25,7 +25,7 @@ class HomeFragment : Fragment(){
         mainViewModel.stores.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.setList(it as MutableList<StoreModel>)
-                v.home_empty_text.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
+//                v.home_empty_text.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
             }
         })
         mainViewModel.isLoading.observe(viewLifecycleOwner, Observer {
