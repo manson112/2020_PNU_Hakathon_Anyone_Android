@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
@@ -15,9 +16,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import pnu.hakathon.anyone.R
 import pnu.hakathon.anyone.entity.StoreModel
 import pnu.hakathon.anyone.viewmodel.StoreDetailViewModel
-import kotlin.math.roundToInt
 
-class StoreDetailActivity : AppCompatActivity() {
+class StoreDetailActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
     val storeDetailViewModel by viewModel<StoreDetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +28,9 @@ class StoreDetailActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_store_detail)
+
+        refresh_container.setOnRefreshListener(this)
+
         val store: StoreModel = requireNotNull(intent.getParcelableExtra(STORE))
         storeDetailViewModel.setStore(store)
         storeDetailViewModel.bookmarked.value = store.bookmarked
@@ -44,8 +47,12 @@ class StoreDetailActivity : AppCompatActivity() {
             detail_progress_2.labelText = "${it.cleanliness}"
             detail_progress_3.labelText = "${it.kindness}"
             detail_progress_4.labelText = "${it.wifi}"
-            detail_text_fill.text = "현재 ${((it.current.toDouble() / it.total)*100).roundToInt()}%예요.\n완충까지 ${it.total - it.current}자리 남았어요!"
             detail_bookmark.isChecked   = it.bookmarked
+        })
+
+        storeDetailViewModel.text.observe(this, Observer {
+            detail_text_fill.text = it
+            refresh_container.isRefreshing = false
         })
 
         detail_bookmark.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -59,6 +66,10 @@ class StoreDetailActivity : AppCompatActivity() {
         detail_back.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    override fun onRefresh() {
+        storeDetailViewModel.getCurrentSeat()
     }
 
     companion object {

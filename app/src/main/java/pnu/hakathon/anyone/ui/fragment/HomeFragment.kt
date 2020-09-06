@@ -38,9 +38,9 @@ class HomeFragment : Fragment(){
                 v.home_list_shimmer.visibility = if (it) View.VISIBLE else View.GONE
             }
         })
-
         return v
     }
+
     companion object {
         fun newInstance(): HomeFragment {
             return HomeFragment()

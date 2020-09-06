@@ -14,4 +14,23 @@ class StoreDetailRepositoryImpl(private val webService: RetrofitService): StoreD
             onError()
         }
     }
+
+    override suspend fun getStoreData(
+        storeID: String,
+        onSuccess: (current: Int) -> Unit,
+        onError: () -> Unit
+    ) {
+        val result = webService.requestGetCurrentSeat(hashMapOf<String, String>("storeID" to storeID))
+        if (result.code != 200) {
+            onError()
+        } else {
+            result.responseData?.let { arr ->
+                Timber.d("$arr")
+                var current = 0
+                arr.forEach { current = it.asInt }
+                onSuccess(current)
+            }
+        }
+
+    }
 }

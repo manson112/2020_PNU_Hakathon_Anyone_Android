@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.flowOn
 import pnu.hakathon.anyone.entity.StoreModel
 import pnu.hakathon.anyone.network.RetrofitService
 import pnu.hakathon.anyone.repository.SearchRepository
+import timber.log.Timber
 
 class SearchRepositoryImpl(private val webService: RetrofitService): SearchRepository {
     override suspend fun getSearchResults(
@@ -17,6 +18,7 @@ class SearchRepositoryImpl(private val webService: RetrofitService): SearchRepos
         val map = hashMapOf<String, String>()
         map["categoryID"] = categoryID
         map["searchQuery"] = query
+        Timber.d("$map")
         val response = webService.requestSearch(map)
         if (response.code != 200) {
             onError()

@@ -14,6 +14,10 @@ interface RetrofitService {
     @FormUrlEncoded
     suspend fun requestSetBookmark(@FieldMap(encoded = true) data: HashMap<String, String>): ServerResponse
 
+    @POST("/store/seat/get")
+    @FormUrlEncoded
+    suspend fun requestGetCurrentSeat(@FieldMap(encoded = true) data: HashMap<String, String>): ServerResponse
+
     @POST("/user/search/history")
     @FormUrlEncoded
     suspend fun requestSearchHistory(@FieldMap(encoded = true) data: HashMap<String, String>): Call<ServerResponse>
